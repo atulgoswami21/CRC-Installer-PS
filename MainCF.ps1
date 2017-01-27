@@ -108,12 +108,12 @@ $handler_button1_Click=
 		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		New-FormLog -Message "Finished installing TeamViewer."
 		}
-	if ($OS -like "6.1")     {
+	if ($OS -like '6.1')     {
 		New-FormLog -Message "This computer is running Windows 7."
 		& "C:\Windows\BRM Computers\SetTaskbar.vbs"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -like "6.2")     {
+	if ($OS -like '6.2')     {
 		New-FormLog -Message "This computer is running Windows 8."
 		New-FormLog -Message "Setting taskbar icons ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -123,7 +123,7 @@ $handler_button1_Click=
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -like "6.3")     {
+	if ($OS -like '6.3')     {
 		New-FormLog -Message "This computer is running Windows 8.1."
 		New-FormLog -Message "Setting taskbar icons ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -133,7 +133,7 @@ $handler_button1_Click=
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -like "10.0")     {
+	if ($OS -like '10.0')     {
 		New-FormLog -Message "This computer is running Windows 10."
 		New-FormLog -Message "Setting explorer to open to This PC ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value "1" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
