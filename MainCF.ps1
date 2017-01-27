@@ -108,12 +108,12 @@ $handler_button1_Click=
 		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		New-FormLog -Message "Finished installing TeamViewer."
 		}
-	if ($OS -eq 1)     {
+	if ($OS -eq "1")     {
 		New-FormLog -Message "This computer is running Windows 7."
 		& "C:\Windows\BRM Computers\SetTaskbar.vbs"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -eq 2)     {
+	if ($OS -eq "2")     {
 		New-FormLog -Message "This computer is running Windows 8."
 		New-FormLog -Message "Setting taskbar icons ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -123,7 +123,7 @@ $handler_button1_Click=
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -eq 3)     {
+	if ($OS -eq "3")     {
 		New-FormLog -Message "This computer is running Windows 8.1."
 		New-FormLog -Message "Setting taskbar icons ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -133,7 +133,7 @@ $handler_button1_Click=
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -eq 0)     {
+	if ($OS -eq "0")     {
 		New-FormLog -Message "This computer is running Windows 10."
 		New-FormLog -Message "Setting explorer to open to This PC ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value "1" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -158,7 +158,7 @@ $handler_button1_Click=
 		New-FormLog -Message "Disabling Advertising ID ..."
 		If (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo")) {
 			New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" | Out-Null
-			}
+			}+
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -Type DWord -Value 0
 		New-FormLog -Message "Disabling Cortana ..."
 		If (!(Test-Path "HKCU:\Software\Microsoft\Personalization\Settings")) {
@@ -195,7 +195,7 @@ $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
 $System_Drawing_Size.Width = 650
-$System_Drawing_Size.Height = 330
+$System_Drawing_Size.Height = 450
 $form1.ClientSize = $System_Drawing_Size
 $form1.Icon = "C:\Windows\BRM Computers\OEM.ico"
 #Install button
@@ -218,7 +218,7 @@ $form1.Controls.Add($button1)
 $listBox1.FormattingEnabled = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
 $System_Drawing_Size.Width = 350
-$System_Drawing_Size.Height = 200
+$System_Drawing_Size.Height = 400
 $listBox1.Size = $System_Drawing_Size
 $listBox1.DataBindings.DefaultDataSourceUpdateMode = 0
 $listBox1.Name = "listBox1"
