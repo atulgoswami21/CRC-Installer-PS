@@ -19,7 +19,7 @@ $WebClient.DownloadFile( $url4, $path4 )
 $WebClient.DownloadFile( $url5, $path5 )
 $WebClient.DownloadFile( $url6, $path6 )
 #OS
-$OS = [environment]::OSVersion.Version.Minor
+$OS = (Get-WmiObject -Class Win32_OperatingSystem).version
 #Log file
 $date = Get-Date -Format "yyyy.MM.dd HH.mm"
 $log = $date + " " + $env:ComputerName
@@ -108,12 +108,12 @@ $handler_button1_Click=
 		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		New-FormLog -Message "Finished installing TeamViewer."
 		}
-	if ($OS -eq "1")     {
+	if ($OS -contains "6.1")     {
 		New-FormLog -Message "This computer is running Windows 7."
 		& "C:\Windows\BRM Computers\SetTaskbar.vbs"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -eq "2")     {
+	if ($OS -contains "6.2")     {
 		New-FormLog -Message "This computer is running Windows 8."
 		New-FormLog -Message "Setting taskbar icons ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -123,7 +123,7 @@ $handler_button1_Click=
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -eq "3")     {
+	if ($OS -contains "6.3")     {
 		New-FormLog -Message "This computer is running Windows 8.1."
 		New-FormLog -Message "Setting taskbar icons ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -133,7 +133,7 @@ $handler_button1_Click=
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -eq "0")     {
+	if ($OS -contains "10.0")     {
 		New-FormLog -Message "This computer is running Windows 10."
 		New-FormLog -Message "Setting explorer to open to This PC ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value "1" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
