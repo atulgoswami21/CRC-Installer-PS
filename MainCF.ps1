@@ -138,9 +138,9 @@ $handler_button1_Click=
 		New-FormLog -Message "Setting explorer to open to This PC ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value "1" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		New-FormLog -Message "Disabling hibernation mode ..."
-		Set-ItemProperty -path HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power -name HiberbootEnabled -value "0" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -name HiberbootEnabled -value "0" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		New-FormLog -Message "Disabling Action Centre ..."
-		Set-ItemProperty -path HKLM:\Software\Policies\Microsoft\Windows\Explorer -name DisableNotificationCenter -value "1" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path "HKLM:\Software\Policies\Microsoft\Windows\Explorer" -name DisableNotificationCenter -value "1" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		New-FormLog -Message "Disabling Telemetry ..."
 		Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
 		Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
