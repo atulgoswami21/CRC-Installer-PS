@@ -3,9 +3,6 @@ Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installe
 Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/OEM.bmp" -OutFile "C:\Windows\BRM Computers\OEM.bmp"
 Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/OEM.ico" -OutFile "C:\Windows\BRM Computers\OEM.ico"
 Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/SetTaskbar.bat" -OutFile "C:\Windows\BRM Computers\SetTaskbar.bat"
-iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-#Windows version
-$OS = [environment]::OSVersion.Version.Major + [environment]::OSVersion.Version.Minor
 #Log file
 $date = Get-Date -Format "yyyy.MM.dd HH.mm"
 $log = $date + " " + $env:ComputerName
@@ -47,7 +44,9 @@ $handler_button1_Click=
 	if ($checkBox7.Checked)    {  $listBox1.Items.Add( "LibreOffice is checked."  ) }
 	if ($checkBox8.Checked)    {  $listBox1.Items.Add( "TeamViewer is checked."  ) }
     if ( !$checkBox1.Checked -and !$checkBox2.Checked -and !$checkBox3.Checked ) {   $listBox1.Items.Add("No programs are selected, please select some programs to install.")} 
+	New-FormLog -Message "Installing .NET4.5 ..."
 	choco install dotnet4.5 -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+	New-FormLog -Message "Finished installing .NET4.5 ..."
 	if ($checkBox1.Checked)     {
 	    New-FormLog -Message "Installing BRM OEM information ..."
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\BRM Computers\OEM.bmp" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -92,12 +91,12 @@ $handler_button1_Click=
 		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		New-FormLog -Message "Finished installing TeamViewer."
 		}
-	if ($OS -eq '7')     {
+	if ([environment]::OSVersion.Version.Major + [environment]::OSVersion.Version.Minor -eq '7')     {
 		New-FormLog -Message "This computer is running Windows 7."
 		& "C:\Windows\BRM Computers\SetTaskbar.vbs"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -eq '8')     {
+	if ([environment]::OSVersion.Version.Major + [environment]::OSVersion.Version.Minor -eq '8')     {
 		New-FormLog -Message "This computer is running Windows 8."
 		New-FormLog -Message "Setting taskbar icons ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -108,7 +107,7 @@ $handler_button1_Click=
 		New-FormLog -Message "The install has finished!"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -eq '9')     {
+	if ([environment]::OSVersion.Version.Major + [environment]::OSVersion.Version.Minor -eq '9')     {
 		New-FormLog -Message "This computer is running Windows 8.1."
 		New-FormLog -Message "Setting taskbar icons ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -119,7 +118,7 @@ $handler_button1_Click=
 		New-FormLog -Message "The install has finished!"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ($OS -eq '10')     {
+	if ([environment]::OSVersion.Version.Major + [environment]::OSVersion.Version.Minor -eq '10')     {
 		New-FormLog -Message "This computer is running Windows 10."
 		New-FormLog -Message "Setting explorer to open to This PC ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value "1" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -231,7 +230,7 @@ $checkBox1.Name = "checkBox1"
 $checkBox1.Checked = 1
 $form1.Controls.Add($checkBox1)
 $checkBox1.ForeColor = "#20409a"
-$checkBox1.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
+$checkBox1.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
 #Mozilla Firefox
 $checkBox2.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -249,7 +248,7 @@ $checkBox2.Name = "checkBox2"
 $checkBox2.Checked = 1
 $form1.Controls.Add($checkBox2)
 $checkBox2.ForeColor = "#20409a"
-$checkBox2.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
+$checkBox2.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
 #Google Chrome
 $checkBox3.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -267,7 +266,7 @@ $checkBox3.Name = "checkBox3"
 $checkBox3.Checked = 1
 $form1.Controls.Add($checkBox3)
 $checkBox3.ForeColor = "#20409a"
-$checkBox3.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
+$checkBox3.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
 #Kaspersky Internet Security 2017
 $checkBox4.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -285,7 +284,7 @@ $checkBox4.Name = "checkBox4"
 $checkBox4.Checked = 1
 $form1.Controls.Add($checkBox4)
 $checkBox4.ForeColor = "#20409a"
-$checkBox4.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
+$checkBox4.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
 #VLC Media Player
 $checkBox5.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -303,7 +302,7 @@ $checkBox5.Name = "checkBox5"
 $checkBox5.Checked = 1
 $form1.Controls.Add($checkBox5)
 $checkBox5.ForeColor = "#20409a"
-$checkBox5.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
+$checkBox5.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
 #7zip
 $checkBox6.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -321,7 +320,7 @@ $checkBox6.Name = "checkBox6"
 $checkBox6.Checked = 1
 $form1.Controls.Add($checkBox6)
 $checkBox6.ForeColor = "#20409a"
-$checkBox6.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
+$checkBox6.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
 #LibreOffice
 $checkBox7.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -339,7 +338,7 @@ $checkBox7.Name = "checkBox7"
 $checkBox7.Checked = 1
 $form1.Controls.Add($checkBox7)
 $checkBox7.ForeColor = "#20409a"
-$checkBox7.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
+$checkBox7.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
 #TeamViewer
 $checkBox8.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -357,7 +356,7 @@ $checkBox8.Name = "checkBox8"
 $checkBox8.Checked = 1
 $form1.Controls.Add($checkBox8)
 $checkBox8.ForeColor = "#20409a"
-$checkBox8.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
+$checkBox8.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
 #Save the initial state of the form
 $InitialFormWindowState = $form1.WindowState
 #Init the OnLoad event to correct the initial state of the form
