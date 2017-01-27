@@ -1,8 +1,23 @@
-Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/SetTaskbar.vbs" -OutFile "C:\Windows\BRM Computers\SetTaskbar.vbs"
-Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/SetTaskbar.exe" -OutFile "C:\Windows\BRM Computers\SetTaskbar.exe"
-Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/OEM.bmp" -OutFile "C:\Windows\BRM Computers\OEM.bmp"
-Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/OEM.ico" -OutFile "C:\Windows\BRM Computers\OEM.ico"
-Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/SetTaskbar.bat" -OutFile "C:\Windows\BRM Computers\SetTaskbar.bat"
+iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+$Username = ""
+$Password = ""
+$url2 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/SetTaskbar.vbs"
+$path2 = "C:\Windows\BRM Computers\SetTaskbar.vbs"
+$url3 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/SetTaskbar.exe"
+$path3 = "C:\Windows\BRM Computers\SetTaskbar.exe"
+$url4 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/OEM.bmp"
+$path4 = "C:\Windows\BRM Computers\OEM.bmp"
+$url5 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/OEM.ico"
+$path5 = "C:\Windows\BRM Computers\OEM.ico"
+$url6 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/SetTaskbar.bat"
+$path6 = "C:\Windows\BRM Computers\SetTaskbar.bat"
+$WebClient = New-Object System.Net.WebClient
+$WebClient.Credentials = New-Object System.Net.Networkcredential($Username, $Password)
+$WebClient.DownloadFile( $url2, $path2 )
+$WebClient.DownloadFile( $url3, $path3 )
+$WebClient.DownloadFile( $url4, $path4 )
+$WebClient.DownloadFile( $url5, $path5 )
+$WebClient.DownloadFile( $url6, $path6 )
 #Log file
 $date = Get-Date -Format "yyyy.MM.dd HH.mm"
 $log = $date + " " + $env:ComputerName
