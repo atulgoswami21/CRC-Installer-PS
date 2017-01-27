@@ -127,6 +127,42 @@ $handler_button1_Click=
 		Set-ItemProperty -path HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power -name HiberbootEnabled -value "0" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		New-FormLog -Message "Disabling Action Centre ..."
 		Set-ItemProperty -path HKLM:\Software\Policies\Microsoft\Windows\Explorer -name DisableNotificationCenter -value "1" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		New-FormLog -Message "Disabling Telemetry ..."
+		Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
+		Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
+		Set-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
+		New-FormLog -Message "Disabling Wi-Fi Sense ..."
+		If (!(Test-Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting")) {
+			New-Item -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" -Force | Out-Null
+			}
+		Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" -Name "Value" -Type DWord -Value 0
+		Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" -Name "Value" -Type DWord -Value 0
+		New-FormLog -Message "Disabling Bing Search in Start Menu ..."
+		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
+		New-FormLog -Message "Disabling Start Menu suggestions ..."
+		Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SystemPaneSuggestionsEnabled" -Type DWord -Value 0
+		New-FormLog -Message "Disabling Advertising ID ..."
+		If (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo")) {
+			New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" | Out-Null
+			}
+		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -Type DWord -Value 0
+		New-FormLog -Message "Disabling Cortana ..."
+		If (!(Test-Path "HKCU:\Software\Microsoft\Personalization\Settings")) {
+			New-Item -Path "HKCU:\Software\Microsoft\Personalization\Settings" -Force | Out-Null
+			}
+		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Personalization\Settings" -Name "AcceptedPrivacyPolicy" -Type DWord -Value 0
+		If (!(Test-Path "HKCU:\Software\Microsoft\InputPersonalization")) {
+			New-Item -Path "HKCU:\Software\Microsoft\InputPersonalization" -Force | Out-Null
+			}
+		Set-ItemProperty -Path "HKCU:\Software\Microsoft\InputPersonalization" -Name "RestrictImplicitTextCollection" -Type DWord -Value 1
+		Set-ItemProperty -Path "HKCU:\Software\Microsoft\InputPersonalization" -Name "RestrictImplicitInkCollection" -Type DWord -Value 1
+		If (!(Test-Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore")) {
+			New-Item -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Force | Out-Null
+			}
+		Set-ItemProperty -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Name "HarvestContacts" -Type DWord -Value 0
+		New-FormLog -Message "Stopping and disabling Diagnostics Tracking Service ..."
+		Stop-Service "DiagTrack"
+		Set-Service "DiagTrack" -StartupType Disabled
 		New-FormLog -Message "Setting taskbar icons ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value "00000010" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
