@@ -66,11 +66,11 @@ $handler_button1_Click=
 	New-FormLog -Message "Finished installing .NET4.5 ..."
 	if ($checkBox1.Checked)     {
 	    New-FormLog -Message "Installing BRM OEM information ..."
-		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\BRM Computers\OEM.bmp" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "BRM Computers" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "http://www.brmcomputers.co.uk" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\BRM Computers\OEM.bmp"
+		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "BRM Computers"
+		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm"
+		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
+		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "http://www.brmcomputers.co.uk"
 		New-FormLog -Message "Finished installing BRM OEM information."
 		}
 	if ($checkBox2.Checked)     {
@@ -116,31 +116,29 @@ $handler_button1_Click=
 	if ($OS -like '*6.2*')     {
 		New-FormLog -Message "This computer is running Windows 8."
 		New-FormLog -Message "Setting taskbar icons ..."
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010 | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002 | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001 | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
 		}
 	if ($OS -like '*6.3*')     {
 		New-FormLog -Message "This computer is running Windows 8.1."
 		New-FormLog -Message "Setting taskbar icons ..."
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010 | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002 | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001 | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
 		}
 	if ($OS -like '*10.0*')     {
 		New-FormLog -Message "This computer is running Windows 10."
 		New-FormLog -Message "Setting explorer to open to This PC ..."
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value 1 | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value 1
 		New-FormLog -Message "Disabling hibernation mode ..."
-		Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -name HiberbootEnabled -value 0 | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		New-FormLog -Message "Disabling Action Centre ..."
-		Set-ItemProperty -path HKLM:\Software\Policies\Microsoft\Windows\Explorer -name DisableNotificationCenter -value 1 | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -name HiberbootEnabled -value 0
 		New-FormLog -Message "Disabling Telemetry ..."
 		Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -Type DWord -Value 0
 		Set-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type DWord -Value 0
@@ -178,10 +176,10 @@ $handler_button1_Click=
 		Stop-Service "DiagTrack"
 		Set-Service "DiagTrack" -StartupType Disabled
 		New-FormLog -Message "Setting taskbar icons ..."
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value "00000010" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value "00000002" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value "00000001" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value "00000001
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
 		}
