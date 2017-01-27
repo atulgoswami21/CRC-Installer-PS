@@ -18,6 +18,8 @@ $WebClient.DownloadFile( $url3, $path3 )
 $WebClient.DownloadFile( $url4, $path4 )
 $WebClient.DownloadFile( $url5, $path5 )
 $WebClient.DownloadFile( $url6, $path6 )
+#OS
+$OS = [environment]::OSVersion.Version.Major + [environment]::OSVersion.Version.Minor
 #Log file
 $date = Get-Date -Format "yyyy.MM.dd HH.mm"
 $log = $date + " " + $env:ComputerName
@@ -106,12 +108,12 @@ $handler_button1_Click=
 		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		New-FormLog -Message "Finished installing TeamViewer."
 		}
-	if ([environment]::OSVersion.Version.Major + [environment]::OSVersion.Version.Minor -eq '7')     {
+	if ($OS -eq 7)     {
 		New-FormLog -Message "This computer is running Windows 7."
 		& "C:\Windows\BRM Computers\SetTaskbar.vbs"
 		New-FormLog -Message "The install has finished!"
 		}
-	if ([environment]::OSVersion.Version.Major + [environment]::OSVersion.Version.Minor -eq '8')     {
+	if ($OS -eq 8)     {
 		New-FormLog -Message "This computer is running Windows 8."
 		New-FormLog -Message "Setting taskbar icons ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -120,9 +122,8 @@ $handler_button1_Click=
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value "00000001" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
-		New-FormLog -Message "The install has finished!"
 		}
-	if ([environment]::OSVersion.Version.Major + [environment]::OSVersion.Version.Minor -eq '9')     {
+	if ($OS -eq 9)     {
 		New-FormLog -Message "This computer is running Windows 8.1."
 		New-FormLog -Message "Setting taskbar icons ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -131,9 +132,8 @@ $handler_button1_Click=
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value "00000001" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
-		New-FormLog -Message "The install has finished!"
 		}
-	if ([environment]::OSVersion.Version.Major + [environment]::OSVersion.Version.Minor -eq '10')     {
+	if ($OS -eq 10)     {
 		New-FormLog -Message "This computer is running Windows 10."
 		New-FormLog -Message "Setting explorer to open to This PC ..."
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value "1" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
