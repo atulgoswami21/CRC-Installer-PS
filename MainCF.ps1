@@ -179,7 +179,7 @@ $handler_button1_Click=
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value "00000001
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
 		New-FormLog -Message "The install has finished!"
 		}
@@ -216,7 +216,7 @@ $form1.Controls.Add($button1)
 $listBox1.FormattingEnabled = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
 $System_Drawing_Size.Width = 350
-$System_Drawing_Size.Height = 500
+$System_Drawing_Size.Height = 520
 $listBox1.Size = $System_Drawing_Size
 $listBox1.DataBindings.DefaultDataSourceUpdateMode = 0
 $listBox1.Name = "listBox1"
