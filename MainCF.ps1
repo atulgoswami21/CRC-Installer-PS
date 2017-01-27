@@ -7,20 +7,8 @@ Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installe
 Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/KB3050265-x86.msu" -OutFile "C:\Windows\BRM Computers\KB3050265-x86.msu"
 Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/OEM.bmp" -OutFile "C:\Windows\BRM Computers\OEM.bmp"
 Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/OEM.ico" -OutFile "C:\Windows\BRM Computers\OEM.ico"
-Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/Neo-Tech-Bold.otf" -OutFile "C:\Windows\BRM Computers\Fonts\Neo Tech Bold.otf"
 Invoke-WebRequest "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/SetTaskbar.bat" -OutFile "C:\Windows\BRM Computers\SetTaskbar.bat"
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-#Install font
-$FONTS = 0x14
-$Path="C:\Windows\BRM Computers\Fonts\"
-$objShell = New-Object -ComObject Shell.Application
-$objFolder = $objShell.Namespace($FONTS)
-$Fontdir = dir $Path
-foreach($File in $Fontdir) {
-  $objFolder.CopyHere($File.fullname)
-}
-remove-item $Path -recurse
-write-host "Installing fonts complete"; sleep -m 10000
 #Windows version
 $OS = [environment]::OSVersion.Version.Major + [environment]::OSVersion.Version.Minor
 #Log file
@@ -58,6 +46,11 @@ $handler_button1_Click=
     if ($checkBox1.Checked)     {  $listBox1.Items.Add( "BRM OEM is checked."  ) }
     if ($checkBox2.Checked)    {  $listBox1.Items.Add( "Mozilla Firefox is checked."  ) }
     if ($checkBox3.Checked)    {  $listBox1.Items.Add( "Google Chrome is checked."  ) }
+	if ($checkBox4.Checked)    {  $listBox1.Items.Add( "Kaspersky Internet Security 2017 is checked."  ) }
+	if ($checkBox5.Checked)    {  $listBox1.Items.Add( "VLC Media Player is checked."  ) }
+	if ($checkBox6.Checked)    {  $listBox1.Items.Add( "7zip is checked."  ) }
+	if ($checkBox7.Checked)    {  $listBox1.Items.Add( "LibreOffice is checked."  ) }
+	if ($checkBox8.Checked)    {  $listBox1.Items.Add( "TeamViewer is checked."  ) }
     if ( !$checkBox1.Checked -and !$checkBox2.Checked -and !$checkBox3.Checked ) {   $listBox1.Items.Add("No programs are selected, please select some programs to install.")} 
 	choco install dotnet4.5 -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 	if ($checkBox1.Checked)     {
@@ -106,12 +99,30 @@ $handler_button1_Click=
 		}
 	if ($OS -eq '7')     {
 		New-FormLog -Message "This computer is running Windows 7."
+		& "C:\Windows\BRM Computers\SetTaskbar.vbs"
+		New-FormLog -Message "The install has finished!"
 		}
 	if ($OS -eq '8')     {
 		New-FormLog -Message "This computer is running Windows 8."
+		New-FormLog -Message "Setting taskbar icons ..."
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value "00000010" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value "00000002" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value "00000001" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		& "C:\Windows\BRM Computers\SetTaskbar.bat"
+		New-FormLog -Message "The install has finished!"
+		New-FormLog -Message "The install has finished!"
 		}
 	if ($OS -eq '9')     {
 		New-FormLog -Message "This computer is running Windows 8.1."
+		New-FormLog -Message "Setting taskbar icons ..."
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value "ff" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value "00000010" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value "00000002" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value "00000001" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		& "C:\Windows\BRM Computers\SetTaskbar.bat"
+		New-FormLog -Message "The install has finished!"
+		New-FormLog -Message "The install has finished!"
 		}
 	if ($OS -eq '10')     {
 		New-FormLog -Message "This computer is running Windows 10."
@@ -127,13 +138,14 @@ $handler_button1_Click=
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value "00000002" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value "00000001" | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
+		New-FormLog -Message "The install has finished!"
 		}
 }
 $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "BRM Installer PS"
+$form1.Text = "BRM Installer PS Chandlers Ford v1.0.0"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -188,7 +200,7 @@ $checkBox1.Name = "checkBox1"
 $checkBox1.Checked = 1
 $form1.Controls.Add($checkBox1)
 $checkBox1.ForeColor = "#20409a"
-$checkBox1.Font = New-Object System.Drawing.Font("NeoTech",10,[System.Drawing.FontStyle]::Bold)
+$checkBox1.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
 #Mozilla Firefox
 $checkBox2.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -206,7 +218,7 @@ $checkBox2.Name = "checkBox2"
 $checkBox2.Checked = 1
 $form1.Controls.Add($checkBox2)
 $checkBox2.ForeColor = "#20409a"
-$checkBox2.Font = New-Object System.Drawing.Font("NeoTech",10,[System.Drawing.FontStyle]::Bold)
+$checkBox2.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
 #Google Chrome
 $checkBox3.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -224,7 +236,7 @@ $checkBox3.Name = "checkBox3"
 $checkBox3.Checked = 1
 $form1.Controls.Add($checkBox3)
 $checkBox3.ForeColor = "#20409a"
-$checkBox3.Font = New-Object System.Drawing.Font("NeoTech",10,[System.Drawing.FontStyle]::Bold)
+$checkBox3.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
 #Kaspersky Internet Security 2017
 $checkBox4.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -242,7 +254,7 @@ $checkBox4.Name = "checkBox4"
 $checkBox4.Checked = 1
 $form1.Controls.Add($checkBox4)
 $checkBox4.ForeColor = "#20409a"
-$checkBox4.Font = New-Object System.Drawing.Font("NeoTech",10,[System.Drawing.FontStyle]::Bold)
+$checkBox4.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
 #VLC Media Player
 $checkBox5.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -260,7 +272,7 @@ $checkBox5.Name = "checkBox5"
 $checkBox5.Checked = 1
 $form1.Controls.Add($checkBox5)
 $checkBox5.ForeColor = "#20409a"
-$checkBox5.Font = New-Object System.Drawing.Font("NeoTech",10,[System.Drawing.FontStyle]::Bold)
+$checkBox5.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
 #7zip
 $checkBox6.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -278,7 +290,7 @@ $checkBox6.Name = "checkBox6"
 $checkBox6.Checked = 1
 $form1.Controls.Add($checkBox6)
 $checkBox6.ForeColor = "#20409a"
-$checkBox6.Font = New-Object System.Drawing.Font("NeoTech",10,[System.Drawing.FontStyle]::Bold)
+$checkBox6.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
 #LibreOffice
 $checkBox7.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -296,7 +308,7 @@ $checkBox7.Name = "checkBox7"
 $checkBox7.Checked = 1
 $form1.Controls.Add($checkBox7)
 $checkBox7.ForeColor = "#20409a"
-$checkBox7.Font = New-Object System.Drawing.Font("NeoTech",10,[System.Drawing.FontStyle]::Bold)
+$checkBox7.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
 #TeamViewer
 $checkBox8.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -314,7 +326,7 @@ $checkBox8.Name = "checkBox8"
 $checkBox8.Checked = 1
 $form1.Controls.Add($checkBox8)
 $checkBox8.ForeColor = "#20409a"
-$checkBox8.Font = New-Object System.Drawing.Font("NeoTech",10,[System.Drawing.FontStyle]::Bold)
+$checkBox8.Font = New-Object System.Drawing.Font(10,[System.Drawing.FontStyle]::Bold)
 #Save the initial state of the form
 $InitialFormWindowState = $form1.WindowState
 #Init the OnLoad event to correct the initial state of the form
