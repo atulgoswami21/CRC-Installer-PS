@@ -230,7 +230,7 @@ $checkBox1.Name = "checkBox1"
 $checkBox1.Checked = 1
 $form1.Controls.Add($checkBox1)
 $checkBox1.ForeColor = "#20409a"
-$checkBox1.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
+$checkBox1.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #Mozilla Firefox
 $checkBox2.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -248,7 +248,7 @@ $checkBox2.Name = "checkBox2"
 $checkBox2.Checked = 1
 $form1.Controls.Add($checkBox2)
 $checkBox2.ForeColor = "#20409a"
-$checkBox2.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
+$checkBox2.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #Google Chrome
 $checkBox3.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -266,7 +266,7 @@ $checkBox3.Name = "checkBox3"
 $checkBox3.Checked = 1
 $form1.Controls.Add($checkBox3)
 $checkBox3.ForeColor = "#20409a"
-$checkBox3.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
+$checkBox3.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #Kaspersky Internet Security 2017
 $checkBox4.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -284,7 +284,7 @@ $checkBox4.Name = "checkBox4"
 $checkBox4.Checked = 1
 $form1.Controls.Add($checkBox4)
 $checkBox4.ForeColor = "#20409a"
-$checkBox4.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
+$checkBox4.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #VLC Media Player
 $checkBox5.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -302,7 +302,7 @@ $checkBox5.Name = "checkBox5"
 $checkBox5.Checked = 1
 $form1.Controls.Add($checkBox5)
 $checkBox5.ForeColor = "#20409a"
-$checkBox5.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
+$checkBox5.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #7zip
 $checkBox6.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -320,7 +320,7 @@ $checkBox6.Name = "checkBox6"
 $checkBox6.Checked = 1
 $form1.Controls.Add($checkBox6)
 $checkBox6.ForeColor = "#20409a"
-$checkBox6.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
+$checkBox6.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #LibreOffice
 $checkBox7.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -338,7 +338,7 @@ $checkBox7.Name = "checkBox7"
 $checkBox7.Checked = 1
 $form1.Controls.Add($checkBox7)
 $checkBox7.ForeColor = "#20409a"
-$checkBox7.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
+$checkBox7.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #TeamViewer
 $checkBox8.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -356,7 +356,7 @@ $checkBox8.Name = "checkBox8"
 $checkBox8.Checked = 1
 $form1.Controls.Add($checkBox8)
 $checkBox8.ForeColor = "#20409a"
-$checkBox8.Font = New-Object System.Drawing.Font(Calibri,10,[System.Drawing.FontStyle]::Bold)
+$checkBox8.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #Save the initial state of the form
 $InitialFormWindowState = $form1.WindowState
 #Init the OnLoad event to correct the initial state of the form
