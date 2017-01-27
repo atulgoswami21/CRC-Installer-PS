@@ -158,7 +158,7 @@ $handler_button1_Click=
 		New-FormLog -Message "Disabling Advertising ID ..."
 		If (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo")) {
 			New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" | Out-Null
-			}+
+			}
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -Type DWord -Value 0
 		New-FormLog -Message "Disabling Cortana ..."
 		If (!(Test-Path "HKCU:\Software\Microsoft\Personalization\Settings")) {
