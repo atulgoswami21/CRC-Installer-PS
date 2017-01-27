@@ -207,7 +207,7 @@ $button1.UseVisualStyleBackColor = $True
 $button1.Text = "Install"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 27
-$System_Drawing_Point.Y = 290
+$System_Drawing_Point.Y = 500
 $button1.Location = $System_Drawing_Point
 $button1.DataBindings.DefaultDataSourceUpdateMode = 0
 $button1.add_Click($handler_button1_Click)
