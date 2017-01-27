@@ -207,7 +207,7 @@ $button1.UseVisualStyleBackColor = $True
 $button1.Text = "Install"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 27
-$System_Drawing_Point.Y = 510
+$System_Drawing_Point.Y = 527
 $button1.Location = $System_Drawing_Point
 $button1.DataBindings.DefaultDataSourceUpdateMode = 0
 $button1.add_Click($handler_button1_Click)
@@ -216,7 +216,7 @@ $form1.Controls.Add($button1)
 $listBox1.FormattingEnabled = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
 $System_Drawing_Size.Width = 350
-$System_Drawing_Size.Height = 530
+$System_Drawing_Size.Height = 537
 $listBox1.Size = $System_Drawing_Size
 $listBox1.DataBindings.DefaultDataSourceUpdateMode = 0
 $listBox1.Name = "listBox1"
