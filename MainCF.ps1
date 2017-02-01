@@ -52,113 +52,113 @@ $handler_button1_Click=
 	$date | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 	$OS | Out-File "C:/Windows/BRM Computers/$log.log" -Append
     $listBox1.Items.Clear();    
-    if ($checkBox1.Checked)     {  $listBox1.Items.Add( "BRM OEM is checked."  ) }
-    if ($checkBox2.Checked)    {  $listBox1.Items.Add( "Mozilla Firefox is checked."  ) }
-    if ($checkBox3.Checked)    {  $listBox1.Items.Add( "Google Chrome is checked."  ) }
-	if ($checkBox4.Checked)    {  $listBox1.Items.Add( "Kaspersky Internet Security 2017 is checked."  ) }
-	if ($checkBox5.Checked)    {  $listBox1.Items.Add( "VLC Media Player is checked."  ) }
-	if ($checkBox6.Checked)    {  $listBox1.Items.Add( "7zip is checked."  ) }
-	if ($checkBox7.Checked)    {  $listBox1.Items.Add( "LibreOffice is checked."  ) }
-	if ($checkBox8.Checked)    {  $listBox1.Items.Add( "TeamViewer is checked."  ) }
+    if ($checkBox1.Checked)     {  $listBox1.Items.Add("BRM OEM is checked."  ) }
+    if ($checkBox2.Checked)    {  $listBox1.Items.Add("Mozilla Firefox is checked."  ) }
+    if ($checkBox3.Checked)    {  $listBox1.Items.Add("Google Chrome is checked."  ) }
+	if ($checkBox4.Checked)    {  $listBox1.Items.Add("Kaspersky Internet Security 2017 is checked."  ) }
+	if ($checkBox5.Checked)    {  $listBox1.Items.Add("VLC Media Player is checked."  ) }
+	if ($checkBox6.Checked)    {  $listBox1.Items.Add("7zip is checked."  ) }
+	if ($checkBox7.Checked)    {  $listBox1.Items.Add("LibreOffice is checked."  ) }
+	if ($checkBox8.Checked)    {  $listBox1.Items.Add("TeamViewer is checked."  ) }
     if ( !$checkBox1.Checked -and !$checkBox2.Checked -and !$checkBox3.Checked ) {   $listBox1.Items.Add("No programs are selected, please select some programs to install.")} 
-	New-FormLog -Message "Installing .NET4.5 ..."
+	$listBox1.Items.Add("Installing .NET4.5 ...")
 	choco install dotnet4.5 -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-	New-FormLog -Message "Finished installing .NET4.5 ..."
+	$listBox1.Items.Add("Finished installing .NET4.5 ...")
 	if ($checkBox1.Checked)     {
-	    New-FormLog -Message "Installing BRM OEM information ..."
+	    $listBox1.Items.Add("Installing BRM OEM information ...")
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\BRM Computers\OEM.bmp"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "BRM Computers"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "http://www.brmcomputers.co.uk"
-		New-FormLog -Message "Finished installing BRM OEM information."
+		$listBox1.Items.Add("Finished installing BRM OEM information.")
 		}
 	if ($checkBox2.Checked)     {
-		New-FormLog -Message "Installing Mozilla Firefox ..."
+		$listBox1.Items.Add("Installing Mozilla Firefox ...")
 		choco install firefox -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		New-FormLog -Message "Finished installing Firefox."  
+		$listBox1.Items.Add("Finished installing Firefox."  )
 		}
 	if ($checkBox3.Checked)     {
-		New-FormLog -Message "Starting installing Google Chrome ..."
+		$listBox1.Items.Add("Starting installing Google Chrome ...")
 		choco install googlechrome -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		New-FormLog -Message "Finished installing Google Chrome."
+		$listBox1.Items.Add("Finished installing Google Chrome.")
 		}
 	if ($checkBox4.Checked)     {
-		New-FormLog -Message "Starting installing Kaspersky Internet Security 2017 ..."
+		$listBox1.Items.Add("Starting installing Kaspersky Internet Security 2017 ...")
 		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		New-FormLog -Message "Finished installing Kaspersky Internet Security 2017."
+		$listBox1.Items.Add("Finished installing Kaspersky Internet Security 2017.")
 		}
 	if ($checkBox5.Checked)     {
-		New-FormLog -Message "Starting installing VLC Media Player ..."
-		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		New-FormLog -Message "Finished installing VLC Media Player."
+		$listBox1.Items.Add("Starting installing VLC Media Player ...")
+		choco install vlc -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		$listBox1.Items.Add("Finished installing VLC Media Player.")
 		}
 	if ($checkBox6.Checked)     {
-		New-FormLog -Message "Starting installing 7zip ..."
-		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		New-FormLog -Message "Finished installing 7zip."
+		$listBox1.Items.Add("Starting installing 7zip ...")
+		choco install 7zip.install -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		$listBox1.Items.Add("Finished installing 7zip.")
 		}
 	if ($checkBox7.Checked)     {
-		New-FormLog -Message "Starting installing LibreOffice ..."
-		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		New-FormLog -Message "Finished installing LibreOffice."
+		$listBox1.Items.Add("Starting installing LibreOffice ...")
+		choco install libreoffice -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		$listBox1.Items.Add("Finished installing LibreOffice.")
 		}
 	if ($checkBox8.Checked)     {
-		New-FormLog -Message "Starting installing TeamViewer ..."
-		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		New-FormLog -Message "Finished installing TeamViewer."
+		$listBox1.Items.Add("Starting installing TeamViewer ...")
+		choco install teamviewer -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		$listBox1.Items.Add("Finished installing TeamViewer.")
 		}
 	if ($OS -like '*6.1*')     {
-		New-FormLog -Message "This computer is running Windows 7."
+		$listBox1.Items.Add("This computer is running Windows 7.")
 		& "C:\Windows\BRM Computers\SetTaskbar.vbs"
-		New-FormLog -Message "The install has finished!"
+		$listBox1.Items.Add("The install has finished!")
 		}
 	if ($OS -like '*6.2*')     {
-		New-FormLog -Message "This computer is running Windows 8."
-		New-FormLog -Message "Setting taskbar icons ..."
+		$listBox1.Items.Add("This computer is running Windows 8.")
+		$listBox1.Items.Add("Setting taskbar icons ...")
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
-		New-FormLog -Message "The install has finished!"
+		$listBox1.Items.Add("The install has finished!")
 		}
 	if ($OS -like '*6.3*')     {
-		New-FormLog -Message "This computer is running Windows 8.1."
-		New-FormLog -Message "Setting taskbar icons ..."
+		$listBox1.Items.Add("This computer is running Windows 8.1.")
+		$listBox1.Items.Add("Setting taskbar icons ...")
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
-		New-FormLog -Message "The install has finished!"
+		$listBox1.Items.Add("The install has finished!")
 		}
 	if ($OS -like '*10.0*')     {
-		New-FormLog -Message "This computer is running Windows 10."
-		New-FormLog -Message "Setting explorer to open to This PC ..."
+		$listBox1.Items.Add("This computer is running Windows 10.")
+		$listBox1.Items.Add("Setting explorer to open to This PC ...")
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value 1
-		New-FormLog -Message "Disabling hibernation mode ..."
+		$listBox1.Items.Add("Disabling hibernation mode ...")
 		Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -name HiberbootEnabled -value 0
-		New-FormLog -Message "Disabling Telemetry ..."
+		$listBox1.Items.Add("Disabling Telemetry ...")
 		Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -Type DWord -Value 0
 		Set-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type DWord -Value 0
 		Set-ItemProperty -Path HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -Type DWord -Value 0
-		New-FormLog -Message "Disabling Wi-Fi Sense ..."
+		$listBox1.Items.Add("Disabling Wi-Fi Sense ...")
 		If (!(Test-Path HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting)) {
 			New-Item -Path HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting -Force | Out-Null
 			}
 		Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" -Name "Value" -Type DWord -Value 0
 		Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" -Name "Value" -Type DWord -Value 0
-		New-FormLog -Message "Disabling Bing Search in Start Menu ..."
+		$listBox1.Items.Add("Disabling Bing Search in Start Menu ...")
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
-		New-FormLog -Message "Disabling Start Menu suggestions ..."
+		$listBox1.Items.Add("Disabling Start Menu suggestions ...")
 		Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SystemPaneSuggestionsEnabled" -Type DWord -Value 0
-		New-FormLog -Message "Disabling Advertising ID ..."
+		$listBox1.Items.Add("Disabling Advertising ID ...")
 		If (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo")) {
 			New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" | Out-Null
 			}
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -Type DWord -Value 0
-		New-FormLog -Message "Disabling Cortana ..."
+		$listBox1.Items.Add("Disabling Cortana ...")
 		If (!(Test-Path "HKCU:\Software\Microsoft\Personalization\Settings")) {
 			New-Item -Path "HKCU:\Software\Microsoft\Personalization\Settings" -Force | Out-Null
 			}
@@ -172,16 +172,16 @@ $handler_button1_Click=
 			New-Item -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Force | Out-Null
 			}
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Name "HarvestContacts" -Type DWord -Value 0
-		New-FormLog -Message "Stopping and disabling Diagnostics Tracking Service ..."
+		$listBox1.Items.Add("Stopping and disabling Diagnostics Tracking Service ...")
 		Stop-Service "DiagTrack"
 		Set-Service "DiagTrack" -StartupType Disabled
-		New-FormLog -Message "Setting taskbar icons ..."
+		$listBox1.Items.Add("Setting taskbar icons ...")
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
-		& "C:\Windows\BRM Computers\SetTaskbar.bat"
-		New-FormLog -Message "The install has finished!"
+		& "C:\Windows\BRM Computers\SetTaskbar.bat")
+		$listBox1.Items.Add("The install has finished!"
 		}
 }
 $OnLoadForm_StateCorrection=
@@ -376,14 +376,6 @@ $InitialFormWindowState = $form1.WindowState
 $form1.add_Load($OnLoadForm_StateCorrection)
 #Show the Form
 $form1.ShowDialog() | Out-Null
-}
-function New-FormLog
-{
-Param(
-    [string]$Message
-)
-
-    $listbox1.Items.Add($Message)
 }
 #Call the Function
 GenerateForm
