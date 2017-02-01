@@ -139,11 +139,11 @@ $handler_button1_Click=
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value 1
 		$listBox1.Items.Add("Disabling hibernation mode ...")
 		Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -name HiberbootEnabled -value 0
-		$listBox1.Items.Add("Disabling Telemetry ...")
+		$listBox1.Items.Add("Disabling telemetry ...")
 		Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -Type DWord -Value 0
 		Set-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type DWord -Value 0
 		Set-ItemProperty -Path HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -Type DWord -Value 0
-		$listBox1.Items.Add("Disabling Wi-Fi Sense ...")
+		$listBox1.Items.Add("Disabling Wi-Fi sense ...")
 		If (!(Test-Path HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting)) {
 			New-Item -Path HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting -Force | Out-Null
 			}
@@ -153,7 +153,7 @@ $handler_button1_Click=
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
 		$listBox1.Items.Add("Disabling Start Menu suggestions ...")
 		Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SystemPaneSuggestionsEnabled" -Type DWord -Value 0
-		$listBox1.Items.Add("Disabling Advertising ID ...")
+		$listBox1.Items.Add("Disabling advertising ID ...")
 		If (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo")) {
 			New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" | Out-Null
 			}
@@ -172,7 +172,7 @@ $handler_button1_Click=
 			New-Item -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Force | Out-Null
 			}
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Name "HarvestContacts" -Type DWord -Value 0
-		$listBox1.Items.Add("Stopping and disabling Diagnostics Tracking Service ...")
+		$listBox1.Items.Add("Stopping and disabling diagnostics tracking service ...")
 		Stop-Service "DiagTrack"
 		Set-Service "DiagTrack" -StartupType Disabled
 		$listBox1.Items.Add("Setting taskbar icons ...")
