@@ -183,6 +183,7 @@ $handler_button1_Click=
 		& "C:\Windows\BRM Computers\SetTaskbar.bat")
 		$listBox1.Items.Add("The install has finished!"
 		}
+		}
 }
 $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
