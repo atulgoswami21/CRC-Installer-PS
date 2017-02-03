@@ -1,15 +1,15 @@
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 $Username = ""
 $Password = ""
-$url2 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/SetTaskbar.vbs"
+$url2 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/Assets/SetTaskbar.vbs"
 $path2 = "C:\Windows\BRM Computers\SetTaskbar.vbs"
-$url3 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/SetTaskbar.exe"
+$url3 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/Assets/SetTaskbar.exe"
 $path3 = "C:\Windows\BRM Computers\SetTaskbar.exe"
-$url4 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/OEM.bmp"
+$url4 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/Assets/OEM.bmp"
 $path4 = "C:\Windows\BRM Computers\OEM.bmp"
-$url5 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/OEM.ico"
+$url5 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/Assets/OEM.ico"
 $path5 = "C:\Windows\BRM Computers\OEM.ico"
-$url6 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/SetTaskbar.bat"
+$url6 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/Assets/SetTaskbar.bat"
 $path6 = "C:\Windows\BRM Computers\SetTaskbar.bat"
 $WebClient = New-Object System.Net.WebClient
 $WebClient.Credentials = New-Object System.Net.Networkcredential($Username, $Password)
