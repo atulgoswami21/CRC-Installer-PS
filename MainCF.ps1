@@ -1,15 +1,15 @@
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 $Username = ""
 $Password = ""
-$url2 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/Assets/SetTaskbar.vbs"
+$url2 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/SetTaskbar.vbs"
 $path2 = "C:\Windows\BRM Computers\SetTaskbar.vbs"
-$url3 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/Assets/SetTaskbar.exe"
+$url3 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/SetTaskbar.exe"
 $path3 = "C:\Windows\BRM Computers\SetTaskbar.exe"
-$url4 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/Assets/OEM.bmp"
+$url4 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/OEM.bmp"
 $path4 = "C:\Windows\BRM Computers\OEM.bmp"
-$url5 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/Assets/OEM.ico"
+$url5 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/OEM.ico"
 $path5 = "C:\Windows\BRM Computers\OEM.ico"
-$url6 = "https://raw.githubusercontent.com/TheJumpyWizard/BRM-Installer-PS/master/Assets/SetTaskbar.bat"
+$url6 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/SetTaskbar.bat"
 $path6 = "C:\Windows\BRM Computers\SetTaskbar.bat"
 $WebClient = New-Object System.Net.WebClient
 $WebClient.Credentials = New-Object System.Net.Networkcredential($Username, $Password)
@@ -169,9 +169,6 @@ $handler_button1_Click=
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
 		$listBox1.Items.Add("Disabling Start Menu suggestions ...")
 		Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SystemPaneSuggestionsEnabled" -Type DWord -Value 0
-		$listBox1.Items.Add("Disabling Advertising ID ...")
-		New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" | Out-Null
-		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -Type DWord -Value 0
 		$listBox1.Items.Add("Disabling Cortana ...")
 		New-Item -Path "HKCU:\Software\Microsoft\Personalization\Settings" -Force | Out-Null
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Personalization\Settings" -Name "AcceptedPrivacyPolicy" -Type DWord -Value 0
