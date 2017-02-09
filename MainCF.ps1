@@ -20,6 +20,7 @@ $WebClient.DownloadFile( $url3, $path3 )
 $WebClient.DownloadFile( $url4, $path4 )
 $WebClient.DownloadFile( $url5, $path5 )
 $WebClient.DownloadFile( $url6, $path6 )
+$WebClient.DownloadFile( $url7, $path7 )
 #OS
 $OS = (Get-WmiObject -Class Win32_OperatingSystem).version
 #Log file
@@ -201,7 +202,7 @@ $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "BRM Installer PS Chandlers Ford v1.1.0"
+$form1.Text = "BRM Installer PS Chandlers Ford v1.1.1"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
