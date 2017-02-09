@@ -195,13 +195,12 @@ $handler_install_Click=
 $handler_install_Click= 
 {
 	& "C:\Windows\BRM Computers\ExitCF.ps1"
-	Exit
 }
 $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "BRM Installer PS Chandlers Ford v1.0.0"
+$form1.Text = "BRM Installer PS Chandlers Ford v1.1.0"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
