@@ -195,6 +195,7 @@ $handler_install_Click=
 $handler_install_Click= 
 {
 	& "C:\Windows\BRM Computers\ExitCF.ps1"
+	Exit-PSSession
 }
 $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
