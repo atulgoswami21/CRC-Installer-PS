@@ -11,6 +11,8 @@ $url5 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master
 $path5 = "C:\Windows\BRM Computers\OEM.ico"
 $url6 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/SetTaskbar.bat"
 $path6 = "C:\Windows\BRM Computers\SetTaskbar.bat"
+$url7 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/ExitCF.ps1"
+$path7 = "C:\Windows\BRM Computers\ExitCF.ps1"
 $WebClient = New-Object System.Net.WebClient
 $WebClient.Credentials = New-Object System.Net.Networkcredential($Username, $Password)
 $WebClient.DownloadFile( $url2, $path2 )
@@ -29,7 +31,8 @@ function GenerateForm {
 [reflection.assembly]::loadwithpartialname("System.Windows.Forms") | Out-Null
 [reflection.assembly]::loadwithpartialname("System.Drawing") | Out-Null
 $form1 = New-Object System.Windows.Forms.Form
-$button1 = New-Object System.Windows.Forms.Button
+$install = New-Object System.Windows.Forms.Button
+$exit = New-Object System.Windows.Forms.Button
 $listBox1 = New-Object System.Windows.Forms.ListBox
 $brm = New-Object System.Windows.Forms.CheckBox
 $mozillaFirefox = New-Object System.Windows.Forms.CheckBox
@@ -46,7 +49,7 @@ $b3= $false
 #----------------------------------------------
 #Generated Event Script Blocks
 #----------------------------------------------
-$handler_button1_Click= 
+$handler_install_Click= 
 {
 	$env:ComputerName | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 	$date | Out-File "C:/Windows/BRM Computers/$log.log" -Append
@@ -55,8 +58,8 @@ $handler_button1_Click=
     if ($brm.Checked)	{
 		$listBox1.Items.Add("BRM OEM is checked."  )
 		}
-    if ($mozillaFirefox.Checked)	{
-		$listBox1.Items.Add("Mozilla Firefox is checked."  )
+	if ($7zip.Checked)	{
+		$listBox1.Items.Add("7zip is checked."  )
 		}
     if ($googleChrome.Checked)	{
 		$listBox1.Items.Add("Google Chrome is checked."  )
@@ -64,19 +67,19 @@ $handler_button1_Click=
 	if ($kaspersky.Checked)	{
 		$listBox1.Items.Add("Kaspersky Internet Security 2017 is checked."  )
 		}
-	if ($vlc.Checked)	{
-		$listBox1.Items.Add("VLC Media Player is checked."  )
-		}
-	if ($7zip.Checked)	{
-		$listBox1.Items.Add("7zip is checked."  )
-		}
 	if ($libreOffice.Checked)	{
 		$listBox1.Items.Add("LibreOffice is checked."  )
+		}
+    if ($mozillaFirefox.Checked)	{
+		$listBox1.Items.Add("Mozilla Firefox is checked."  )
 		}
 	if ($teamViewer.Checked)	{
 		$listBox1.Items.Add("TeamViewer is checked."  )
 		}
-    if ( !$brm.Checked -and !$mozillaFirefox.Checked -and !$googleChrome.Checked ) {
+	if ($vlc.Checked)	{
+		$listBox1.Items.Add("VLC Media Player is checked."  )
+		}
+    if (!$brm.Checked -and !$7zip.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked){
 		$listBox1.Items.Add("No programs are selected, please select some programs to install.")
 		} 
 	$listBox1.Items.Add("Installing .NET4.5 ...")
@@ -91,10 +94,10 @@ $handler_button1_Click=
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "http://www.brmcomputers.co.uk"
 		$listBox1.Items.Add("Finished installing BRM OEM information.")
 		}
-	if ($mozillaFirefox.Checked)	{
-		$listBox1.Items.Add("Installing Mozilla Firefox ...")
-		choco install firefox -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		$listBox1.Items.Add("Finished installing Firefox."  )
+	if ($7zip.Checked)	{
+		$listBox1.Items.Add("Starting installing 7zip ...")
+		choco install 7zip.install -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		$listBox1.Items.Add("Finished installing 7zip.")
 		}
 	if ($googleChrome.Checked)	{
 		$listBox1.Items.Add("Starting installing Google Chrome ...")
@@ -106,25 +109,25 @@ $handler_button1_Click=
 		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		$listBox1.Items.Add("Finished installing Kaspersky Internet Security 2017.")
 		}
-	if ($vlc.Checked)	{
-		$listBox1.Items.Add("Starting installing VLC Media Player ...")
-		choco install vlc -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		$listBox1.Items.Add("Finished installing VLC Media Player.")
-		}
-	if ($7zip.Checked)	{
-		$listBox1.Items.Add("Starting installing 7zip ...")
-		choco install 7zip.install -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-		$listBox1.Items.Add("Finished installing 7zip.")
-		}
 	if ($libreOffice.Checked)	{
 		$listBox1.Items.Add("Starting installing LibreOffice ...")
 		choco install libreoffice -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		$listBox1.Items.Add("Finished installing LibreOffice.")
 		}
+	if ($mozillaFirefox.Checked)	{
+		$listBox1.Items.Add("Installing Mozilla Firefox ...")
+		choco install firefox -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		$listBox1.Items.Add("Finished installing Firefox."  )
+		}
 	if ($teamViewer.Checked)	{
 		$listBox1.Items.Add("Starting installing TeamViewer ...")
 		choco install teamviewer -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		$listBox1.Items.Add("Finished installing TeamViewer.")
+		}
+	if ($vlc.Checked)	{
+		$listBox1.Items.Add("Starting installing VLC Media Player ...")
+		choco install vlc -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		$listBox1.Items.Add("Finished installing VLC Media Player.")
 		}
 	if ($OS -like '*6.1*')	{
 		$listBox1.Items.Add("This computer is running Windows 7.")
@@ -189,6 +192,11 @@ $handler_button1_Click=
 		$listBox1.Items.Add("The install has finished!")
 		}
 }
+$handler_install_Click= 
+{
+	& "C:\Windows\BRM Computers\ExitCF.ps1"
+	Exit
+}
 $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
@@ -202,21 +210,37 @@ $System_Drawing_Size.Height = 550
 $form1.ClientSize = $System_Drawing_Size
 $form1.Icon = "C:\Windows\BRM Computers\OEM.ico"
 #Install button
-$button1.TabIndex = 4
-$button1.Name = "button1"
+$install.TabIndex = 4
+$install.Name = "install"
 $System_Drawing_Size = New-Object System.Drawing.Size
 $System_Drawing_Size.Width = 75
 $System_Drawing_Size.Height = 23
-$button1.Size = $System_Drawing_Size
-$button1.UseVisualStyleBackColor = $True
-$button1.Text = "Install"
+$install.Size = $System_Drawing_Size
+$install.UseVisualStyleBackColor = $True
+$install.Text = "Install"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 106
-$System_Drawing_Point.Y = 514
-$button1.Location = $System_Drawing_Point
-$button1.DataBindings.DefaultDataSourceUpdateMode = 0
-$button1.add_Click($handler_button1_Click)
-$form1.Controls.Add($button1)
+$System_Drawing_Point.Y = 480
+$install.Location = $System_Drawing_Point
+$install.DataBindings.DefaultDataSourceUpdateMode = 0
+$install.add_Click($handler_install_Click)
+$form1.Controls.Add($install)
+#Exit button
+$exit.TabIndex = 4
+$exit.Name = "exit"
+$System_Drawing_Size = New-Object System.Drawing.Size
+$System_Drawing_Size.Width = 75
+$System_Drawing_Size.Height = 23
+$exit.Size = $System_Drawing_Size
+$exit.UseVisualStyleBackColor = $True
+$exit.Text = "Exit"
+$System_Drawing_Point = New-Object System.Drawing.Point
+$System_Drawing_Point.X = 106
+$System_Drawing_Point.Y = 512
+$exit.Location = $System_Drawing_Point
+$exit.DataBindings.DefaultDataSourceUpdateMode = 0
+$exit.add_Click($handler_install_Click)
+$form1.Controls.Add($exit)
 #Text box
 $listBox1.FormattingEnabled = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
