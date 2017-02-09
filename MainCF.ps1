@@ -193,7 +193,7 @@ $handler_install_Click=
 		$listBox1.Items.Add("The install has finished!")
 		}
 }
-$handler_install_Click= 
+$handler_exit_Click= 
 {
 	& "C:\Windows\BRM Computers\ExitCF.ps1"
 	$form1.close()
