@@ -33,7 +33,6 @@ function GenerateForm {
 [reflection.assembly]::loadwithpartialname("System.Drawing") | Out-Null
 $form1 = New-Object System.Windows.Forms.Form
 $install = New-Object System.Windows.Forms.Button
-$exit = New-Object System.Windows.Forms.Button
 $listBox1 = New-Object System.Windows.Forms.ListBox
 $brm = New-Object System.Windows.Forms.CheckBox
 $mozillaFirefox = New-Object System.Windows.Forms.CheckBox
@@ -190,19 +189,17 @@ $handler_install_Click=
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
 		& "C:\Windows\BRM Computers\SetTaskbar.bat"
-		$listBox1.Items.Add("The install has finished!")
+		$listBox1.Items.Add("The install has finished! Will close in 15 seconds.")
 		}
-}
-$handler_exit_Click= 
-{
+	Start-Sleep -s 15
 	& "C:\Windows\BRM Computers\ExitCF.ps1"
-	$form1.close()
+	$form1.Close()
 }
 $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "BRM Installer PS Chandlers Ford v1.1.1"
+$form1.Text = "BRM Installer PS Chandlers Ford v1.1.2"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -221,27 +218,11 @@ $install.UseVisualStyleBackColor = $True
 $install.Text = "Install"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 106
-$System_Drawing_Point.Y = 480
+$System_Drawing_Point.Y = 512
 $install.Location = $System_Drawing_Point
 $install.DataBindings.DefaultDataSourceUpdateMode = 0
 $install.add_Click($handler_install_Click)
 $form1.Controls.Add($install)
-#Exit button
-$exit.TabIndex = 4
-$exit.Name = "exit"
-$System_Drawing_Size = New-Object System.Drawing.Size
-$System_Drawing_Size.Width = 75
-$System_Drawing_Size.Height = 23
-$exit.Size = $System_Drawing_Size
-$exit.UseVisualStyleBackColor = $True
-$exit.Text = "Exit"
-$System_Drawing_Point = New-Object System.Drawing.Point
-$System_Drawing_Point.X = 106
-$System_Drawing_Point.Y = 512
-$exit.Location = $System_Drawing_Point
-$exit.DataBindings.DefaultDataSourceUpdateMode = 0
-$exit.add_Click($handler_install_Click)
-$form1.Controls.Add($exit)
 #Text box
 $listBox1.FormattingEnabled = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
