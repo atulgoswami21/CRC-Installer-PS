@@ -7,8 +7,8 @@ $url3 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master
 $path3 = "C:\Windows\BRM Computers\SetTaskbar.exe"
 $url4 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/OEM.bmp"
 $path4 = "C:\Windows\BRM Computers\OEM.bmp"
-$url5 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/OEM.ico"
-$path5 = "C:\Windows\BRM Computers\OEM.ico"
+$url5 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/BRM.ico"
+$path5 = "C:\Windows\BRM Computers\BRM.ico"
 $url6 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/SetTaskbar.bat"
 $path6 = "C:\Windows\BRM Computers\SetTaskbar.bat"
 $url7 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/ExitCF.ps1"
@@ -199,14 +199,14 @@ $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "BRM Installer PS Chandlers Ford v1.1.2"
+$form1.Text = "BRM Installer PS Chandlers Ford v1.1.3"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
 $System_Drawing_Size.Width = 650
 $System_Drawing_Size.Height = 550
 $form1.ClientSize = $System_Drawing_Size
-$form1.Icon = "C:\Windows\BRM Computers\OEM.ico"
+$form1.Icon = "C:\Windows\BRM Computers\BRM.ico"
 #Install button
 $install.TabIndex = 4
 $install.Name = "install"
