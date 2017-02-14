@@ -5,22 +5,43 @@ $url2 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master
 $path2 = "C:\Windows\BRM Computers\SetTaskbar.vbs"
 $url3 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/SetTaskbar.exe"
 $path3 = "C:\Windows\BRM Computers\SetTaskbar.exe"
-$url4 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/OEM.bmp"
-$path4 = "C:\Windows\BRM Computers\OEM.bmp"
+$url4 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/BRM.bmp"
+$path4 = "C:\Windows\BRM Computers\BRM.bmp"
 $url5 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/BRM.ico"
 $path5 = "C:\Windows\BRM Computers\BRM.ico"
 $url6 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/SetTaskbar.bat"
 $path6 = "C:\Windows\BRM Computers\SetTaskbar.bat"
 $url7 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/ExitCF.ps1"
 $path7 = "C:\Windows\BRM Computers\ExitCF.ps1"
+$url8 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/7zip.ico"
+$path8 = "C:\Windows\BRM Computers\7zip.ico"
+$url9 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/GoogleChrome.ico"
+$path9 = "C:\Windows\BRM Computers\GoogleChrome.ico"
+$url10 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/KasperskyInternetSecurity.ico"
+$path10 = "C:\Windows\BRM Computers\KasperskyInternetSecurity.ico"
+$url11 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/LibreOffice.ico"
+$path11 = "C:\Windows\BRM Computers\LibreOffice.ico"
+$url12 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/MozillaFirefox.ico"
+$path12 = "C:\Windows\BRM Computers\MozillaFirefox.ico"
+$url13 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/TeamViewer.ico"
+$path13 = "C:\Windows\BRM Computers\TeamViewer.ico"
+$url14 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/VLCMediaPlayer.ico"
+$path14 = "C:\Windows\BRM Computers\VLCMediaPlayer.ico"
 $WebClient = New-Object System.Net.WebClient
 $WebClient.Credentials = New-Object System.Net.Networkcredential($Username, $Password)
-$WebClient.DownloadFile( $url2, $path2 )
-$WebClient.DownloadFile( $url3, $path3 )
-$WebClient.DownloadFile( $url4, $path4 )
-$WebClient.DownloadFile( $url5, $path5 )
-$WebClient.DownloadFile( $url6, $path6 )
-$WebClient.DownloadFile( $url7, $path7 )
+$WebClient.DownloadFile($url2, $path2)
+$WebClient.DownloadFile($url3, $path3)
+$WebClient.DownloadFile($url4, $path4)
+$WebClient.DownloadFile($url5, $path5)
+$WebClient.DownloadFile($url6, $path6)
+$WebClient.DownloadFile($url7, $path7)
+$WebClient.DownloadFile($url8, $path8)
+$WebClient.DownloadFile($url9, $path9)
+$WebClient.DownloadFile($url10, $path10)
+$WebClient.DownloadFile($url11, $path11)
+$WebClient.DownloadFile($url12, $path12)
+$WebClient.DownloadFile($url13, $path13)
+$WebClient.DownloadFile($url14, $path14)
 #OS
 $OS = (Get-WmiObject -Class Win32_OperatingSystem).version
 #Log file
@@ -87,7 +108,7 @@ $handler_install_Click=
 	$listBox1.Items.Add("Finished installing .NET4.5 ...")
 	if ($brm.Checked)	{
 	    $listBox1.Items.Add("Installing BRM OEM information ...")
-		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\BRM Computers\OEM.bmp"
+		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\BRM Computers\BRM.bmp"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "BRM Computers"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
@@ -240,11 +261,10 @@ $form1.Controls.Add($listBox1)
 #BRM OEM
 $brm.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
-$System_Drawing_Size.Width = 200
+$System_Drawing_Size.Width = 36
 $System_Drawing_Size.Height = 24
 $brm.Size = $System_Drawing_Size
 $brm.TabIndex = 0
-$brm.Text = "BRM OEM"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 27
 $System_Drawing_Point.Y = 13
@@ -252,17 +272,15 @@ $brm.Location = $System_Drawing_Point
 $brm.DataBindings.DefaultDataSourceUpdateMode = 0
 $brm.Name = "brm"
 $brm.Checked = 1
+$brm.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\BRM.ico")
 $form1.Controls.Add($brm)
-$brm.ForeColor = "#20409a"
-$brm.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #Mozilla Firefox
 $mozillaFirefox.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
-$System_Drawing_Size.Width = 200
+$System_Drawing_Size.Width = 36
 $System_Drawing_Size.Height = 24
 $mozillaFirefox.Size = $System_Drawing_Size
 $mozillaFirefox.TabIndex = 1
-$mozillaFirefox.Text = "Mozilla Firefox"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 27
 $System_Drawing_Point.Y = 168
@@ -270,17 +288,15 @@ $mozillaFirefox.Location = $System_Drawing_Point
 $mozillaFirefox.DataBindings.DefaultDataSourceUpdateMode = 0
 $mozillaFirefox.Name = "mozillaFirefox"
 $mozillaFirefox.Checked = 1
+$mozillaFirefox.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\MozillaFirefox.ico")
 $form1.Controls.Add($mozillaFirefox)
-$mozillaFirefox.ForeColor = "#20409a"
-$mozillaFirefox.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #Google Chrome
 $googleChrome.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
-$System_Drawing_Size.Width = 200
+$System_Drawing_Size.Width = 36
 $System_Drawing_Size.Height = 24
 $googleChrome.Size = $System_Drawing_Size
 $googleChrome.TabIndex = 2
-$googleChrome.Text = "Google Chrome"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 27
 $System_Drawing_Point.Y = 75
@@ -288,17 +304,15 @@ $googleChrome.Location = $System_Drawing_Point
 $googleChrome.DataBindings.DefaultDataSourceUpdateMode = 0
 $googleChrome.Name = "googleChrome"
 $googleChrome.Checked = 1
+$googleChrome.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\GoogleChrome.ico")
 $form1.Controls.Add($googleChrome)
-$googleChrome.ForeColor = "#20409a"
-$googleChrome.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #Kaspersky Internet Security 2017
 $kaspersky.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
-$System_Drawing_Size.Width = 250
+$System_Drawing_Size.Width = 36
 $System_Drawing_Size.Height = 24
 $kaspersky.Size = $System_Drawing_Size
 $kaspersky.TabIndex = 3
-$kaspersky.Text = "Kaspersky Internet Security 2017"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 27
 $System_Drawing_Point.Y = 106
@@ -306,17 +320,15 @@ $kaspersky.Location = $System_Drawing_Point
 $kaspersky.DataBindings.DefaultDataSourceUpdateMode = 0
 $kaspersky.Name = "kaspersky"
 $kaspersky.Checked = 1
+$kaspersky.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\KasperskyInternetSecurity.ico")
 $form1.Controls.Add($kaspersky)
-$kaspersky.ForeColor = "#20409a"
-$kaspersky.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #VLC Media Player
 $vlc.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
-$System_Drawing_Size.Width = 200
+$System_Drawing_Size.Width = 36
 $System_Drawing_Size.Height = 24
 $vlc.Size = $System_Drawing_Size
 $vlc.TabIndex = 4
-$vlc.Text = "VLC Media Player"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 27
 $System_Drawing_Point.Y = 230
@@ -324,17 +336,15 @@ $vlc.Location = $System_Drawing_Point
 $vlc.DataBindings.DefaultDataSourceUpdateMode = 0
 $vlc.Name = "vlc"
 $vlc.Checked = 1
+$vlc.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\VLCMediaPlayer.ico")
 $form1.Controls.Add($vlc)
-$vlc.ForeColor = "#20409a"
-$vlc.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #7zip
 $7zip.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
-$System_Drawing_Size.Width = 200
+$System_Drawing_Size.Width = 36
 $System_Drawing_Size.Height = 24
 $7zip.Size = $System_Drawing_Size
 $7zip.TabIndex = 5
-$7zip.Text = "7zip"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 27
 $System_Drawing_Point.Y = 44
@@ -342,17 +352,15 @@ $7zip.Location = $System_Drawing_Point
 $7zip.DataBindings.DefaultDataSourceUpdateMode = 0
 $7zip.Name = "7zip"
 $7zip.Checked = 1
+$7zip.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\7zip.ico")
 $form1.Controls.Add($7zip)
-$7zip.ForeColor = "#20409a"
-$7zip.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #LibreOffice
 $libreOffice.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
-$System_Drawing_Size.Width = 200
+$System_Drawing_Size.Width = 36
 $System_Drawing_Size.Height = 24
 $libreOffice.Size = $System_Drawing_Size
 $libreOffice.TabIndex = 6
-$libreOffice.Text = "LibreOffice"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 27
 $System_Drawing_Point.Y = 137
@@ -360,17 +368,15 @@ $libreOffice.Location = $System_Drawing_Point
 $libreOffice.DataBindings.DefaultDataSourceUpdateMode = 0
 $libreOffice.Name = "libreOffice"
 $libreOffice.Checked = 1
+$libreOffice.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\LibreOffice.ico")
 $form1.Controls.Add($libreOffice)
-$libreOffice.ForeColor = "#20409a"
-$libreOffice.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #TeamViewer
 $teamViewer.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
-$System_Drawing_Size.Width = 200
+$System_Drawing_Size.Width = 36
 $System_Drawing_Size.Height = 24
 $teamViewer.Size = $System_Drawing_Size
 $teamViewer.TabIndex = 7
-$teamViewer.Text = "TeamViewer"
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 27
 $System_Drawing_Point.Y = 199
@@ -378,9 +384,8 @@ $teamViewer.Location = $System_Drawing_Point
 $teamViewer.DataBindings.DefaultDataSourceUpdateMode = 0
 $teamViewer.Name = "teamViewer"
 $teamViewer.Checked = 1
+$teamViewer.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\TeamViewer.ico")
 $form1.Controls.Add($teamViewer)
-$teamViewer.ForeColor = "#20409a"
-$teamViewer.Font = New-Object System.Drawing.Font("Calibri",10,[System.Drawing.FontStyle]::Bold)
 #Save the initial state of the form
 $InitialFormWindowState = $form1.WindowState
 #Init the OnLoad event to correct the initial state of the form
