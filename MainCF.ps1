@@ -122,7 +122,7 @@ $handler_install_Click=
 		}
 	if ($googleChrome.Checked)	{
 		$listBox1.Items.Add("Starting installing Google Chrome ...")
-		choco install googlechrome -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		choco install googlechrome -y --ignore-checksums | Out-File "C:/Windows/BRM Computers/$log.log" -Append
 		$listBox1.Items.Add("Finished installing Google Chrome.")
 		}
 	if ($kaspersky.Checked)	{
@@ -220,7 +220,7 @@ $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "BRM Installer PS Chandlers Ford v1.1.3"
+$form1.Text = "BRM Installer PS Chandlers Ford v1.2.1"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
