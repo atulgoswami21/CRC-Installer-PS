@@ -274,7 +274,7 @@ $crc.Location = $System_Drawing_Point
 $crc.DataBindings.DefaultDataSourceUpdateMode = 0
 $crc.Name = "crc"
 $crc.Checked = 1
-$crc.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\CRC.ico")
+$crc.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\CRC Icon.ico")
 $form1.Controls.Add($crc)
 #Mozilla Firefox
 $mozillaFirefox.UseVisualStyleBackColor = $True
