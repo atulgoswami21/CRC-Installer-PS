@@ -6,7 +6,7 @@ $url3 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master
 $path3 = "C:\Windows\Computer Repair Centre\SetTaskbar.exe"
 $url4 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC.bmp"
 $path4 = "C:\Windows\Computer Repair Centre\CRC.bmp"
-$url5 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC.ico"
+$url5 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC Icon.ico"
 $path5 = "C:\Windows\Computer Repair Centre\CRC Icon.ico"
 $url6 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.bat"
 $path6 = "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
@@ -77,125 +77,218 @@ $handler_install_Click=
     $listBox1.Items.Clear();    
     if ($crc.Checked)	{
 		$listBox1.Items.Add("CRC OEM is checked."  )
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($7zip.Checked)	{
 		$listBox1.Items.Add("7zip is checked."  )
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
     if ($googleChrome.Checked)	{
 		$listBox1.Items.Add("Google Chrome is checked."  )
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($kaspersky.Checked)	{
 		$listBox1.Items.Add("Kaspersky Internet Security 2017 is checked."  )
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($libreOffice.Checked)	{
 		$listBox1.Items.Add("LibreOffice is checked."  )
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
     if ($mozillaFirefox.Checked)	{
 		$listBox1.Items.Add("Mozilla Firefox is checked."  )
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($teamViewer.Checked)	{
 		$listBox1.Items.Add("TeamViewer is checked."  )
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($vlc.Checked)	{
 		$listBox1.Items.Add("VLC Media Player is checked."  )
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
     if (!$crc.Checked -and !$7zip.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked){
 		$listBox1.Items.Add("No programs are selected, please select some programs to install.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		} 
 	$listBox1.Items.Add("Installing Chocolately ...")
+	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+	$listBox1.SelectedIndex = -1;
 	iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 	$listBox1.Items.Add("Finished installing Chocolately ...")
+	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+	$listBox1.SelectedIndex = -1;
 	$listBox1.Items.Add("Installing .NET4.5 ...")
+	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+	$listBox1.SelectedIndex = -1;
 	choco install dotnet4.5 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 	$listBox1.Items.Add("Finished installing .NET4.5 ...")
+	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+	$listBox1.SelectedIndex = -1;
 	if ($crc.Checked)	{
 	    $listBox1.Items.Add("Installing CRC OEM information ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "TBD"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
 		$listBox1.Items.Add("Finished installing CRC OEM information.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($7zip.Checked)	{
 		$listBox1.Items.Add("Starting installing 7zip ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		choco install 7zip.install -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing 7zip.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($googleChrome.Checked)	{
 		$listBox1.Items.Add("Starting installing Google Chrome ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		choco install googlechrome -y --ignore-checksums | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing Google Chrome.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($kaspersky.Checked)	{
 		$listBox1.Items.Add("Starting installing Kaspersky Internet Security 2017 ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		choco install kis -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing Kaspersky Internet Security 2017.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($libreOffice.Checked)	{
 		$listBox1.Items.Add("Starting installing LibreOffice ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		choco install libreoffice -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing LibreOffice.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($mozillaFirefox.Checked)	{
 		$listBox1.Items.Add("Installing Mozilla Firefox ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		choco install firefox -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing Firefox."  )
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($teamViewer.Checked)	{
 		$listBox1.Items.Add("Starting installing TeamViewer ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		choco install teamviewer -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing TeamViewer.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($vlc.Checked)	{
 		$listBox1.Items.Add("Starting installing VLC Media Player ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		choco install vlc -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing VLC Media Player.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($OS -like '*6.1*')	{
 		$listBox1.Items.Add("This computer is running Windows 7.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
+		$listBox1.Items.Add("Setting taskbar icons ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		& "C:\Windows\Computer Repair Centre\SetTaskbar.vbs"
 		$listBox1.Items.Add("The install has finished!")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($OS -like '*6.2*')	{
 		$listBox1.Items.Add("This computer is running Windows 8.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		$listBox1.Items.Add("Setting taskbar icons ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
 		& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
 		$listBox1.Items.Add("The install has finished!")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($OS -like '*6.3*')	{
 		$listBox1.Items.Add("This computer is running Windows 8.1.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		$listBox1.Items.Add("Setting taskbar icons ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
 		& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
 		$listBox1.Items.Add("The install has finished!")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	if ($OS -like '*10.0*')	{
 		$listBox1.Items.Add("This computer is running Windows 10.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		$listBox1.Items.Add("Setting explorer to open to This PC ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value 1
 		$listBox1.Items.Add("Disabling hibernation mode ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -name HiberbootEnabled -value 0
 		$listBox1.Items.Add("Disabling Telemetry ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -Type DWord -Value 0
 		Set-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type DWord -Value 0
 		Set-ItemProperty -Path HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -Type DWord -Value 0
 		$listBox1.Items.Add("Disabling Wi-Fi Sense ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		New-Item -Path HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting -Force | Out-Null
 		Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" -Name "Value" -Type DWord -Value 0
 		Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" -Name "Value" -Type DWord -Value 0
 		$listBox1.Items.Add("Disabling Bing Search in Start Menu ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
 		$listBox1.Items.Add("Disabling Start Menu suggestions ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SystemPaneSuggestionsEnabled" -Type DWord -Value 0
 		$listBox1.Items.Add("Disabling Cortana ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		New-Item -Path "HKCU:\Software\Microsoft\Personalization\Settings" -Force | Out-Null
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\Personalization\Settings" -Name "AcceptedPrivacyPolicy" -Type DWord -Value 0
 		New-Item -Path "HKCU:\Software\Microsoft\InputPersonalization" -Force | Out-Null
@@ -204,30 +297,36 @@ $handler_install_Click=
 		New-Item -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Force | Out-Null
 		Set-ItemProperty -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Name "HarvestContacts" -Type DWord -Value 0
 		$listBox1.Items.Add("Stopping and disabling Diagnostics Tracking Service ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		Stop-Service "DiagTrack"
 		Set-Service "DiagTrack" -StartupType Disabled
 		$listBox1.Items.Add("Setting taskbar icons ...")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
 		& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
 		$listBox1.Items.Add("The install has finished! Will close in 15 seconds.")
+		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+		$listBox1.SelectedIndex = -1;
 		}
 	Start-Sleep -s 15
-	& "C:\Windows\Computer Repair Centre\ExitCF.ps1"
+	& "C:\Windows\Computer Repair Centre\ExitR.ps1"
 	$form1.Close()
 }
 $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "CRC Installer PS Romsey v1.3.0"
+$form1.Text = "CRC Installer PS Romsey v1.4.0"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
 $System_Drawing_Size.Width = 650
-$System_Drawing_Size.Height = 550
+$System_Drawing_Size.Height = 270
 $form1.ClientSize = $System_Drawing_Size
 $form1.Icon = "C:\Windows\Computer Repair Centre\CRC Icon.ico"
 #Install button
@@ -240,8 +339,8 @@ $install.Size = $System_Drawing_Size
 $install.UseVisualStyleBackColor = $True
 $install.Text = "Install"
 $System_Drawing_Point = New-Object System.Drawing.Point
-$System_Drawing_Point.X = 106
-$System_Drawing_Point.Y = 512
+$System_Drawing_Point.X = 200
+$System_Drawing_Point.Y = 13
 $install.Location = $System_Drawing_Point
 $install.DataBindings.DefaultDataSourceUpdateMode = 0
 $install.add_Click($handler_install_Click)
@@ -250,7 +349,7 @@ $form1.Controls.Add($install)
 $listBox1.FormattingEnabled = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
 $System_Drawing_Size.Width = 350
-$System_Drawing_Size.Height = 524
+$System_Drawing_Size.Height = 250
 $listBox1.Size = $System_Drawing_Size
 $listBox1.DataBindings.DefaultDataSourceUpdateMode = 0
 $listBox1.Name = "listBox1"
