@@ -7,7 +7,7 @@ $path3 = "C:\Windows\Computer Repair Centre\SetTaskbar.exe"
 $url4 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC.bmp"
 $path4 = "C:\Windows\Computer Repair Centre\CRC.bmp"
 $url5 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC.ico"
-$path5 = "C:\Windows\Computer Repair Centre\CRC.ico"
+$path5 = "C:\Windows\Computer Repair Centre\CRC Icon.ico"
 $url6 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.bat"
 $path6 = "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
 $url7 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/ExitCF.ps1"
@@ -229,7 +229,7 @@ $System_Drawing_Size = New-Object System.Drawing.Size
 $System_Drawing_Size.Width = 650
 $System_Drawing_Size.Height = 550
 $form1.ClientSize = $System_Drawing_Size
-$form1.Icon = "C:\Windows\Computer Repair Centre\CRC.ico"
+$form1.Icon = "C:\Windows\Computer Repair Centre\CRC Icon.ico"
 #Install button
 $install.TabIndex = 4
 $install.Name = "install"
