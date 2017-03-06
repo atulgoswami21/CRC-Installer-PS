@@ -1,32 +1,31 @@
-iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 $Username = ""
 $Password = ""
-$url2 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/SetTaskbar.vbs"
-$path2 = "C:\Windows\BRM Computers\SetTaskbar.vbs"
-$url3 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/SetTaskbar.exe"
-$path3 = "C:\Windows\BRM Computers\SetTaskbar.exe"
-$url4 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/BRM.bmp"
-$path4 = "C:\Windows\BRM Computers\BRM.bmp"
-$url5 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/BRM.ico"
-$path5 = "C:\Windows\BRM Computers\BRM.ico"
-$url6 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/SetTaskbar.bat"
-$path6 = "C:\Windows\BRM Computers\SetTaskbar.bat"
-$url7 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/ExitCF.ps1"
-$path7 = "C:\Windows\BRM Computers\ExitCF.ps1"
-$url8 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/7zip.ico"
-$path8 = "C:\Windows\BRM Computers\7zip.ico"
-$url9 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/GoogleChrome.ico"
-$path9 = "C:\Windows\BRM Computers\GoogleChrome.ico"
-$url10 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/KasperskyInternetSecurity.ico"
-$path10 = "C:\Windows\BRM Computers\KasperskyInternetSecurity.ico"
-$url11 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/LibreOffice.ico"
-$path11 = "C:\Windows\BRM Computers\LibreOffice.ico"
-$url12 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/MozillaFirefox.ico"
-$path12 = "C:\Windows\BRM Computers\MozillaFirefox.ico"
-$url13 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/TeamViewer.ico"
-$path13 = "C:\Windows\BRM Computers\TeamViewer.ico"
-$url14 = "https://raw.githubusercontent.com/charliehoward/BRM-Installer-PS/master/Assets/VLCMediaPlayer.ico"
-$path14 = "C:\Windows\BRM Computers\VLCMediaPlayer.ico"
+$url2 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.vbs"
+$path2 = "C:\Windows\Computer Repair Centre\SetTaskbar.vbs"
+$url3 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.exe"
+$path3 = "C:\Windows\Computer Repair Centre\SetTaskbar.exe"
+$url4 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC.bmp"
+$path4 = "C:\Windows\Computer Repair Centre\CRC.bmp"
+$url5 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC.ico"
+$path5 = "C:\Windows\Computer Repair Centre\CRC.ico"
+$url6 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.bat"
+$path6 = "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
+$url7 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/ExitCF.ps1"
+$path7 = "C:\Windows\Computer Repair Centre\ExitCF.ps1"
+$url8 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/7zip.ico"
+$path8 = "C:\Windows\Computer Repair Centre\7zip.ico"
+$url9 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/GoogleChrome.ico"
+$path9 = "C:\Windows\Computer Repair Centre\GoogleChrome.ico"
+$url10 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/KasperskyInternetSecurity.ico"
+$path10 = "C:\Windows\Computer Repair Centre\KasperskyInternetSecurity.ico"
+$url11 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/LibreOffice.ico"
+$path11 = "C:\Windows\Computer Repair Centre\LibreOffice.ico"
+$url12 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/MozillaFirefox.ico"
+$path12 = "C:\Windows\Computer Repair Centre\MozillaFirefox.ico"
+$url13 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/TeamViewer.ico"
+$path13 = "C:\Windows\Computer Repair Centre\TeamViewer.ico"
+$url14 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/VLCMediaPlayer.ico"
+$path14 = "C:\Windows\Computer Repair Centre\VLCMediaPlayer.ico"
 $WebClient = New-Object System.Net.WebClient
 $WebClient.Credentials = New-Object System.Net.Networkcredential($Username, $Password)
 $WebClient.DownloadFile($url2, $path2)
@@ -55,7 +54,7 @@ function GenerateForm {
 $form1 = New-Object System.Windows.Forms.Form
 $install = New-Object System.Windows.Forms.Button
 $listBox1 = New-Object System.Windows.Forms.ListBox
-$brm = New-Object System.Windows.Forms.CheckBox
+$crc = New-Object System.Windows.Forms.CheckBox
 $mozillaFirefox = New-Object System.Windows.Forms.CheckBox
 $googleChrome = New-Object System.Windows.Forms.CheckBox
 $kaspersky = New-Object System.Windows.Forms.CheckBox
@@ -72,12 +71,12 @@ $b3= $false
 #----------------------------------------------
 $handler_install_Click= 
 {
-	$env:ComputerName | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-	$date | Out-File "C:/Windows/BRM Computers/$log.log" -Append
-	$OS | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+	$env:ComputerName | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+	$date | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+	$OS | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
     $listBox1.Items.Clear();    
-    if ($brm.Checked)	{
-		$listBox1.Items.Add("BRM OEM is checked."  )
+    if ($crc.Checked)	{
+		$listBox1.Items.Add("CRC OEM is checked."  )
 		}
 	if ($7zip.Checked)	{
 		$listBox1.Items.Add("7zip is checked."  )
@@ -100,59 +99,62 @@ $handler_install_Click=
 	if ($vlc.Checked)	{
 		$listBox1.Items.Add("VLC Media Player is checked."  )
 		}
-    if (!$brm.Checked -and !$7zip.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked){
+    if (!$crc.Checked -and !$7zip.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked){
 		$listBox1.Items.Add("No programs are selected, please select some programs to install.")
 		} 
+	$listBox1.Items.Add("Installing Chocolately ...")
+	iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+	$listBox1.Items.Add("Finished installing Chocolately ...")
 	$listBox1.Items.Add("Installing .NET4.5 ...")
-	choco install dotnet4.5 -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+	choco install dotnet4.5 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 	$listBox1.Items.Add("Finished installing .NET4.5 ...")
-	if ($brm.Checked)	{
-	    $listBox1.Items.Add("Installing BRM OEM information ...")
-		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\BRM Computers\BRM.bmp"
-		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "BRM Computers"
+	if ($crc.Checked)	{
+	    $listBox1.Items.Add("Installing CRC OEM information ...")
+		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
+		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "http://www.brmcomputers.co.uk"
-		$listBox1.Items.Add("Finished installing BRM OEM information.")
+		$listBox1.Items.Add("Finished installing CRC OEM information.")
 		}
 	if ($7zip.Checked)	{
 		$listBox1.Items.Add("Starting installing 7zip ...")
-		choco install 7zip.install -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		choco install 7zip.install -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing 7zip.")
 		}
 	if ($googleChrome.Checked)	{
 		$listBox1.Items.Add("Starting installing Google Chrome ...")
-		choco install googlechrome -y --ignore-checksums | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		choco install googlechrome -y --ignore-checksums | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing Google Chrome.")
 		}
 	if ($kaspersky.Checked)	{
 		$listBox1.Items.Add("Starting installing Kaspersky Internet Security 2017 ...")
-		choco install kis -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		choco install kis -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing Kaspersky Internet Security 2017.")
 		}
 	if ($libreOffice.Checked)	{
 		$listBox1.Items.Add("Starting installing LibreOffice ...")
-		choco install libreoffice -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		choco install libreoffice -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing LibreOffice.")
 		}
 	if ($mozillaFirefox.Checked)	{
 		$listBox1.Items.Add("Installing Mozilla Firefox ...")
-		choco install firefox -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		choco install firefox -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing Firefox."  )
 		}
 	if ($teamViewer.Checked)	{
 		$listBox1.Items.Add("Starting installing TeamViewer ...")
-		choco install teamviewer -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		choco install teamviewer -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing TeamViewer.")
 		}
 	if ($vlc.Checked)	{
 		$listBox1.Items.Add("Starting installing VLC Media Player ...")
-		choco install vlc -y | Out-File "C:/Windows/BRM Computers/$log.log" -Append
+		choco install vlc -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing VLC Media Player.")
 		}
 	if ($OS -like '*6.1*')	{
 		$listBox1.Items.Add("This computer is running Windows 7.")
-		& "C:\Windows\BRM Computers\SetTaskbar.vbs"
+		& "C:\Windows\Computer Repair Centre\SetTaskbar.vbs"
 		$listBox1.Items.Add("The install has finished!")
 		}
 	if ($OS -like '*6.2*')	{
@@ -162,7 +164,7 @@ $handler_install_Click=
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
-		& "C:\Windows\BRM Computers\SetTaskbar.bat"
+		& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
 		$listBox1.Items.Add("The install has finished!")
 		}
 	if ($OS -like '*6.3*')	{
@@ -172,7 +174,7 @@ $handler_install_Click=
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
-		& "C:\Windows\BRM Computers\SetTaskbar.bat"
+		& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
 		$listBox1.Items.Add("The install has finished!")
 		}
 	if ($OS -like '*10.0*')	{
@@ -209,25 +211,25 @@ $handler_install_Click=
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
-		& "C:\Windows\BRM Computers\SetTaskbar.bat"
+		& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
 		$listBox1.Items.Add("The install has finished! Will close in 15 seconds.")
 		}
 	Start-Sleep -s 15
-	& "C:\Windows\BRM Computers\ExitCF.ps1"
+	& "C:\Windows\Computer Repair Centre\ExitCF.ps1"
 	$form1.Close()
 }
 $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "BRM Installer PS Chandlers Ford v1.2.1"
+$form1.Text = "CRC Installer PS Chandlers Ford v1.3.0"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
 $System_Drawing_Size.Width = 650
 $System_Drawing_Size.Height = 550
 $form1.ClientSize = $System_Drawing_Size
-$form1.Icon = "C:\Windows\BRM Computers\BRM.ico"
+$form1.Icon = "C:\Windows\Computer Repair Centre\CRC.ico"
 #Install button
 $install.TabIndex = 4
 $install.Name = "install"
@@ -258,22 +260,22 @@ $System_Drawing_Point.Y = 13
 $listBox1.Location = $System_Drawing_Point
 $listBox1.TabIndex = 3
 $form1.Controls.Add($listBox1)
-#BRM OEM
-$brm.UseVisualStyleBackColor = $True
+#CRC OEM
+$crc.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
 $System_Drawing_Size.Width = 36
 $System_Drawing_Size.Height = 24
-$brm.Size = $System_Drawing_Size
-$brm.TabIndex = 0
+$crc.Size = $System_Drawing_Size
+$crc.TabIndex = 0
 $System_Drawing_Point = New-Object System.Drawing.Point
 $System_Drawing_Point.X = 27
 $System_Drawing_Point.Y = 13
-$brm.Location = $System_Drawing_Point
-$brm.DataBindings.DefaultDataSourceUpdateMode = 0
-$brm.Name = "brm"
-$brm.Checked = 1
-$brm.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\BRM.ico")
-$form1.Controls.Add($brm)
+$crc.Location = $System_Drawing_Point
+$crc.DataBindings.DefaultDataSourceUpdateMode = 0
+$crc.Name = "crc"
+$crc.Checked = 1
+$crc.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\CRC.ico")
+$form1.Controls.Add($crc)
 #Mozilla Firefox
 $mozillaFirefox.UseVisualStyleBackColor = $True
 $System_Drawing_Size = New-Object System.Drawing.Size
@@ -288,7 +290,7 @@ $mozillaFirefox.Location = $System_Drawing_Point
 $mozillaFirefox.DataBindings.DefaultDataSourceUpdateMode = 0
 $mozillaFirefox.Name = "mozillaFirefox"
 $mozillaFirefox.Checked = 1
-$mozillaFirefox.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\MozillaFirefox.ico")
+$mozillaFirefox.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\MozillaFirefox.ico")
 $form1.Controls.Add($mozillaFirefox)
 #Google Chrome
 $googleChrome.UseVisualStyleBackColor = $True
@@ -304,7 +306,7 @@ $googleChrome.Location = $System_Drawing_Point
 $googleChrome.DataBindings.DefaultDataSourceUpdateMode = 0
 $googleChrome.Name = "googleChrome"
 $googleChrome.Checked = 1
-$googleChrome.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\GoogleChrome.ico")
+$googleChrome.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\GoogleChrome.ico")
 $form1.Controls.Add($googleChrome)
 #Kaspersky Internet Security 2017
 $kaspersky.UseVisualStyleBackColor = $True
@@ -320,7 +322,7 @@ $kaspersky.Location = $System_Drawing_Point
 $kaspersky.DataBindings.DefaultDataSourceUpdateMode = 0
 $kaspersky.Name = "kaspersky"
 $kaspersky.Checked = 1
-$kaspersky.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\KasperskyInternetSecurity.ico")
+$kaspersky.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\KasperskyInternetSecurity.ico")
 $form1.Controls.Add($kaspersky)
 #VLC Media Player
 $vlc.UseVisualStyleBackColor = $True
@@ -336,7 +338,7 @@ $vlc.Location = $System_Drawing_Point
 $vlc.DataBindings.DefaultDataSourceUpdateMode = 0
 $vlc.Name = "vlc"
 $vlc.Checked = 1
-$vlc.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\VLCMediaPlayer.ico")
+$vlc.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\VLCMediaPlayer.ico")
 $form1.Controls.Add($vlc)
 #7zip
 $7zip.UseVisualStyleBackColor = $True
@@ -352,7 +354,7 @@ $7zip.Location = $System_Drawing_Point
 $7zip.DataBindings.DefaultDataSourceUpdateMode = 0
 $7zip.Name = "7zip"
 $7zip.Checked = 1
-$7zip.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\7zip.ico")
+$7zip.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\7zip.ico")
 $form1.Controls.Add($7zip)
 #LibreOffice
 $libreOffice.UseVisualStyleBackColor = $True
@@ -368,7 +370,7 @@ $libreOffice.Location = $System_Drawing_Point
 $libreOffice.DataBindings.DefaultDataSourceUpdateMode = 0
 $libreOffice.Name = "libreOffice"
 $libreOffice.Checked = 1
-$libreOffice.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\LibreOffice.ico")
+$libreOffice.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\LibreOffice.ico")
 $form1.Controls.Add($libreOffice)
 #TeamViewer
 $teamViewer.UseVisualStyleBackColor = $True
@@ -384,7 +386,7 @@ $teamViewer.Location = $System_Drawing_Point
 $teamViewer.DataBindings.DefaultDataSourceUpdateMode = 0
 $teamViewer.Name = "teamViewer"
 $teamViewer.Checked = 1
-$teamViewer.Image = [System.Drawing.Image]::FromFile("C:\Windows\BRM Computers\TeamViewer.ico")
+$teamViewer.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\TeamViewer.ico")
 $form1.Controls.Add($teamViewer)
 #Save the initial state of the form
 $InitialFormWindowState = $form1.WindowState
