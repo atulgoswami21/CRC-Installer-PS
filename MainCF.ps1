@@ -142,7 +142,7 @@ $handler_install_Click=
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm"
 		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
-		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "http://www.brmcomputers.co.uk"
+		Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.brmcomputers.co.uk"
 		$listBox1.Items.Add("Finished installing CRC OEM information.")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
@@ -321,7 +321,7 @@ $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "CRC Installer PS Chandlers Ford v1.4.0"
+$form1.Text = "CRC Installer PS Chandlers Ford v1.4.1"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
