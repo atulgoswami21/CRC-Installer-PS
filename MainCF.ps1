@@ -301,14 +301,14 @@ $handler_install_Click=
 		$listBox1.SelectedIndex = -1;
 		Stop-Service "DiagTrack"
 		Set-Service "DiagTrack" -StartupType Disabled
-		$listBox1.Items.Add("Setting taskbar icons ...")
-		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-		$listBox1.SelectedIndex = -1;
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
-		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
-		& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
+# 		$listBox1.Items.Add("Setting taskbar icons ...")
+# 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+# 		$listBox1.SelectedIndex = -1;
+# 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
+# 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
+# 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
+# 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
+# 		& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
 		$listBox1.Items.Add("The install has finished! Will close in 15 seconds.")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
