@@ -6,8 +6,6 @@ $url4 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master
 $path4 = "C:\Windows\Computer Repair Centre\CRC.bmp"
 $url5 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC Icon.ico"
 $path5 = "C:\Windows\Computer Repair Centre\CRC Icon.ico"
-$url7 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/ExitCF.ps1"
-$path7 = "C:\Windows\Computer Repair Centre\ExitCF.ps1"
 $url8 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/7zip.ico"
 $path8 = "C:\Windows\Computer Repair Centre\7zip.ico"
 $url9 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/GoogleChrome.ico"
@@ -27,7 +25,6 @@ $WebClient.Credentials = New-Object System.Net.Networkcredential($Username, $Pas
 $WebClient.DownloadFile($url2, $path2)
 $WebClient.DownloadFile($url4, $path4)
 $WebClient.DownloadFile($url5, $path5)
-$WebClient.DownloadFile($url7, $path7)
 $WebClient.DownloadFile($url8, $path8)
 $WebClient.DownloadFile($url9, $path9)
 $WebClient.DownloadFile($url10, $path10)
