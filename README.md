@@ -63,5 +63,3 @@ Removed exit button and will now close 15 seconds after the install has finished
 Fixed issue with downloading CleanCF.ps1.
 
 # Update 1.1.0
-
-Programs now install in alphabetical order and added an exit button than cleans up temporary files.
