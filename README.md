@@ -1,4 +1,4 @@
-# CRC Installer PowerShell 1.5.1
+# CRC Installer PowerShell 1.5.2
 
 When run you will get a form that allows to select what programs you wish to install.
 
@@ -9,6 +9,10 @@ If run on Windows 7 it sets the default taskbar.
 If run on Windows 8 and 8.1 it changes the default Explorer page to "This PC" and sets the default taskbar.
 
 If run on Windows 10 it disables Windows 10 hibernation mode, telementary, Wi-Fi sense, Cortana, diagnostics tracking service, and changes the default Explorer page to "This PC" and sets the default taskbar.
+
+# Fix 1.5.2
+
+Fixed file cleanup on completion.
 
 # Fix 1.5.1
 
