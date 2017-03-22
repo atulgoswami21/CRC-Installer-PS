@@ -34,8 +34,6 @@ $WebClient.DownloadFile($url13, $path13)
 $WebClient.DownloadFile($url14, $path14)
 #OS
 $OS = (Get-WmiObject -Class Win32_OperatingSystem).version
-#Documents folder
-$documents = [environment]::getFolderPath(“mydocuments”)
 #Log file
 $date = Get-Date -Format "yyyy.MM.dd HH.mm"
 $log = $date + " " + $env:ComputerName
@@ -302,6 +300,7 @@ $handler_install_Click=
 	$listBox1.Items.Add("Cleaning up ...")
 	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 	$listBox1.SelectedIndex = -1;
+	$documents = [environment]::getFolderPath(“mydocuments”)
 	Remove-Item "C:/Windows/Computer Repair Centre/7zip.ico"
 	Remove-Item "C:/Windows/Computer Repair Centre/CRC Icon.ico"
 	Remove-Item "C:/Windows/Computer Repair Centre/GoogleChrome.ico"
