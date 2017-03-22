@@ -292,7 +292,7 @@ $handler_install_Click=
 		$listBox1.SelectedIndex = -1;
 		Stop-Service "DiagTrack"
 		Set-Service "DiagTrack" -StartupType Disabled
-		$listBox1.Items.Add("The install has finished! Will close in 30 seconds.")
+		$listBox1.Items.Add("The install has finished! Will close in 15 seconds.")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
 		}
