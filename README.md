@@ -1,4 +1,4 @@
-# CRC Installer PowerShell 1.5.0
+# CRC Installer PowerShell 1.5.1
 
 When run you will get a form that allows to select what programs you wish to install.
 
@@ -10,11 +10,15 @@ If run on Windows 8 and 8.1 it changes the default Explorer page to "This PC" an
 
 If run on Windows 10 it disables Windows 10 hibernation mode, telementary, Wi-Fi sense, Cortana, diagnostics tracking service, and changes the default Explorer page to "This PC" and sets the default taskbar.
 
+# Fix 1.5.1
+
+Removed extra lines for downloading files.
+
 # Update 1.5.0
 
 Temporarily removed automatically setting taskbar icons in Windows 10 due to issue and added KIS Chocolatey package.
 
-# Update 1.4.1
+# Fix 1.4.1
 
 Fixed OEM website HTTPS information.
 
@@ -26,7 +30,7 @@ Added autoscrolling feature to list box and reduced size of install window.
 
 Renamed to CRC Installer and added new Romsey version.
 
-# Update 1.2.1
+# Fix 1.2.1
 
 Fixed issue with Google Chrome checksums.
 
@@ -34,15 +38,15 @@ Fixed issue with Google Chrome checksums.
 
 Replaced text with icon of program for cleaner look.
 
-# Update 1.1.3
+# Fix 1.1.3
 
 Fixed crashing issue with icon file.
 
-# Update 1.1.2
+# Fix 1.1.2
 
 Removed exit button and will now close 15 seconds after the install has finished.
 
-# Update 1.1.1
+# Fix 1.1.1
 
 Fixed issue with downloading CleanCF.ps1.
 

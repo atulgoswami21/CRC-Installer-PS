@@ -25,10 +25,8 @@ $path14 = "C:\Windows\Computer Repair Centre\VLCMediaPlayer.ico"
 $WebClient = New-Object System.Net.WebClient
 $WebClient.Credentials = New-Object System.Net.Networkcredential($Username, $Password)
 $WebClient.DownloadFile($url2, $path2)
-$WebClient.DownloadFile($url3, $path3)
 $WebClient.DownloadFile($url4, $path4)
 $WebClient.DownloadFile($url5, $path5)
-$WebClient.DownloadFile($url6, $path6)
 $WebClient.DownloadFile($url7, $path7)
 $WebClient.DownloadFile($url8, $path8)
 $WebClient.DownloadFile($url9, $path9)
@@ -302,14 +300,14 @@ $handler_install_Click=
 		$listBox1.SelectedIndex = -1;
 		}
 	Start-Sleep -s 15
-	& "C:\Windows\Computer Repair Centre\ExitR.ps1"
 	$form1.Close()
+	& "C:\Windows\Computer Repair Centre\ExitR.ps1"
 }
 $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "CRC Installer PS Romsey v1.5.0"
+$form1.Text = "CRC Installer PS Romsey v1.5.1"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
