@@ -2,14 +2,10 @@ $Username = ""
 $Password = ""
 $url2 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.vbs"
 $path2 = "C:\Windows\Computer Repair Centre\SetTaskbar.vbs"
-$url3 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.exe"
-$path3 = "C:\Windows\Computer Repair Centre\SetTaskbar.exe"
 $url4 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC.bmp"
 $path4 = "C:\Windows\Computer Repair Centre\CRC.bmp"
 $url5 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC Icon.ico"
 $path5 = "C:\Windows\Computer Repair Centre\CRC Icon.ico"
-$url6 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.bat"
-$path6 = "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
 $url7 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/ExitCF.ps1"
 $path7 = "C:\Windows\Computer Repair Centre\ExitCF.ps1"
 $url8 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/7zip.ico"
@@ -301,14 +297,6 @@ $handler_install_Click=
 		$listBox1.SelectedIndex = -1;
 		Stop-Service "DiagTrack"
 		Set-Service "DiagTrack" -StartupType Disabled
-# 		$listBox1.Items.Add("Setting taskbar icons ...")
-# 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-# 		$listBox1.SelectedIndex = -1;
-# 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
-# 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
-# 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
-# 		Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
-# 		& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
 		$listBox1.Items.Add("The install has finished! Will close in 15 seconds.")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
@@ -321,7 +309,7 @@ $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "CRC Installer PS Chandlers Ford v1.4.1"
+$form1.Text = "CRC Installer PS Chandlers Ford v1.5.0"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
