@@ -292,11 +292,24 @@ $handler_install_Click=
 		$listBox1.SelectedIndex = -1;
 		Stop-Service "DiagTrack"
 		Set-Service "DiagTrack" -StartupType Disabled
-		$listBox1.Items.Add("The install has finished! Will close in 15 seconds.")
+		$listBox1.Items.Add("The install has finished! Will close in 30 seconds.")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
 		}
 	Start-Sleep -s 15
+	$documents = [environment]::getFolderPath(“mydocuments”)
+	Remove-Item "C:/Windows/Computer Repair Centre/7zip.ico"
+	Remove-Item "C:/Windows/Computer Repair Centre/CRC Icon.ico"
+	Remove-Item "C:/Windows/Computer Repair Centre/GoogleChrome.ico"
+	Remove-Item "C:/Windows/Computer Repair Centre/KasperskyInternetSecurity.ico"
+	Remove-Item "C:/Windows/Computer Repair Centre/LibreOffice.ico"
+	Remove-Item "C:/Windows/Computer Repair Centre/MainCF.ps1"
+	Remove-Item "C:/Windows/Computer Repair Centre/MozillaFirefox.ico"
+	Remove-Item "C:/Windows/Computer Repair Centre/SetTaskbar.vbs"
+	Remove-Item "C:/Windows/Computer Repair Centre/TeamViewer.ico"
+	Remove-Item "C:/Windows/Computer Repair Centre/VLCMediaPlayer.ico"
+	Remove-Item $documents/WindowsPowerShell
+ 	Start-Sleep -s 15
 	$form1.Close()
 }
 $OnLoadForm_StateCorrection=
