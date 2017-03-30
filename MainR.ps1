@@ -118,11 +118,25 @@ $handler_install_Click=
 	$listBox1.Items.Add("Finished installing Chocolately ...")
 	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 	$listBox1.SelectedIndex = -1;
-	$listBox1.Items.Add("Installing .NET4.5 ...")
+	$listBox1.Items.Add("Installing .NET 4.5 ...")
 	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 	$listBox1.SelectedIndex = -1;
 	choco install dotnet4.5 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-	$listBox1.Items.Add("Finished installing .NET4.5 ...")
+	$listBox1.Items.Add("Finished installing .NET 4.5 ...")
+	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+	$listBox1.SelectedIndex = -1;
+	$listBox1.Items.Add("Installing .NET 4.6.1 ...")
+	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+	$listBox1.SelectedIndex = -1;
+	choco install dotnet4.6.1 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+	$listBox1.Items.Add("Finished installing .NET 4.6.1 ...")
+	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+	$listBox1.SelectedIndex = -1;
+	$listBox1.Items.Add("Installing PowerShell 5 ...")
+	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
+	$listBox1.SelectedIndex = -1;
+	choco install powershell -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+	$listBox1.Items.Add("Finished installing PowerShell 5 ...")
 	$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 	$listBox1.SelectedIndex = -1;
 	if ($crc.Checked)	{
@@ -303,7 +317,7 @@ $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "CRC Installer PS Romsey v1.5.5"
+$form1.Text = "CRC Installer PS Romsey v1.5.6"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
