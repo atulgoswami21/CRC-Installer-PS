@@ -1,4 +1,4 @@
-# CRC Installer PowerShell 1.5.5
+# CRC Installer PowerShell 1.5.6
 
 When run you will get a form that allows to select what programs you wish to install.
 
@@ -10,9 +10,13 @@ If run on Windows 8 and 8.1 it changes the default Explorer page to "This PC" an
 
 If run on Windows 10 it disables Windows 10 hibernation mode, telementary, Wi-Fi sense, Cortana, diagnostics tracking service, and changes the default Explorer page to "This PC" and sets the default taskbar.
 
+# Fix 1.5.6
+
+Fixed crashing issue on Windows 7.
+
 # Fix 1.5.5
 
-Fixedprogram with Kaspersky and TeamViewer not installing.
+Fixed problem with Kaspersky and TeamViewer not installing.
 
 # Fix 1.5.4
 
