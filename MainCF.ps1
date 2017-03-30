@@ -142,7 +142,7 @@ $handler_install_Click=
 		$listBox1.Items.Add("Starting installing 7zip ...")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
-		choco install 7zip.install -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+		choco install 7zip.install -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing 7zip.")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
@@ -160,7 +160,7 @@ $handler_install_Click=
 		$listBox1.Items.Add("Starting installing Kaspersky Internet Security 2017 ...")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
-		choco install kis -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+		choco install kis -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing Kaspersky Internet Security 2017.")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
@@ -169,7 +169,7 @@ $handler_install_Click=
 		$listBox1.Items.Add("Starting installing LibreOffice ...")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
-		choco install libreoffice -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+		choco install libreoffice -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing LibreOffice.")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
@@ -178,7 +178,7 @@ $handler_install_Click=
 		$listBox1.Items.Add("Installing Mozilla Firefox ...")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
-		choco install firefox -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+		choco install firefox -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing Firefox."  )
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
@@ -187,7 +187,7 @@ $handler_install_Click=
 		$listBox1.Items.Add("Starting installing TeamViewer ...")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
-		choco install teamviewer -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+		choco install teamviewer -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing TeamViewer.")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
@@ -196,7 +196,7 @@ $handler_install_Click=
 		$listBox1.Items.Add("Starting installing VLC Media Player ...")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
-		choco install vlc -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+		choco install vlc -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$listBox1.Items.Add("Finished installing VLC Media Player.")
 		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
 		$listBox1.SelectedIndex = -1;
@@ -303,7 +303,7 @@ $OnLoadForm_StateCorrection=
 {#Correct the initial state of the form to prevent the .Net maximized form issue
     $form1.WindowState = $InitialFormWindowState
 }
-$form1.Text = "CRC Installer PS Chandlers Ford v1.5.4"
+$form1.Text = "CRC Installer PS Chandlers Ford v1.5.5"
 $form1.Name = "form1"
 $form1.DataBindings.DefaultDataSourceUpdateMode = 0
 $System_Drawing_Size = New-Object System.Drawing.Size
