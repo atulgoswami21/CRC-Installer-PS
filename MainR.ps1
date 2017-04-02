@@ -1,3 +1,4 @@
+#Download all assets
 $Username = ""
 $Password = ""
 $url2 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.vbs"
@@ -32,19 +33,22 @@ $WebClient.DownloadFile($url11, $path11)
 $WebClient.DownloadFile($url12, $path12)
 $WebClient.DownloadFile($url13, $path13)
 $WebClient.DownloadFile($url14, $path14)
-#OS
+
+#Get OS version
 $OS = (Get-WmiObject -Class Win32_OperatingSystem).version
-#Log file
+
+#Generating log file
 $date = Get-Date -Format "yyyy.MM.dd HH.mm"
 $log = $date + " " + $env:ComputerName
 $log
+
 #Generate form
 	function GenerateForm {
 	[reflection.assembly]::loadwithpartialname("System.Windows.Forms") | Out-Null
 	[reflection.assembly]::loadwithpartialname("System.Drawing") | Out-Null
-	$form1 = New-Object System.Windows.Forms.Form
+	$installer = New-Object System.Windows.Forms.Form
 	$install = New-Object System.Windows.Forms.Button
-	$listBox1 = New-Object System.Windows.Forms.ListBox
+	$progress = New-Object System.Windows.Forms.ListBox
 	$crc = New-Object System.Windows.Forms.CheckBox
 	$mozillaFirefox = New-Object System.Windows.Forms.CheckBox
 	$googleChrome = New-Object System.Windows.Forms.CheckBox
@@ -57,243 +61,242 @@ $log
 	$b1= $false
 	$b2= $false
 	$b3= $false
-	#----------------------------------------------
-	#Generated Event Script Blocks
-	#----------------------------------------------
+
+#Install button
 	$handler_install_Click= 
 	{
 		$env:ComputerName | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$date | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$OS | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-	    $listBox1.Items.Clear();    
+	    $progress.Items.Clear();    
 	    if ($crc.Checked)	{
-			$listBox1.Items.Add("CRC OEM is checked."  )
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("CRC OEM is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($7zip.Checked)	{
-			$listBox1.Items.Add("7zip is checked."  )
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("7zip is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 	    if ($googleChrome.Checked)	{
-			$listBox1.Items.Add("Google Chrome is checked."  )
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Google Chrome is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($kaspersky.Checked)	{
-			$listBox1.Items.Add("Kaspersky Internet Security 2017 is checked."  )
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Kaspersky Internet Security 2017 is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($libreOffice.Checked)	{
-			$listBox1.Items.Add("LibreOffice is checked."  )
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("LibreOffice is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 	    if ($mozillaFirefox.Checked)	{
-			$listBox1.Items.Add("Mozilla Firefox is checked."  )
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Mozilla Firefox is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($teamViewer.Checked)	{
-			$listBox1.Items.Add("TeamViewer is checked."  )
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("TeamViewer is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($vlc.Checked)	{
-			$listBox1.Items.Add("VLC Media Player is checked."  )
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("VLC Media Player is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 	    if (!$crc.Checked -and !$7zip.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked){
-			$listBox1.Items.Add("No programs are selected, please select some programs to install.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("No programs are selected, please select some programs to install.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			} 
-		$listBox1.Items.Add("Installing Chocolately ...")
-		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-		$listBox1.SelectedIndex = -1;
+		$progress.Items.Add("Installing Chocolately ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
 		iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-		$listBox1.Items.Add("Finished installing Chocolately ...")
-		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-		$listBox1.SelectedIndex = -1;
-		$listBox1.Items.Add("Installing .NET 4.5 ...")
-		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-		$listBox1.SelectedIndex = -1;
+		$progress.Items.Add("Finished installing Chocolately ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
+		$progress.Items.Add("Installing .NET 4.5 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
 		choco install dotnet4.5 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$listBox1.Items.Add("Finished installing .NET 4.5 ...")
-		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-		$listBox1.SelectedIndex = -1;
-		$listBox1.Items.Add("Installing .NET 4.6.1 ...")
-		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-		$listBox1.SelectedIndex = -1;
+		$progress.Items.Add("Finished installing .NET 4.5 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
+		$progress.Items.Add("Installing .NET 4.6.1 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
 		choco install dotnet4.6.1 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$listBox1.Items.Add("Finished installing .NET 4.6.1 ...")
-		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-		$listBox1.SelectedIndex = -1;
-		$listBox1.Items.Add("Installing PowerShell 5 ...")
-		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-		$listBox1.SelectedIndex = -1;
+		$progress.Items.Add("Finished installing .NET 4.6.1 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
+		$progress.Items.Add("Installing PowerShell 5 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
 		choco install powershell -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$listBox1.Items.Add("Finished installing PowerShell 5 ...")
-		$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-		$listBox1.SelectedIndex = -1;
+		$progress.Items.Add("Finished installing PowerShell 5 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
 		if ($crc.Checked)	{
-		    $listBox1.Items.Add("Installing CRC OEM information ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+		    $progress.Items.Add("Installing CRC OEM information ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
 			Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
 			Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "TBD"
 			Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
 			Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
-			$listBox1.Items.Add("Finished installing CRC OEM information.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Finished installing CRC OEM information.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($7zip.Checked)	{
-			$listBox1.Items.Add("Starting installing 7zip ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Starting installing 7zip ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			choco install 7zip.install -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$listBox1.Items.Add("Finished installing 7zip.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Finished installing 7zip.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($googleChrome.Checked)	{
-			$listBox1.Items.Add("Starting installing Google Chrome ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Starting installing Google Chrome ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			choco install googlechrome -y --ignore-checksums | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$listBox1.Items.Add("Finished installing Google Chrome.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Finished installing Google Chrome.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($kaspersky.Checked)	{
-			$listBox1.Items.Add("Starting installing Kaspersky Internet Security 2017 ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Starting installing Kaspersky Internet Security 2017 ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			choco install kis -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$listBox1.Items.Add("Finished installing Kaspersky Internet Security 2017.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Finished installing Kaspersky Internet Security 2017.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($libreOffice.Checked)	{
-			$listBox1.Items.Add("Starting installing LibreOffice ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Starting installing LibreOffice ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			choco install libreoffice -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$listBox1.Items.Add("Finished installing LibreOffice.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Finished installing LibreOffice.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($mozillaFirefox.Checked)	{
-			$listBox1.Items.Add("Installing Mozilla Firefox ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Installing Mozilla Firefox ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			choco install firefox -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$listBox1.Items.Add("Finished installing Firefox."  )
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Finished installing Firefox."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($teamViewer.Checked)	{
-			$listBox1.Items.Add("Starting installing TeamViewer ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Starting installing TeamViewer ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			choco install teamviewer -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$listBox1.Items.Add("Finished installing TeamViewer.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Finished installing TeamViewer.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($vlc.Checked)	{
-			$listBox1.Items.Add("Starting installing VLC Media Player ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Starting installing VLC Media Player ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			choco install vlc -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$listBox1.Items.Add("Finished installing VLC Media Player.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Finished installing VLC Media Player.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($OS -like '*6.1*')	{
-			$listBox1.Items.Add("This computer is running Windows 7.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
-			$listBox1.Items.Add("Setting taskbar icons ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("This computer is running Windows 7.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			$progress.Items.Add("Setting taskbar icons ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			& "C:\Windows\Computer Repair Centre\SetTaskbar.vbs"
-			$listBox1.Items.Add("The install has finished!")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("The install has finished!")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($OS -like '*6.2*')	{
-			$listBox1.Items.Add("This computer is running Windows 8.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
-			$listBox1.Items.Add("Setting taskbar icons ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("This computer is running Windows 8.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			$progress.Items.Add("Setting taskbar icons ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
 			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
 			& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
-			$listBox1.Items.Add("The install has finished!")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("The install has finished!")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($OS -like '*6.3*')	{
-			$listBox1.Items.Add("This computer is running Windows 8.1.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
-			$listBox1.Items.Add("Setting taskbar icons ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("This computer is running Windows 8.1.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			$progress.Items.Add("Setting taskbar icons ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
 			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
 			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
 			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
 			& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
-			$listBox1.Items.Add("The install has finished!")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("The install has finished!")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		if ($OS -like '*10.0*')	{
-			$listBox1.Items.Add("This computer is running Windows 10.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
-			$listBox1.Items.Add("Setting explorer to open to This PC ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("This computer is running Windows 10.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			$progress.Items.Add("Setting explorer to open to This PC ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value 1
-			$listBox1.Items.Add("Disabling hibernation mode ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Disabling hibernation mode ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -name HiberbootEnabled -value 0
-			$listBox1.Items.Add("Disabling Telemetry ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Disabling Telemetry ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -Type DWord -Value 0
 			Set-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type DWord -Value 0
 			Set-ItemProperty -Path HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -Type DWord -Value 0
-			$listBox1.Items.Add("Disabling Wi-Fi Sense ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Disabling Wi-Fi Sense ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			New-Item -Path HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting -Force | Out-Null
 			Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" -Name "Value" -Type DWord -Value 0
 			Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" -Name "Value" -Type DWord -Value 0
-			$listBox1.Items.Add("Disabling Bing Search in Start Menu ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Disabling Bing Search in Start Menu ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
-			$listBox1.Items.Add("Disabling Start Menu suggestions ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Disabling Start Menu suggestions ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SystemPaneSuggestionsEnabled" -Type DWord -Value 0
-			$listBox1.Items.Add("Disabling Cortana ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Disabling Cortana ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			New-Item -Path "HKCU:\Software\Microsoft\Personalization\Settings" -Force | Out-Null
 			Set-ItemProperty -Path "HKCU:\Software\Microsoft\Personalization\Settings" -Name "AcceptedPrivacyPolicy" -Type DWord -Value 0
 			New-Item -Path "HKCU:\Software\Microsoft\InputPersonalization" -Force | Out-Null
@@ -301,31 +304,34 @@ $log
 			Set-ItemProperty -Path "HKCU:\Software\Microsoft\InputPersonalization" -Name "RestrictImplicitInkCollection" -Type DWord -Value 1
 			New-Item -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Force | Out-Null
 			Set-ItemProperty -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Name "HarvestContacts" -Type DWord -Value 0
-			$listBox1.Items.Add("Stopping and disabling Diagnostics Tracking Service ...")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("Stopping and disabling Diagnostics Tracking Service ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			Stop-Service "DiagTrack"
 			Set-Service "DiagTrack" -StartupType Disabled
-			$listBox1.Items.Add("The install has finished! Will close in 15 seconds.")
-			$listBox1.SelectedIndex = $listBox1.Items.Count - 1;
-			$listBox1.SelectedIndex = -1;
+			$progress.Items.Add("The install has finished! Will close in 15 seconds.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			}
 		Start-Sleep -s 15
-		$form1.Close()
+		$installer.Close()
 	}
 	$OnLoadForm_StateCorrection=
-	{#Correct the initial state of the form to prevent the .Net maximized form issue
-	    $form1.WindowState = $InitialFormWindowState
+	{
+	    $installer.WindowState = $InitialFormWindowState
 	}
-	$form1.Text = "CRC Installer PS Romsey v1.6.0"
-	$form1.Name = "form1"
-	$form1.DataBindings.DefaultDataSourceUpdateMode = 0
+	
+#Main form
+	$installer.Text = "CRC Installer PS Romsey v1.7.0"
+	$installer.Name = "form1"
+	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 650
 	$System_Drawing_Size.Height = 270
-	$form1.ClientSize = $System_Drawing_Size
-	$form1.Icon = "C:\Windows\Computer Repair Centre\CRC Icon.ico"
-	#Install button
+	$installer.ClientSize = $System_Drawing_Size
+	$installer.Icon = "C:\Windows\Computer Repair Centre\CRC Icon.ico"
+	
+#Install button
 	$install.TabIndex = 4
 	$install.Name = "install"
 	$System_Drawing_Size = New-Object System.Drawing.Size
@@ -340,22 +346,24 @@ $log
 	$install.Location = $System_Drawing_Point
 	$install.DataBindings.DefaultDataSourceUpdateMode = 0
 	$install.add_Click($handler_install_Click)
-	$form1.Controls.Add($install)
-	#Text box
-	$listBox1.FormattingEnabled = $True
+	$installer.Controls.Add($install)
+	
+#Progress box
+	$progress.FormattingEnabled = $True
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 350
 	$System_Drawing_Size.Height = 250
-	$listBox1.Size = $System_Drawing_Size
-	$listBox1.DataBindings.DefaultDataSourceUpdateMode = 0
-	$listBox1.Name = "listBox1"
+	$progress.Size = $System_Drawing_Size
+	$progress.DataBindings.DefaultDataSourceUpdateMode = 0
+	$progress.Name = "listBox1"
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 287
 	$System_Drawing_Point.Y = 13
-	$listBox1.Location = $System_Drawing_Point
-	$listBox1.TabIndex = 3
-	$form1.Controls.Add($listBox1)
-	#CRC OEM
+	$progress.Location = $System_Drawing_Point
+	$progress.TabIndex = 3
+	$installer.Controls.Add($progress)
+	
+#CRC OEM
 	$crc.UseVisualStyleBackColor = $True
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 36
@@ -370,8 +378,9 @@ $log
 	$crc.Name = "crc"
 	$crc.Checked = 1
 	$crc.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\CRC Icon.ico")
-	$form1.Controls.Add($crc)
-	#Mozilla Firefox
+	$installer.Controls.Add($crc)
+	
+#Mozilla Firefox
 	$mozillaFirefox.UseVisualStyleBackColor = $True
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 36
@@ -386,8 +395,9 @@ $log
 	$mozillaFirefox.Name = "mozillaFirefox"
 	$mozillaFirefox.Checked = 1
 	$mozillaFirefox.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\MozillaFirefox.ico")
-	$form1.Controls.Add($mozillaFirefox)
-	#Google Chrome
+	$installer.Controls.Add($mozillaFirefox)
+	
+#Google Chrome
 	$googleChrome.UseVisualStyleBackColor = $True
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 36
@@ -402,8 +412,9 @@ $log
 	$googleChrome.Name = "googleChrome"
 	$googleChrome.Checked = 1
 	$googleChrome.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\GoogleChrome.ico")
-	$form1.Controls.Add($googleChrome)
-	#Kaspersky Internet Security 2017
+	$installer.Controls.Add($googleChrome)
+	
+#Kaspersky Internet Security 2017
 	$kaspersky.UseVisualStyleBackColor = $True
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 36
@@ -418,8 +429,9 @@ $log
 	$kaspersky.Name = "kaspersky"
 	$kaspersky.Checked = 1
 	$kaspersky.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\KasperskyInternetSecurity.ico")
-	$form1.Controls.Add($kaspersky)
-	#VLC Media Player
+	$installer.Controls.Add($kaspersky)
+	
+#VLC Media Player
 	$vlc.UseVisualStyleBackColor = $True
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 36
@@ -434,8 +446,9 @@ $log
 	$vlc.Name = "vlc"
 	$vlc.Checked = 1
 	$vlc.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\VLCMediaPlayer.ico")
-	$form1.Controls.Add($vlc)
-	#7zip
+	$installer.Controls.Add($vlc)
+	
+#7zip
 	$7zip.UseVisualStyleBackColor = $True
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 36
@@ -450,8 +463,9 @@ $log
 	$7zip.Name = "7zip"
 	$7zip.Checked = 1
 	$7zip.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\7zip.ico")
-	$form1.Controls.Add($7zip)
-	#LibreOffice
+	$installer.Controls.Add($7zip)
+	
+#LibreOffice
 	$libreOffice.UseVisualStyleBackColor = $True
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 36
@@ -466,8 +480,9 @@ $log
 	$libreOffice.Name = "libreOffice"
 	$libreOffice.Checked = 1
 	$libreOffice.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\LibreOffice.ico")
-	$form1.Controls.Add($libreOffice)
-	#TeamViewer
+	$installer.Controls.Add($libreOffice)
+	
+#TeamViewer
 	$teamViewer.UseVisualStyleBackColor = $True
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 36
@@ -482,13 +497,15 @@ $log
 	$teamViewer.Name = "teamViewer"
 	$teamViewer.Checked = 1
 	$teamViewer.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\TeamViewer.ico")
-	$form1.Controls.Add($teamViewer)
-	#Save the initial state of the form
-	$InitialFormWindowState = $form1.WindowState
-	#Init the OnLoad event to correct the initial state of the form
-	$form1.add_Load($OnLoadForm_StateCorrection)
-	#Show the Form
-	$form1.ShowDialog() | Out-Null
+	$installer.Controls.Add($teamViewer)
+	
+#Save the initial state of the form
+	$InitialFormWindowState = $installer.WindowState
+	$installer.add_Load($OnLoadForm_StateCorrection)
+	
+#Show the Form
+	$installer.ShowDialog() | Out-Null
 	}
+	
 #Call the Function
 GenerateForm
