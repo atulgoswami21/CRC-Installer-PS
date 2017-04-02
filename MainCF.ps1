@@ -319,7 +319,7 @@ $log
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer PS Chandlers Ford v1.7.1"
+	$installer.Text = "CRC Installer PS Chandlers Ford v1.7.2"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
@@ -374,7 +374,7 @@ $log
 	$crc.DataBindings.DefaultDataSourceUpdateMode = 0
 	$crc.Name = "crc"
 	$crc.Checked = 1
-	$crc.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\CRC Icon.ico")
+	$crc.Image = [System.Drawing.Image]::FromFile("$Env:p2eincfilepath\CRC Icon.ico")
 	$installer.Controls.Add($crc)
 	
 #Mozilla Firefox
