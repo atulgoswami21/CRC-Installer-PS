@@ -1,38 +1,35 @@
 #Download all assets
 $Username = ""
 $Password = ""
-$url2 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.vbs"
+$file2 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.vbs"
 $path2 = "C:\Windows\Computer Repair Centre\SetTaskbar.vbs"
-$url4 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC.bmp"
-$path4 = "C:\Windows\Computer Repair Centre\CRC.bmp"
-$url5 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC Icon.ico"
-$path5 = "C:\Windows\Computer Repair Centre\CRC Icon.ico"
-$url8 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/7zip.ico"
-$path8 = "C:\Windows\Computer Repair Centre\7zip.ico"
-$url9 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/GoogleChrome.ico"
-$path9 = "C:\Windows\Computer Repair Centre\GoogleChrome.ico"
-$url10 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/KasperskyInternetSecurity.ico"
-$path10 = "C:\Windows\Computer Repair Centre\KasperskyInternetSecurity.ico"
-$url11 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/LibreOffice.ico"
-$path11 = "C:\Windows\Computer Repair Centre\LibreOffice.ico"
-$url12 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/MozillaFirefox.ico"
-$path12 = "C:\Windows\Computer Repair Centre\MozillaFirefox.ico"
-$url13 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/TeamViewer.ico"
-$path13 = "C:\Windows\Computer Repair Centre\TeamViewer.ico"
-$url14 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/VLCMediaPlayer.ico"
-$path14 = "C:\Windows\Computer Repair Centre\VLCMediaPlayer.ico"
+$file3 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC.bmp"
+$path3 = "C:\Windows\Computer Repair Centre\CRC.bmp"
+$file4 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/7zip.ico"
+$path4 = "C:\Windows\Computer Repair Centre\7zip.ico"
+$file5 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/GoogleChrome.ico"
+$path5 = "C:\Windows\Computer Repair Centre\GoogleChrome.ico"
+$file6 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/KasperskyInternetSecurity.ico"
+$path6 = "C:\Windows\Computer Repair Centre\KasperskyInternetSecurity.ico"
+$file7 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/LibreOffice.ico"
+$path7 = "C:\Windows\Computer Repair Centre\LibreOffice.ico"
+$file8 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/MozillaFirefox.ico"
+$path8 = "C:\Windows\Computer Repair Centre\MozillaFirefox.ico"
+$file9 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/TeamViewer.ico"
+$path9 = "C:\Windows\Computer Repair Centre\TeamViewer.ico"
+$file10 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/VLCMediaPlayer.ico"
+$path10 = "C:\Windows\Computer Repair Centre\VLCMediaPlayer.ico"
 $WebClient = New-Object System.Net.WebClient
 $WebClient.Credentials = New-Object System.Net.Networkcredential($Username, $Password)
-$WebClient.DownloadFile($url2, $path2)
-$WebClient.DownloadFile($url4, $path4)
-$WebClient.DownloadFile($url5, $path5)
-$WebClient.DownloadFile($url8, $path8)
-$WebClient.DownloadFile($url9, $path9)
-$WebClient.DownloadFile($url10, $path10)
-$WebClient.DownloadFile($url11, $path11)
-$WebClient.DownloadFile($url12, $path12)
-$WebClient.DownloadFile($url13, $path13)
-$WebClient.DownloadFile($url14, $path14)
+$WebClient.DownloadFile($file2, $path2)
+$WebClient.DownloadFile($file3, $path3)
+$WebClient.DownloadFile($file4, $path4)
+$WebClient.DownloadFile($file5, $path5)
+$WebClient.DownloadFile($file6, $path6)
+$WebClient.DownloadFile($file7, $path7)
+$WebClient.DownloadFile($file8, $path8)
+$WebClient.DownloadFile($file9, $path9)
+$WebClient.DownloadFile($file10, $path10)
 
 #Get OS version
 $OS = (Get-WmiObject -Class Win32_OperatingSystem).version
@@ -322,14 +319,14 @@ $log
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer PS Romsey v1.7.0"
+	$installer.Text = "CRC Installer PS Romsey v1.7.1"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 650
 	$System_Drawing_Size.Height = 270
 	$installer.ClientSize = $System_Drawing_Size
-	$installer.Icon = "C:\Windows\Computer Repair Centre\CRC Icon.ico"
+	$installer.Icon = "$Env:p2eincfilepath\CRC Icon.ico"
 	
 #Install button
 	$install.TabIndex = 4
