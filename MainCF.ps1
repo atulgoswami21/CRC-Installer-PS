@@ -189,7 +189,7 @@ $log
 			$progress.SelectedIndex = -1;
 			}
 		if ($mozillaFirefox.Checked)	{
-			$progress.Items.Add("Installing Mozilla Firefox ...")
+			$progress.Items.Add("Starting installation of Mozilla Firefox ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install firefox -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
@@ -319,7 +319,7 @@ $log
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer PS Chandlers Ford v1.7.3"
+	$installer.Text = "CRC Installer PS Chandlers Ford v1.7.4"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size

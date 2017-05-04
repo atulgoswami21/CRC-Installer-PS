@@ -2,8 +2,8 @@
 $installerType = 'exe'
 $silentArgs = "/s /noreboot"
 $url = 'https://products.s.kaspersky-labs.com/english/homeuser/kis2017/kis17.0.0.611en-gb_full.exe'
-$checksum = 'BD6E30EE39FAE3676DC972E12D420514C4C0C840CD27B890C7EFAD66EB31F205'
-$checksumType = 'sha256'
+$checksum = 'fc98aa1129e0c00dcd41fe0540b48fe9'
+$checksumType = 'md5'
 $validExitCodes = @(0,3010)
 
 $tempDir = Join-Path $env:Temp "$packageName"
