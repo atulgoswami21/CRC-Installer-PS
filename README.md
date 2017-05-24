@@ -1,4 +1,4 @@
-# CRC Installer PowerShell 1.7.4
+# CRC Installer PowerShell 1.7.5
 
 When run you will get a form that allows to select what programs you wish to install.
 
@@ -6,7 +6,11 @@ Installs the CRC OEM information, 7zip, Google Chrome, Kaspersky Internet Securi
 
 If run on Windows 8 and 8.1 it also changes the default Explorer page to "This PC".
 
-If run on Windows 10 it also disables Windows 10 hibernation mode, telementary, Wi-Fi sense, Cortana, diagnostics tracking service, and changes the default Explorer page to "This PC".
+If run on Windows 10 it also disables Windows 10 hibernation mode, Wi-Fi sense, and changes the default Explorer page to "This PC".
+
+# Fix 1.7.5
+
+Removed commands that disable some telememtary and Cortana.
 
 # Fix 1.7.4
 
