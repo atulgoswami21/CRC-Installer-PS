@@ -39,6 +39,9 @@ $date = Get-Date -Format "yyyy.MM.dd HH.mm"
 $log = $date + " " + $env:ComputerName
 $log
 
+#Find Wi-Fi network
+$SSID = netsh wlan show interfaces | Select-String '\sSSID'
+
 #Generate form
 	function GenerateForm {
 	[reflection.assembly]::loadwithpartialname("System.Windows.Forms") | Out-Null
@@ -143,11 +146,36 @@ $log
 		    $progress.Items.Add("Starting installation CRC OEM information ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
-			Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
-			Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9:15am-5pm - Sat 9:15am-4pm"
-			Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
-			Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
+			if ($SSID -like '*RomseyNet*') {
+				$progress.Items.Add("Installer being run from Romsey.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9:15am-5pm - Sat 9:15am-4pm"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
+				}
+			if ($SSID -like '*Computer Repair Centre*') {
+				$progress.Items.Add("Installer being run from Romsey.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9:15am-5pm - Sat 9:15am-4pm"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
+				}
+			if ($SSID -like '*BRM*') 
+				$progress.Items.Add("Installer being run from Chandlers Ford.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.brmcomputers.co.uk"
+				}
 			$progress.Items.Add("Completed installation of CRC OEM information.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -290,7 +318,7 @@ $log
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer PS Romsey v1.8.0"
+	$installer.Text = "CRC Installer v1.8.0"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size

@@ -277,7 +277,7 @@ $log
 			New-Item -Path HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting -Force | Out-Null
 			Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" -Name "Value" -Type DWord -Value 0
 			Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" -Name "Value" -Type DWord -Value 0
-			$progress.Items.Add("The install has finished! Will close in 15 seconds.")
+			$progress.Items.Add("The install has finished! The installer will close in 15 seconds.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
@@ -290,14 +290,14 @@ $log
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer PS Chandlers Ford v1.7.5"
+	$installer.Text = "CRC Installer PS Chandlers Ford v1.8.0"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 650
 	$System_Drawing_Size.Height = 270
 	$installer.ClientSize = $System_Drawing_Size
-	$installer.Icon = "$Env:p2eincfilepath\CRC Icon.ico"
+	$installer.Icon = "$Env:p2eincfilepath\CRC.ico"
 	
 #Install button
 	$install.TabIndex = 4

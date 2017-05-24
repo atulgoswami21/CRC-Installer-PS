@@ -1,4 +1,4 @@
-# CRC Installer PowerShell 1.7.5
+# CRC Installer PowerShell 1.8.0
 
 When run you will get a form that allows to select what programs you wish to install.
 
@@ -7,6 +7,10 @@ Installs the CRC OEM information, 7zip, Google Chrome, Kaspersky Internet Securi
 If run on Windows 8 and 8.1 it also changes the default Explorer page to "This PC".
 
 If run on Windows 10 it also disables Windows 10 hibernation mode, Wi-Fi sense, and changes the default Explorer page to "This PC".
+
+# Update 1.8.0
+
+Added feature that auto detects current Wi-Fi network, eliminating the need for multiple installers.
 
 # Fix 1.7.5
 
@@ -26,7 +30,7 @@ Changed directory for icon file.
 
 # Fix 1.7.1
 
-Updated exe to include icon and loading gif.
+Updated exe to include icon and loading animation.
 
 # Update 1.7.0
 
