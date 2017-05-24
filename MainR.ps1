@@ -271,41 +271,12 @@ $log
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -name HiberbootEnabled -value 0
-			$progress.Items.Add("Disabling Telemetry ...")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -Type DWord -Value 0
-			Set-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type DWord -Value 0
-			Set-ItemProperty -Path HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\DataCollection -Name AllowTelemetry -Type DWord -Value 0
 			$progress.Items.Add("Disabling Wi-Fi Sense ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			New-Item -Path HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting -Force | Out-Null
 			Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" -Name "Value" -Type DWord -Value 0
 			Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" -Name "Value" -Type DWord -Value 0
-			$progress.Items.Add("Disabling Bing Search in Start Menu ...")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
-			$progress.Items.Add("Disabling Start Menu suggestions ...")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SystemPaneSuggestionsEnabled" -Type DWord -Value 0
-			$progress.Items.Add("Disabling Cortana ...")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			New-Item -Path "HKCU:\Software\Microsoft\Personalization\Settings" -Force | Out-Null
-			Set-ItemProperty -Path "HKCU:\Software\Microsoft\Personalization\Settings" -Name "AcceptedPrivacyPolicy" -Type DWord -Value 0
-			New-Item -Path "HKCU:\Software\Microsoft\InputPersonalization" -Force | Out-Null
-			Set-ItemProperty -Path "HKCU:\Software\Microsoft\InputPersonalization" -Name "RestrictImplicitTextCollection" -Type DWord -Value 1
-			Set-ItemProperty -Path "HKCU:\Software\Microsoft\InputPersonalization" -Name "RestrictImplicitInkCollection" -Type DWord -Value 1
-			New-Item -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Force | Out-Null
-			Set-ItemProperty -Path "HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore" -Name "HarvestContacts" -Type DWord -Value 0
-			$progress.Items.Add("Stopping and disabling Diagnostics Tracking Service ...")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			Stop-Service "DiagTrack"
-			Set-Service "DiagTrack" -StartupType Disabled
 			$progress.Items.Add("The install has finished! Will close in 15 seconds.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -319,7 +290,7 @@ $log
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer PS Romsey v1.7.4"
+	$installer.Text = "CRC Installer PS Romsey v1.7.5"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
