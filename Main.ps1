@@ -326,7 +326,7 @@ $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.8.1"
+	$installer.Text = "CRC Installer v1.8.2"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
@@ -381,7 +381,7 @@ $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 	$crc.DataBindings.DefaultDataSourceUpdateMode = 0
 	$crc.Name = "crc"
 	$crc.Checked = 1
-	$crc.Image = [System.Drawing.Image]::FromFile("$Env:p2eincfilepath\CRC Icon.ico")
+	$crc.Image = [System.Drawing.Image]::FromFile("$Env:p2eincfilepath\CRC.ico")
 	$installer.Controls.Add($crc)
 	
 #Mozilla Firefox
