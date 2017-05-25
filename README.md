@@ -1,4 +1,4 @@
-# CRC Installer PowerShell 1.8.0
+# CRC Installer PowerShell 1.8.1
 
 When run you will get a form that allows to select what programs you wish to install.
 
@@ -8,27 +8,31 @@ If run on Windows 8 and 8.1 it also changes the default Explorer page to "This P
 
 If run on Windows 10 it also disables Windows 10 hibernation mode, Wi-Fi sense, and changes the default Explorer page to "This PC".
 
+# Update 1.8.1
+
+Improved taskbar pinning on Windows 7, 8, and 8.1. Reintroduced taskbar pinning for Windows 10.
+
 # Update 1.8.0
 
 Added feature that auto detects current Wi-Fi network, eliminating the need for multiple installers.
 
-# Fix 1.7.5
+# Update 1.7.5
 
 Removed commands that disable some telememtary and Cortana.
 
-# Fix 1.7.4
+# Update 1.7.4
 
 Fixed incorrect wording when installing Mozilla Firefox.
 
-# Fix 1.7.3
+# Update 1.7.3
 
 Fixed command prompt not going invisible on Romsey installer and changed wording for installation.
 
-# Fix 1.7.2
+# Update 1.7.2
 
 Changed directory for icon file.
 
-# Fix 1.7.1
+# Update 1.7.1
 
 Updated exe to include icon and loading animation.
 
@@ -40,27 +44,27 @@ Added loading form so you know the program is loading.
 
 Made command line invisible for sleaker look.
 
-# Fix 1.5.6
+# Update 1.5.6
 
 Fixed crashing issue on Windows 7.
 
-# Fix 1.5.5
+# Update 1.5.5
 
 Fixed problem with Kaspersky and TeamViewer not installing.
 
-# Fix 1.5.4
+# Update 1.5.4
 
 Fixed crashing problem.
 
-# Fix 1.5.3
+# Update 1.5.3
 
 Fixed issue with Documents folder.
 
-# Fix 1.5.2
+# Update 1.5.2
 
 Fixed file cleanup on completion.
 
-# Fix 1.5.1
+# Update 1.5.1
 
 Removed extra lines for downloading files.
 
@@ -68,7 +72,7 @@ Removed extra lines for downloading files.
 
 Temporarily removed automatically setting taskbar icons in Windows 10 due to issue and added KIS Chocolatey package.
 
-# Fix 1.4.1
+# Update 1.4.1
 
 Fixed OEM website HTTPS information.
 
@@ -80,7 +84,7 @@ Added autoscrolling feature to list box and reduced size of install window.
 
 Renamed to CRC Installer and added new Romsey version.
 
-# Fix 1.2.1
+# Update 1.2.1
 
 Fixed issue with Google Chrome checksums.
 
@@ -88,15 +92,15 @@ Fixed issue with Google Chrome checksums.
 
 Replaced text with icon of program for cleaner look.
 
-# Fix 1.1.3
+# Update 1.1.3
 
 Fixed crashing issue with icon file.
 
-# Fix 1.1.2
+# Update 1.1.2
 
 Removed exit button and will now close 15 seconds after the install has finished.
 
-# Fix 1.1.1
+# Update 1.1.1
 
 Fixed issue with downloading CleanCF.ps1.
 

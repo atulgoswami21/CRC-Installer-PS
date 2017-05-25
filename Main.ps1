@@ -1,8 +1,8 @@
 #Download all assets
 $Username = ""
 $Password = ""
-$file2 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SetTaskbar.vbs"
-$path2 = "C:\Windows\Computer Repair Centre\SetTaskbar.vbs"
+$file2 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/SysPin.exe"
+$path2 = "C:\Windows\Computer Repair Centre\SysPin.exe"
 $file3 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/CRC.bmp"
 $path3 = "C:\Windows\Computer Repair Centre\CRC.bmp"
 $file4 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/7zip.ico"
@@ -250,7 +250,10 @@ $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 			$progress.Items.Add("Setting taskbar icons ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			& "C:\Windows\Computer Repair Centre\SetTaskbar.vbs"
+			Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "Favorites"
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" c:5386
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Program Files\Mozilla Firefox\firefox.exe" c:5386
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Windows\explorer.exe" c:5386
 			$progress.Items.Add("The install has finished!")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -262,11 +265,10 @@ $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 			$progress.Items.Add("Setting taskbar icons ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
-			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
-			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
-			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
-			& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
+			Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "Favorites"
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" c:5386
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Program Files\Mozilla Firefox\firefox.exe" c:5386
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Windows\explorer.exe" c:5386
 			$progress.Items.Add("The install has finished!")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -278,11 +280,10 @@ $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 			$progress.Items.Add("Setting taskbar icons ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name Favorites -value ff
-			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesChanges -value 00000010
-			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesVersion -value 00000002
-			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband -name FavoritesRemovedChanges -value 00000001
-			& "C:\Windows\Computer Repair Centre\SetTaskbar.bat"
+			Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "Favorites"
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" c:5386
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Program Files\Mozilla Firefox\firefox.exe" c:5386
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Windows\explorer.exe" c:5386
 			$progress.Items.Add("The install has finished!")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -295,6 +296,13 @@ $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			Set-ItemProperty -path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -name LaunchTo -value 1
+			$progress.Items.Add("Setting taskbar icons ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband" -Name "Favorites"
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" c:5386
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Program Files\Mozilla Firefox\firefox.exe" c:5386
+			& "C:\Windows\Computer Repair Centre\SysPin.exe" "C:\Windows\explorer.exe" c:5386
 			$progress.Items.Add("Disabling hibernation mode ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -318,7 +326,7 @@ $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.8.0"
+	$installer.Text = "CRC Installer v1.8.1"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
