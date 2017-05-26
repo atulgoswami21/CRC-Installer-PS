@@ -2,7 +2,7 @@
 
 When run you will get a form that allows to select what programs you wish to install.
 
-Installs the CRC OEM information, 7zip, Google Chrome, Kaspersky Internet Security 2017, LibreOffice, Microsoft .NET 4.5, .NET 4.6.1, Mozilla Firefox, PowerShell 5, TeamViewer, VLC Media Player.
+Installs the CRC OEM information, 7zip, Google Chrome, Kaspersky Internet Security 2017, LibreOffice, Microsoft .NET 4.5, Microsoft .NET 4.6.1, Mozilla Firefox, PowerShell 5, TeamViewer, VLC Media Player.
 
 If run on Windows 8 and 8.1 it also changes the default Explorer page to "This PC".
 
