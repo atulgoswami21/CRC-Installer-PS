@@ -179,25 +179,74 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.brmcomputers.co.uk"
 				}
-			elseIf ($IP.ipaddress[0]  -like '*192.168.*') {
-				$progress.Items.Add("Installer being run from Chandlers Ford.")
-				$progress.SelectedIndex = $progress.Items.Count - 1;
-				$progress.SelectedIndex = -1;
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.brmcomputers.co.uk"
-				}
-			elseIf ($IP.ipaddress[0]  -like '*10.0.*') {
-				$progress.Items.Add("Installer being run from Romsey.")
-				$progress.SelectedIndex = $progress.Items.Count - 1;
-				$progress.SelectedIndex = -1;
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9:15am-5pm - Sat 9:15am-4pm"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
+			else {
+				Add-Type -AssemblyName System.Windows.Forms
+				$location = New-Object system.Windows.Forms.Form
+				$label = New-Object system.windows.Forms.Label
+				$chandlersford = New-Object System.Windows.Forms.Button
+				$romsey = New-Object system.windows.Forms.Button
+				
+#Location form
+				$location.Text = "Where are you?"
+				$location.TopMost = $true
+				$location.Width = 290
+				$location.Height = 170
+				$label.Text = "Where is this being run from?"
+				$label.AutoSize = $true
+				$label.Width = 25
+				$label.Height = 10
+				$label.location = new-object system.drawing.point(50,16)
+				$label.Font = "Microsoft Sans Serif,10"
+				$location.controls.Add($label)
+				
+				
+#Chandlers Ford click
+				$handler_chandlersford_Click=
+					{
+						$progress.Items.Add("Installer being run from Chandlers Ford.")
+						$progress.SelectedIndex = $progress.Items.Count - 1;
+						$progress.SelectedIndex = -1;
+						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
+						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
+						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm"
+						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
+						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.brmcomputers.co.uk"
+						$location.Close()
+					}					
+
+#Romsey click
+				$handler_romsey_Click=
+					{
+						$progress.Items.Add("Installer being run from Romsey.")
+						$progress.SelectedIndex = $progress.Items.Count - 1;
+						$progress.SelectedIndex = -1;
+						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
+						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
+						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9:15am-5pm - Sat 9:15am-4pm"
+						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
+						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
+						$location.Close()
+					}
+
+#Chandlers Ford button
+				$chandlersford.Text = "Chandlers Ford"
+				$chandlersford.Width = 100
+				$chandlersford.Height = 40
+				$chandlersford.location = new-object system.drawing.point(30,70)
+				$chandlersford.Font = "Microsoft Sans Serif,10"
+				$chandlersford.add_Click($handler_chandlersford_Click)
+				$location.controls.Add($chandlersford)
+
+#Romsey button		
+				$romsey.Text = "Romsey"
+				$romsey.Width = 100
+				$romsey.Height = 40
+				$romsey.location = new-object system.drawing.point(150,70)
+				$romsey.Font = "Microsoft Sans Serif,10"
+				$romsey.add_Click($handler_romsey_Click)
+				$location.controls.Add($romsey)
+#Launch form
+				$location.ShowDialog()
 				}
 			$progress.Items.Add("Completed installation of CRC OEM information.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
@@ -349,7 +398,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.8.3"
+	$installer.Text = "CRC Installer v1.8.4"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
