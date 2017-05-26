@@ -42,6 +42,9 @@ $log
 #Find Wi-Fi network
 $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 
+#Find IP Address
+$IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -gt 1}
+
 #Generate form
 	function GenerateForm {
 	[reflection.assembly]::loadwithpartialname("System.Windows.Forms") | Out-Null
@@ -156,7 +159,7 @@ $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
 				}
-			if ($SSID -like '*Computer Repair Centre*') {
+			elseIf ($SSID -like '*Computer Repair Centre*') {
 				$progress.Items.Add("Installer being run from Romsey.")
 				$progress.SelectedIndex = $progress.Items.Count - 1;
 				$progress.SelectedIndex = -1;
@@ -166,7 +169,7 @@ $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
 				}
-			if ($SSID -like '*BRM*') {
+			elseIf ($SSID -like '*BRM*') {
 				$progress.Items.Add("Installer being run from Chandlers Ford.")
 				$progress.SelectedIndex = $progress.Items.Count - 1;
 				$progress.SelectedIndex = -1;
@@ -175,6 +178,26 @@ $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm"
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.brmcomputers.co.uk"
+				}
+			elseIf ($IP.ipaddress[0]  -like '*192.168.*') {
+				$progress.Items.Add("Installer being run from Chandlers Ford.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.brmcomputers.co.uk"
+				}
+			elseIf ($IP.ipaddress[0]  -like '*10.0.*') {
+				$progress.Items.Add("Installer being run from Romsey.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9:15am-5pm - Sat 9:15am-4pm"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
+				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
 				}
 			$progress.Items.Add("Completed installation of CRC OEM information.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
@@ -326,7 +349,7 @@ $SSID = netsh wlan show interfaces | Select-String '\sSSID'
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.8.2"
+	$installer.Text = "CRC Installer v1.8.3"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
