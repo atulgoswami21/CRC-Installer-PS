@@ -77,74 +77,6 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
-		if ($7zip.Checked)	{
-			$progress.Items.Add("7zip is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-	    if ($googleChrome.Checked)	{
-			$progress.Items.Add("Google Chrome is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-		if ($kaspersky.Checked)	{
-			$progress.Items.Add("Kaspersky Internet Security 2017 is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-		if ($libreOffice.Checked)	{
-			$progress.Items.Add("LibreOffice is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-	    if ($mozillaFirefox.Checked)	{
-			$progress.Items.Add("Mozilla Firefox is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-		if ($teamViewer.Checked)	{
-			$progress.Items.Add("TeamViewer is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-		if ($vlc.Checked)	{
-			$progress.Items.Add("VLC Media Player is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-	    if (!$crc.Checked -and !$7zip.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked){
-			$progress.Items.Add("No programs are selected, please select some programs to install.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			} 
-		$progress.Items.Add("Starting installation of Chocolately ...")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
-		iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-		$progress.Items.Add("Completed installation of Chocolately ...")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
-		$progress.Items.Add("Starting installation of .NET 4.5 ...")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
-		choco install dotnet4.5 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$progress.Items.Add("Completed installation of .NET 4.5 ...")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
-		$progress.Items.Add("Starting installation of .NET 4.6.1 ...")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
-		choco install dotnet4.6.1 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$progress.Items.Add("Completed installation of .NET 4.6.1 ...")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
-		$progress.Items.Add("Starting installation of PowerShell 5 ...")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
-		choco install powershell -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$progress.Items.Add("Completed installation of PowerShell 5 ...")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
 		if ($crc.Checked)	{
 		    $progress.Items.Add("Starting installation CRC OEM information ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
@@ -252,6 +184,74 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
+		if ($7zip.Checked)	{
+			$progress.Items.Add("7zip is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+	    if ($googleChrome.Checked)	{
+			$progress.Items.Add("Google Chrome is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+		if ($kaspersky.Checked)	{
+			$progress.Items.Add("Kaspersky Internet Security 2017 is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+		if ($libreOffice.Checked)	{
+			$progress.Items.Add("LibreOffice is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+	    if ($mozillaFirefox.Checked)	{
+			$progress.Items.Add("Mozilla Firefox is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+		if ($teamViewer.Checked)	{
+			$progress.Items.Add("TeamViewer is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+		if ($vlc.Checked)	{
+			$progress.Items.Add("VLC Media Player is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+	    if (!$crc.Checked -and !$7zip.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked){
+			$progress.Items.Add("No programs are selected, please select some programs to install.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			} 
+		$progress.Items.Add("Starting installation of Chocolately ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
+		iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+		$progress.Items.Add("Completed installation of Chocolately ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
+		$progress.Items.Add("Starting installation of .NET 4.5 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
+		choco install dotnet4.5 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+		$progress.Items.Add("Completed installation of .NET 4.5 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
+		$progress.Items.Add("Starting installation of .NET 4.6.1 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
+		choco install dotnet4.6.1 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+		$progress.Items.Add("Completed installation of .NET 4.6.1 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
+		$progress.Items.Add("Starting installation of PowerShell 5 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
+		choco install powershell -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+		$progress.Items.Add("Completed installation of PowerShell 5 ...")
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
 		if ($7zip.Checked)	{
 			$progress.Items.Add("Starting installation of 7zip ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
@@ -398,7 +398,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.8.4"
+	$installer.Text = "CRC Installer v1.8.5"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
