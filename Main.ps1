@@ -90,7 +90,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
 				}
-			elseIf ($SSID -like '*82.23.152.201*') {
+			elseIf ($IP -like '*82.23.152.201*') {
 				$progress.Items.Add("Installer being run from Chandlers Ford.")
 				$progress.SelectedIndex = $progress.Items.Count - 1;
 				$progress.SelectedIndex = -1;
@@ -304,7 +304,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.8.6"
+	$installer.Text = "CRC Installer v1.8.7"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
