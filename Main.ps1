@@ -144,7 +144,6 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
-			}
 	    if ($googleChrome.Checked)	{
 			$progress.Items.Add("Google Chrome is checked."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
