@@ -40,7 +40,7 @@ $log = $date + " " + $env:ComputerName
 $log
 
 #Find Wi-Fi network
-$SSID = netsh wlan show interfaces | Select-String '\sSSID'
+$IP = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
 
 #Find IP Address
 $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -gt 1}
@@ -71,17 +71,16 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 		$env:ComputerName | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$date | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$OS | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+		$IP | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 	    $progress.Items.Clear();    
-	    if ($crc.Checked)	{
+		if ($crc.Checked)	{
 			$progress.Items.Add("CRC OEM is checked."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			}
-		if ($crc.Checked)	{
-		    $progress.Items.Add("Starting installation CRC OEM information ...")
+		    $progress.Items.Add("Starting installation of CRC OEM information ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			if ($SSID -like '*RomseyNet*') {
+			if ($IP -like '*212.159.116.68*') {
 				$progress.Items.Add("Installer being run from Romsey.")
 				$progress.SelectedIndex = $progress.Items.Count - 1;
 				$progress.SelectedIndex = -1;
@@ -91,17 +90,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
 				}
-			elseIf ($SSID -like '*Computer Repair Centre*') {
-				$progress.Items.Add("Installer being run from Romsey.")
-				$progress.SelectedIndex = $progress.Items.Count - 1;
-				$progress.SelectedIndex = -1;
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9:15am-5pm - Sat 9:15am-4pm"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
-				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
-				}
-			elseIf ($SSID -like '*BRM*') {
+			elseIf ($SSID -like '*82.23.152.201*') {
 				$progress.Items.Add("Installer being run from Chandlers Ford.")
 				$progress.SelectedIndex = $progress.Items.Count - 1;
 				$progress.SelectedIndex = -1;
@@ -111,148 +100,42 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
 				Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.brmcomputers.co.uk"
 				}
-			else {
-				Add-Type -AssemblyName System.Windows.Forms
-				$location = New-Object system.Windows.Forms.Form
-				$label = New-Object system.windows.Forms.Label
-				$chandlersford = New-Object System.Windows.Forms.Button
-				$romsey = New-Object system.windows.Forms.Button
-				
-#Location form
-				$location.Text = "Where are you?"
-				$location.TopMost = $true
-				$location.Width = 290
-				$location.Height = 170
-				$label.Text = "Where is this being run from?"
-				$label.AutoSize = $true
-				$label.Width = 25
-				$label.Height = 10
-				$label.location = new-object system.drawing.point(50,16)
-				$label.Font = "Microsoft Sans Serif,10"
-				$location.controls.Add($label)
-				
-				
-#Chandlers Ford click
-				$handler_chandlersford_Click=
-					{
-						$progress.Items.Add("Installer being run from Chandlers Ford.")
-						$progress.SelectedIndex = $progress.Items.Count - 1;
-						$progress.SelectedIndex = -1;
-						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
-						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
-						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9am-5pm - Sat 9am-4pm"
-						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "08712 244129"
-						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.brmcomputers.co.uk"
-						$location.Close()
-					}					
-
-#Romsey click
-				$handler_romsey_Click=
-					{
-						$progress.Items.Add("Installer being run from Romsey.")
-						$progress.SelectedIndex = $progress.Items.Count - 1;
-						$progress.SelectedIndex = -1;
-						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Logo -value "C:\Windows\Computer Repair Centre\CRC.bmp"
-						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name Manufacturer -value "Computer Repair Centre"
-						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportHours -value "Mon-Fri 9:15am-5pm - Sat 9:15am-4pm"
-						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportPhone -value "01794 517142"
-						Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation -name SupportURL -value "https://www.firstforitrepairs.co.uk"
-						$location.Close()
-					}
-
-#Chandlers Ford button
-				$chandlersford.Text = "Chandlers Ford"
-				$chandlersford.Width = 100
-				$chandlersford.Height = 40
-				$chandlersford.location = new-object system.drawing.point(30,70)
-				$chandlersford.Font = "Microsoft Sans Serif,10"
-				$chandlersford.add_Click($handler_chandlersford_Click)
-				$location.controls.Add($chandlersford)
-
-#Romsey button		
-				$romsey.Text = "Romsey"
-				$romsey.Width = 100
-				$romsey.Height = 40
-				$romsey.location = new-object system.drawing.point(150,70)
-				$romsey.Font = "Microsoft Sans Serif,10"
-				$romsey.add_Click($handler_romsey_Click)
-				$location.controls.Add($romsey)
-#Launch form
-				$location.ShowDialog()
-				}
 			$progress.Items.Add("Completed installation of CRC OEM information.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
-		if ($7zip.Checked)	{
-			$progress.Items.Add("7zip is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-	    if ($googleChrome.Checked)	{
-			$progress.Items.Add("Google Chrome is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-		if ($kaspersky.Checked)	{
-			$progress.Items.Add("Kaspersky Internet Security 2017 is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-		if ($libreOffice.Checked)	{
-			$progress.Items.Add("LibreOffice is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-	    if ($mozillaFirefox.Checked)	{
-			$progress.Items.Add("Mozilla Firefox is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-		if ($teamViewer.Checked)	{
-			$progress.Items.Add("TeamViewer is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-		if ($vlc.Checked)	{
-			$progress.Items.Add("VLC Media Player is checked."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			}
-	    if (!$crc.Checked -and !$7zip.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked){
-			$progress.Items.Add("No programs are selected, please select some programs to install.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			} 
 		$progress.Items.Add("Starting installation of Chocolately ...")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-		$progress.Items.Add("Completed installation of Chocolately ...")
+		$progress.Items.Add("Completed installation of Chocolately.")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		$progress.Items.Add("Starting installation of .NET 4.5 ...")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		choco install dotnet4.5 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$progress.Items.Add("Completed installation of .NET 4.5 ...")
+		$progress.Items.Add("Completed installation of .NET 4.5.")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		$progress.Items.Add("Starting installation of .NET 4.6.1 ...")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		choco install dotnet4.6.1 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$progress.Items.Add("Completed installation of .NET 4.6.1 ...")
+		$progress.Items.Add("Completed installation of .NET 4.6.1.")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		$progress.Items.Add("Starting installation of PowerShell 5 ...")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		choco install powershell -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$progress.Items.Add("Completed installation of PowerShell 5 ...")
+		$progress.Items.Add("Completed installation of PowerShell 5.")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		if ($7zip.Checked)	{
+			$progress.Items.Add("7zip is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			$progress.Items.Add("Starting installation of 7zip ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -261,7 +144,11 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
-		if ($googleChrome.Checked)	{
+			}
+	    if ($googleChrome.Checked)	{
+			$progress.Items.Add("Google Chrome is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			$progress.Items.Add("Starting installation of Google Chrome ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -271,6 +158,9 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = -1;
 			}
 		if ($kaspersky.Checked)	{
+			$progress.Items.Add("Kaspersky Internet Security 2017 is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			$progress.Items.Add("Starting installation of Kaspersky Internet Security 2017 ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -280,6 +170,9 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = -1;
 			}
 		if ($libreOffice.Checked)	{
+			$progress.Items.Add("LibreOffice is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			$progress.Items.Add("Starting installation of LibreOffice ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -288,7 +181,10 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
-		if ($mozillaFirefox.Checked)	{
+	    if ($mozillaFirefox.Checked)	{
+			$progress.Items.Add("Mozilla Firefox is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			$progress.Items.Add("Starting installation of Mozilla Firefox ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -298,6 +194,9 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = -1;
 			}
 		if ($teamViewer.Checked)	{
+			$progress.Items.Add("TeamViewer is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			$progress.Items.Add("Starting installation of TeamViewer ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -307,11 +206,19 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = -1;
 			}
 		if ($vlc.Checked)	{
+			$progress.Items.Add("VLC Media Player is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
 			$progress.Items.Add("Starting installation of VLC Media Player ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install vlc -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 			$progress.Items.Add("Completed installation of VLC Media Player.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+	    if (!$crc.Checked -and !$7zip.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked){
+			$progress.Items.Add("No programs are selected, please select some programs to install.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
@@ -398,7 +305,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.8.5"
+	$installer.Text = "CRC Installer v1.8.6"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
