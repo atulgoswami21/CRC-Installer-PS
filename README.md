@@ -1,4 +1,4 @@
-# CRC Installer PowerShell 1.8.7
+# CRC Installer PowerShell 1.9.0
 
 When run you will get a form that allows to select what programs you wish to install.
 
@@ -8,9 +8,13 @@ If run on Windows 8 and 8.1 it also changes the default Explorer page to "This P
 
 If run on Windows 10 it also disables Windows 10 hibernation mode, Wi-Fi sense, and changes the default Explorer page to "This PC".
 
+# Update 1.9.0
+
+Added Apache OpenOffice and WPS Office as install options.
+
 # Update 1.8.7
 
-Fixed an issue where it should be checking IP instead of SSID
+Fixed an issue where it should be checking IP instead of SSID.
 
 # Update 1.8.6
 

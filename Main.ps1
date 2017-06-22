@@ -19,6 +19,10 @@ $file9 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/maste
 $path9 = "C:\Windows\Computer Repair Centre\TeamViewer.ico"
 $file10 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/VLCMediaPlayer.ico"
 $path10 = "C:\Windows\Computer Repair Centre\VLCMediaPlayer.ico"
+$file11 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/ApacheOpenOffice.ico"
+$path11 = "C:\Windows\Computer Repair Centre\ApacheOpenOffice.ico"
+$file12 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/WPSOffice.ico"
+$path12 = "C:\Windows\Computer Repair Centre\WPSOffice.ico"
 $WebClient = New-Object System.Net.WebClient
 $WebClient.Credentials = New-Object System.Net.Networkcredential($Username, $Password)
 $WebClient.DownloadFile($file2, $path2)
@@ -30,6 +34,8 @@ $WebClient.DownloadFile($file7, $path7)
 $WebClient.DownloadFile($file8, $path8)
 $WebClient.DownloadFile($file9, $path9)
 $WebClient.DownloadFile($file10, $path10)
+$WebClient.DownloadFile($file11, $path11)
+$WebClient.DownloadFile($file12, $path12)
 
 #Get OS version
 $OS = (Get-WmiObject -Class Win32_OperatingSystem).version
@@ -60,6 +66,8 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	$7zip = New-Object System.Windows.Forms.CheckBox
 	$libreOffice = New-Object System.Windows.Forms.CheckBox
 	$teamViewer = New-Object System.Windows.Forms.CheckBox
+	$ApacheOpenOffice = New-Object System.Windows.Forms.CheckBox
+	$wpsOffice = New-Object System.Windows.Forms.CheckBox
 	$InitialFormWindowState = New-Object System.Windows.Forms.FormWindowState
 	$b1= $false
 	$b2= $false
@@ -132,6 +140,11 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 		$progress.Items.Add("Completed installation of PowerShell 5.")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
+		if ($apacheOpenOffice.Checked -and $libreOffice.Checked -and $wpsOffice.Checked) {
+			$progress.Items.Add("You have selected multiple Office programs, please select only one. No Office programs will be installed."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
 		if ($7zip.Checked)	{
 			$progress.Items.Add("7zip is checked."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
@@ -141,6 +154,18 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = -1;
 			choco install 7zip.install -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 			$progress.Items.Add("Completed installation of 7zip.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+		if ($apacheOpenOffice.Checked -and !$libreOffice.Checked -and !$wpsOffice.Checked)	{
+			$progress.Items.Add("Apache OpenOffice is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			$progress.Items.Add("Starting installation of Apache OpenOffice ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			choco install openoffice -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+			$progress.Items.Add("Completed installation of Apache OpenOffice."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
@@ -168,7 +193,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
-		if ($libreOffice.Checked)	{
+		if ($libreOffice.Checked -and !$apacheOpenOffice.Checked -and !$wpsOffice.Checked)	{
 			$progress.Items.Add("LibreOffice is checked."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -188,7 +213,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install firefox -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$progress.Items.Add("Completed installation of Firefox."  )
+			$progress.Items.Add("Completed installation of Mozilla Firefox."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
@@ -216,7 +241,19 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
-	    if (!$crc.Checked -and !$7zip.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked){
+		if ($wpsOffice.Checked -and !$apacheOpenOffice.Checked -and !$libreOffice.Checked)	{
+			$progress.Items.Add("WPS Office is checked."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			$progress.Items.Add("Starting installation of WPS Office ...")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			choco install wps-office-free -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
+			$progress.Items.Add("Completed installation of WPS Office."  )
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+	    if (!$crc.Checked -and !$7zip.Checked -and !$apacheOpenOffice.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked -and !$wpsOffice.Checked){
 			$progress.Items.Add("No programs are selected, please select some programs to install.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -304,12 +341,12 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.8.7"
+	$installer.Text = "CRC Installer v1.9.0"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 650
-	$System_Drawing_Size.Height = 270
+	$System_Drawing_Size.Height = 330
 	$installer.ClientSize = $System_Drawing_Size
 	$installer.Icon = "$Env:p2eincfilepath\CRC.ico"
 	
@@ -334,7 +371,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	$progress.FormattingEnabled = $True
 	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 350
-	$System_Drawing_Size.Height = 250
+	$System_Drawing_Size.Height = 310
 	$progress.Size = $System_Drawing_Size
 	$progress.DataBindings.DefaultDataSourceUpdateMode = 0
 	$progress.Name = "listBox1"
@@ -371,7 +408,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	$mozillaFirefox.TabIndex = 1
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 27
-	$System_Drawing_Point.Y = 168
+	$System_Drawing_Point.Y = 199
 	$mozillaFirefox.Location = $System_Drawing_Point
 	$mozillaFirefox.DataBindings.DefaultDataSourceUpdateMode = 0
 	$mozillaFirefox.Name = "mozillaFirefox"
@@ -388,7 +425,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	$googleChrome.TabIndex = 2
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 27
-	$System_Drawing_Point.Y = 75
+	$System_Drawing_Point.Y = 106
 	$googleChrome.Location = $System_Drawing_Point
 	$googleChrome.DataBindings.DefaultDataSourceUpdateMode = 0
 	$googleChrome.Name = "googleChrome"
@@ -405,7 +442,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	$kaspersky.TabIndex = 3
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 27
-	$System_Drawing_Point.Y = 106
+	$System_Drawing_Point.Y = 137
 	$kaspersky.Location = $System_Drawing_Point
 	$kaspersky.DataBindings.DefaultDataSourceUpdateMode = 0
 	$kaspersky.Name = "kaspersky"
@@ -422,7 +459,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	$vlc.TabIndex = 4
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 27
-	$System_Drawing_Point.Y = 230
+	$System_Drawing_Point.Y = 261
 	$vlc.Location = $System_Drawing_Point
 	$vlc.DataBindings.DefaultDataSourceUpdateMode = 0
 	$vlc.Name = "vlc"
@@ -456,7 +493,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	$libreOffice.TabIndex = 6
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 27
-	$System_Drawing_Point.Y = 137
+	$System_Drawing_Point.Y = 168
 	$libreOffice.Location = $System_Drawing_Point
 	$libreOffice.DataBindings.DefaultDataSourceUpdateMode = 0
 	$libreOffice.Name = "libreOffice"
@@ -473,13 +510,47 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	$teamViewer.TabIndex = 7
 	$System_Drawing_Point = New-Object System.Drawing.Point
 	$System_Drawing_Point.X = 27
-	$System_Drawing_Point.Y = 199
+	$System_Drawing_Point.Y = 230
 	$teamViewer.Location = $System_Drawing_Point
 	$teamViewer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$teamViewer.Name = "teamViewer"
 	$teamViewer.Checked = 1
 	$teamViewer.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\TeamViewer.ico")
 	$installer.Controls.Add($teamViewer)
+	
+#Apache OpenOffice
+	$apacheOpenOffice.UseVisualStyleBackColor = $True
+	$System_Drawing_Size = New-Object System.Drawing.Size
+	$System_Drawing_Size.Width = 36
+	$System_Drawing_Size.Height = 24
+	$apacheOpenOffice.Size = $System_Drawing_Size
+	$apacheOpenOffice.TabIndex = 1
+	$System_Drawing_Point = New-Object System.Drawing.Point
+	$System_Drawing_Point.X = 27
+	$System_Drawing_Point.Y = 75
+	$apacheOpenOffice.Location = $System_Drawing_Point
+	$apacheOpenOffice.DataBindings.DefaultDataSourceUpdateMode = 0
+	$apacheOpenOffice.Name = "apacheOpenOffice"
+	$apacheOpenOffice.Checked = 0
+	$apacheOpenOffice.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\ApacheOpenOffice.ico")
+	$installer.Controls.Add($apacheOpenOffice)
+	
+#WPS Office
+	$wpsOffice.UseVisualStyleBackColor = $True
+	$System_Drawing_Size = New-Object System.Drawing.Size
+	$System_Drawing_Size.Width = 36
+	$System_Drawing_Size.Height = 24
+	$wpsOffice.Size = $System_Drawing_Size
+	$wpsOffice.TabIndex = 1
+	$System_Drawing_Point = New-Object System.Drawing.Point
+	$System_Drawing_Point.X = 27
+	$System_Drawing_Point.Y = 292
+	$wpsOffice.Location = $System_Drawing_Point
+	$wpsOffice.DataBindings.DefaultDataSourceUpdateMode = 0
+	$wpsOffice.Name = "wpsOffice"
+	$wpsOffice.Checked = 0
+	$wpsOffice.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\WPSOffice.ico")
+	$installer.Controls.Add($wpsOffice)
 	
 #Save the initial state of the form
 	$InitialFormWindowState = $installer.WindowState
