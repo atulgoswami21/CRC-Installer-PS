@@ -45,11 +45,8 @@ $date = Get-Date -Format "yyyy.MM.dd HH.mm"
 $log = $date + " " + $env:ComputerName
 $log
 
-#Find Wi-Fi network
+#Find external IP
 $IP = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
-
-#Find IP Address
-$IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -gt 1}
 
 #Generate form
 	function GenerateForm {
@@ -81,6 +78,12 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 		$OS | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 		$IP | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 	    $progress.Items.Clear();    
+		$progress.Items.Add("The date is $date."  )
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
+		$progress.Items.Add("The external IP is $IP."  )
+		$progress.SelectedIndex = $progress.Items.Count - 1;
+		$progress.SelectedIndex = -1;
 		if ($crc.Checked)	{
 			$progress.Items.Add("CRC OEM is checked."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
@@ -341,7 +344,7 @@ $IP=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.9.0"
+	$installer.Text = "CRC Installer v1.9.1"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
