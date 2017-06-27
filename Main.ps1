@@ -48,6 +48,12 @@ $log
 #Find external IP
 $IP = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
 
+#Detect old Windows installation
+$WindowsOld = Test-Path C:\Windows.old\Users
+
+#Get current username
+$User = $env:UserName
+
 #Generate form
 	function GenerateForm {
 	[reflection.assembly]::loadwithpartialname("System.Windows.Forms") | Out-Null
@@ -261,6 +267,16 @@ $IP = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
+		if ($WindowsOld -like '*True*') {
+			$progress.Items.Add("Found old Windows installation.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			$progress.Items.Add("Moving old documents to the desktop.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			Rename-Item "C:\Windows.old\Users" "C:\Windows.old\Recovered Documents"
+			Move-Item "C:\Windows.old\Recovered Documents" "C:\Users\$User\Desktop\Recovered Documents"
+			}
 		if ($OS -like '*6.1*')	{
 			$progress.Items.Add("This computer is running Windows 7.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
@@ -344,7 +360,7 @@ $IP = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.9.1"
+	$installer.Text = "CRC Installer v1.10.0"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
