@@ -8,7 +8,7 @@ If run on Windows 8 and 8.1 it also changes the default Explorer page to "This P
 
 If run on Windows 10 it also disables Windows 10 hibernation mode, Wi-Fi sense, and changes the default Explorer page to "This PC".
 
-#Update 1.10.0
+# Update 1.10.0
 
 Checks for old Windows installation and then moves old documents to the desktop if it finds any.
 
