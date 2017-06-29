@@ -1,4 +1,4 @@
-# CRC Installer PowerShell 1.10.0
+# CRC Installer PowerShell 1.10.1
 
 When run you will get a form that allows to select what programs you wish to install.
 
@@ -8,9 +8,15 @@ If run on Windows 8 and 8.1 it also changes the default Explorer page to "This P
 
 If run on Windows 10 it also disables Windows 10 hibernation mode, Wi-Fi sense, and changes the default Explorer page to "This PC".
 
+Will check for previous installation of Windows and then copy over the old Users folder to the Desktop.
+
+# Update 1.10.1
+
+Now checks for up to 5 previous Windows installations instead of 1.
+
 # Update 1.10.0
 
-Checks for old Windows installation and then moves old documents to the desktop if it finds any.
+Checks for previous Windows installation and then moves old documents to the desktop if it finds any.
 
 # Update 1.9.1
 

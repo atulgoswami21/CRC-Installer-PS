@@ -50,6 +50,10 @@ $IP = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
 
 #Detect old Windows installation
 $WindowsOld = Test-Path C:\Windows.old\Users
+$WindowsOld000 = Test-Path C:\Windows.old.000\Users
+$WindowsOld001 = Test-Path C:\Windows.old.001\Users
+$WindowsOld002 = Test-Path C:\Windows.old.002\Users
+$WindowsOld003 = Test-Path C:\Windows.old.003\Users
 
 #Get current username
 $User = $env:UserName
@@ -268,7 +272,7 @@ $User = $env:UserName
 			$progress.SelectedIndex = -1;
 			}
 		if ($WindowsOld -like '*True*') {
-			$progress.Items.Add("Found old Windows installation.")
+			$progress.Items.Add("Found preious Windows installation.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			$progress.Items.Add("Moving old documents to the desktop.")
@@ -276,6 +280,46 @@ $User = $env:UserName
 			$progress.SelectedIndex = -1;
 			Rename-Item "C:\Windows.old\Users" "C:\Windows.old\Recovered Documents"
 			Move-Item "C:\Windows.old\Recovered Documents" "C:\Users\$User\Desktop\Recovered Documents"
+			}
+		if ($WindowsOld000 -like '*True*') {
+			$progress.Items.Add("Found previous Windows installation.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			$progress.Items.Add("Moving old documents to the desktop.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			Rename-Item "C:\Windows.old.000\Users" "C:\Windows.old.000\Recovered Documents"
+			Move-Item "C:\Windows.old.000\Recovered Documents" "C:\Users\$User\Desktop\Recovered Documents"
+			}
+		if ($WindowsOld001 -like '*True*') {
+			$progress.Items.Add("Found previous Windows installation.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			$progress.Items.Add("Moving old documents to the desktop.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			Rename-Item "C:\Windows.old.001\Users" "C:\Windows.old.001\Recovered Documents"
+			Move-Item "C:\Windows.old.001\Recovered Documents" "C:\Users\$User\Desktop\Recovered Documents"
+			}
+		if ($WindowsOld002 -like '*True*') {
+			$progress.Items.Add("Found previous Windows installation.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			$progress.Items.Add("Moving old documents to the desktop.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			Rename-Item "C:\Windows.old.002\Users" "C:\Windows.old.002\Recovered Documents"
+			Move-Item "C:\Windows.old.002\Recovered Documents" "C:\Users\$User\Desktop\Recovered Documents"
+			}
+		if ($WindowsOld003 -like '*True*') {
+			$progress.Items.Add("Found previous Windows installation.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			$progress.Items.Add("Moving old documents to the desktop.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			Rename-Item "C:\Windows.old.003\Users" "C:\Windows.old.003\Recovered Documents"
+			Move-Item "C:\Windows.old.003\Recovered Documents" "C:\Users\$User\Desktop\Recovered Documents"
 			}
 		if ($OS -like '*6.1*')	{
 			$progress.Items.Add("This computer is running Windows 7.")
@@ -360,7 +404,7 @@ $User = $env:UserName
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.10.0"
+	$installer.Text = "CRC Installer v1.10.1"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
