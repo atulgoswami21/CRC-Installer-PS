@@ -129,46 +129,86 @@ $User = $env:UserName
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-		$progress.Items.Add("Completed installation of Chocolately.")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
-		$progress.Items.Add("Starting installation of .NET 4.5 ...")
+		$Programs = choco list --localonly
+		if ($Programs -like '*chocolatey*') {
+			$progress.Items.Add("Completed installation of Chocolatey.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+		else {
+			$progress.Items.Add("The installation of Chocolatey has failed.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+		$progress.Items.Add("Starting installation of DotNet 4.5 ...")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		choco install dotnet4.5 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$progress.Items.Add("Completed installation of .NET 4.5.")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
-		$progress.Items.Add("Starting installation of .NET 4.6.1 ...")
+		$Programs = choco list --localonly
+		if ($Programs -like '*DotNet4.5*') {
+			$progress.Items.Add("Completed installation of DotNet 4.5.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+		else {
+			$progress.Items.Add("The installation of DotNet 4.5 has failed.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+		$progress.Items.Add("Starting installation of DotNet 4.6.1 ...")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		choco install dotnet4.6.1 -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$progress.Items.Add("Completed installation of .NET 4.6.1.")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
+		$Programs = choco list --localonly
+		if ($Programs -like '*DotNet4.6.1*') {
+			$progress.Items.Add("Completed installation of DotNet 4.6.1.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+		else {
+			$progress.Items.Add("The installation of DotNet 4.6.1 has failed.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
 		$progress.Items.Add("Starting installation of PowerShell 5 ...")
 		$progress.SelectedIndex = $progress.Items.Count - 1;
 		$progress.SelectedIndex = -1;
 		choco install powershell -y | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-		$progress.Items.Add("Completed installation of PowerShell 5.")
-		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
+		$Programs = choco list --localonly
+		if ($Programs -like '*PowerShell 5*') {
+			$progress.Items.Add("Completed installation of PowerShell 5.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
+		else {
+			$progress.Items.Add("The installation of PowerShell 5 has failed.")
+			$progress.SelectedIndex = $progress.Items.Count - 1;
+			$progress.SelectedIndex = -1;
+			}
 		if ($apacheOpenOffice.Checked -and $libreOffice.Checked -and $wpsOffice.Checked) {
 			$progress.Items.Add("You have selected multiple Office programs, please select only one. No Office programs will be installed."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
 		if ($7zip.Checked)	{
-			$progress.Items.Add("7zip is checked."  )
+			$progress.Items.Add("7-zip is checked."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			$progress.Items.Add("Starting installation of 7zip ...")
+			$progress.Items.Add("Starting installation of 7-zip ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install 7zip.install -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$progress.Items.Add("Completed installation of 7zip.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
+			$Programs = choco list --localonly
+			if ($Programs -like '*7zip*') {
+				$progress.Items.Add("Completed installation of 7-zip.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
+			else {
+				$progress.Items.Add("The installation of 7-zip has failed.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
 			}
 		if ($apacheOpenOffice.Checked -and !$libreOffice.Checked -and !$wpsOffice.Checked)	{
 			$progress.Items.Add("Apache OpenOffice is checked."  )
@@ -178,9 +218,17 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install openoffice -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$progress.Items.Add("Completed installation of Apache OpenOffice."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
+			$Programs = choco list --localonly
+			if ($Programs -like '*OpenOffice*') {
+				$progress.Items.Add("Completed installation of Apache OpenOffice.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
+			else {
+				$progress.Items.Add("The installation of Apache OpenOffice has failed.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
 			}
 	    if ($googleChrome.Checked)	{
 			$progress.Items.Add("Google Chrome is checked."  )
@@ -190,9 +238,17 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install googlechrome -y --ignore-checksums | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$progress.Items.Add("Completed installation of Google Chrome.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
+			$Programs = choco list --localonly
+			if ($Programs -like '*GoogleChrome*') {
+				$progress.Items.Add("Completed installation of Google Chrome.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
+			else {
+				$progress.Items.Add("The installation of Google Chrome has failed.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
 			}
 		if ($kaspersky.Checked)	{
 			$progress.Items.Add("Kaspersky Internet Security 2017 is checked."  )
@@ -202,9 +258,17 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install kis -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$progress.Items.Add("Completed installation of Kaspersky Internet Security 2017.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
+			$Programs = choco list --localonly
+			if ($Programs -like '*kis*') {
+				$progress.Items.Add("Completed installation of Kaspersky Internet Security 2017.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
+			else {
+				$progress.Items.Add("The installation of Kaspersky Internet Security 2017 has failed.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
 			}
 		if ($libreOffice.Checked -and !$apacheOpenOffice.Checked -and !$wpsOffice.Checked)	{
 			$progress.Items.Add("LibreOffice is checked."  )
@@ -214,9 +278,17 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install libreoffice -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$progress.Items.Add("Completed installation of LibreOffice.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
+			$Programs = choco list --localonly
+			if ($Programs -like '*libreoffice*') {
+				$progress.Items.Add("Completed installation of LibreOffice.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
+			else {
+				$progress.Items.Add("The installation of LibreOffice has failed.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
 			}
 	    if ($mozillaFirefox.Checked)	{
 			$progress.Items.Add("Mozilla Firefox is checked."  )
@@ -226,9 +298,17 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install firefox -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$progress.Items.Add("Completed installation of Mozilla Firefox."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
+			$Programs = choco list --localonly
+			if ($Programs -like '*Firefox*') {
+				$progress.Items.Add("Completed installation of Mozilla Firefox.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
+			else {
+				$progress.Items.Add("The installation of Mozilla Firefox has failed.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
 			}
 		if ($teamViewer.Checked)	{
 			$progress.Items.Add("TeamViewer is checked."  )
@@ -238,9 +318,17 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install teamviewer -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$progress.Items.Add("Completed installation of TeamViewer.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
+			$Programs = choco list --localonly
+			if ($Programs -like '*teamviewer*') {
+				$progress.Items.Add("Completed installation of TeamViewer.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
+			else {
+				$progress.Items.Add("The installation of TeamViewer has failed.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
 			}
 		if ($vlc.Checked)	{
 			$progress.Items.Add("VLC Media Player is checked."  )
@@ -250,9 +338,17 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install vlc -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$progress.Items.Add("Completed installation of VLC Media Player.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
+			$Programs = choco list --localonly
+			if ($Programs -like '*vlc*') {
+				$progress.Items.Add("Completed installation of VLC Media Player.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
+			else {
+				$progress.Items.Add("The installation of VLC Media Player has failed.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
 			}
 		if ($wpsOffice.Checked -and !$apacheOpenOffice.Checked -and !$libreOffice.Checked)	{
 			$progress.Items.Add("WPS Office is checked."  )
@@ -262,9 +358,17 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install wps-office-free -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
-			$progress.Items.Add("Completed installation of WPS Office."  )
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
+			$Programs = choco list --localonly
+			if ($Programs -like '*wps-office-free*') {
+				$progress.Items.Add("Completed installation of WPS Office.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
+			else {
+				$progress.Items.Add("The installation of WPS Office has failed.")
+				$progress.SelectedIndex = $progress.Items.Count - 1;
+				$progress.SelectedIndex = -1;
+				}
 			}
 	    if (!$crc.Checked -and !$7zip.Checked -and !$apacheOpenOffice.Checked -and !$googleChrome.Checked -and !$kaspersky.Checked -and !$libreOffice.Checked -and !$mozillaFirefox.Checked -and !$teamViewer.Checked -and !$vlc.Checked -and !$wpsOffice.Checked){
 			$progress.Items.Add("No programs are selected, please select some programs to install.")
@@ -404,7 +508,7 @@ $User = $env:UserName
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.10.1"
+	$installer.Text = "CRC Installer v1.11.0"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
