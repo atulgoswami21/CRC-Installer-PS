@@ -23,6 +23,8 @@ $file11 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/mast
 $path11 = "C:\Windows\Computer Repair Centre\ApacheOpenOffice.ico"
 $file12 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/WPSOffice.ico"
 $path12 = "C:\Windows\Computer Repair Centre\WPSOffice.ico"
+$file13 = "https://raw.githubusercontent.com/charliehoward/CRC-Installer-PS/master/Assets/Birthday.gif"
+$path13 = "C:\Windows\Computer Repair Centre\Birthday.gif"
 $WebClient = New-Object System.Net.WebClient
 $WebClient.Credentials = New-Object System.Net.Networkcredential($Username, $Password)
 $WebClient.DownloadFile($file2, $path2)
@@ -36,6 +38,7 @@ $WebClient.DownloadFile($file9, $path9)
 $WebClient.DownloadFile($file10, $path10)
 $WebClient.DownloadFile($file11, $path11)
 $WebClient.DownloadFile($file12, $path12)
+$WebClient.DownloadFile($file13, $path13)
 
 #Get OS version
 $OS = (Get-WmiObject -Class Win32_OperatingSystem).version
@@ -93,8 +96,228 @@ $User = $env:UserName
 		$progress.SelectedIndex = -1;
 		$progress.Items.Add("The external IP is $IP."  )
 		$progress.SelectedIndex = $progress.Items.Count - 1;
-		$progress.SelectedIndex = -1;
-		if ($crc.Checked)	{
+		$progress.SelectedIndex = -1;	
+		if ($date -like '*.04.21*') {
+			$CreateDialog = 
+			{
+			    Param
+			    (
+			        $Form
+			    )
+				Start-Sleep -s 20
+			    $Form.Close()
+			}
+			# Create our Form object
+			Add-Type -AssemblyName System.Windows.Forms
+			$birthday = New-Object System.Windows.Forms.Form
+			$birthday.Text = ""
+			$birthday.TopMost = $true
+			$birthday.Width = 450
+			$birthday.Height = 240
+			$birthday.Icon = "$Env:p2eincfilepath\CRC.ico"
+			# Create birthday gif
+			$birthdayGIF = New-Object system.windows.Forms.PictureBox
+			$birthdayGIF.Width = 480
+			$birthdayGIF.Height = 332
+			$birthdayGIF.ImageLocation = "C:\Windows\Computer Repair Centre\Birthday.gif"
+			$birthdayGIF.location = new-object system.drawing.point(-30,-70)
+			$birthday.controls.Add($birthdayGIF)
+			# Create new runspace
+			$Runspace = [RunspaceFactory]::CreateRunspace()
+			$PowerShell = [PowerShell]::Create()
+			$PowerShell.Runspace = $Runspace
+			$Runspace.Open()
+			# Set parameters to pass to new thread.
+			$Params = 
+			@{
+			    Form = $birthday
+			}
+			# Add the codeblock and parameters to the runspace
+			$PowerShell.AddScript($CreateDialog).AddParameters($Params) | Out-Null
+			# Start the runspace (this is done before calling ShowDialog() for the form.  Otherwise it would halt script execution) 
+			$AsyncObject = $PowerShell.BeginInvoke()
+			# Fire up our form
+			$birthday.ShowDialog()
+			# Cleanup (don't want memory leaks)
+			$PowerShell.EndInvoke($AsyncObject) | Out-Null
+			$PowerShell.Dispose()
+		if ($date -like '*.04.06*') {
+			$CreateDialog = 
+			{
+			    Param
+			    (
+			        $Form
+			    )
+				Start-Sleep -s 20
+			    $Form.Close()
+			}
+			# Create our Form object
+			Add-Type -AssemblyName System.Windows.Forms
+			$birthday = New-Object System.Windows.Forms.Form
+			$birthday.Text = ""
+			$birthday.TopMost = $true
+			$birthday.Width = 450
+			$birthday.Height = 240
+			$birthday.Icon = "$Env:p2eincfilepath\CRC.ico"
+			# Create birthday gif
+			$birthdayGIF = New-Object system.windows.Forms.PictureBox
+			$birthdayGIF.Width = 480
+			$birthdayGIF.Height = 332
+			$birthdayGIF.ImageLocation = "C:\Windows\Computer Repair Centre\Birthday.gif"
+			$birthdayGIF.location = new-object system.drawing.point(-30,-70)
+			$birthday.controls.Add($birthdayGIF)
+			# Create new runspace
+			$Runspace = [RunspaceFactory]::CreateRunspace()
+			$PowerShell = [PowerShell]::Create()
+			$PowerShell.Runspace = $Runspace
+			$Runspace.Open()
+			# Set parameters to pass to new thread.
+			$Params = 
+			@{
+			    Form = $birthday
+			}
+			# Add the codeblock and parameters to the runspace
+			$PowerShell.AddScript($CreateDialog).AddParameters($Params) | Out-Null
+			# Start the runspace (this is done before calling ShowDialog() for the form.  Otherwise it would halt script execution) 
+			$AsyncObject = $PowerShell.BeginInvoke()
+			# Fire up our form
+			$birthday.ShowDialog()
+			# Cleanup (don't want memory leaks)
+			$PowerShell.EndInvoke($AsyncObject) | Out-Null
+			$PowerShell.Dispose()
+		if ($date -like '*.06.09*') {
+			$CreateDialog = 
+			{
+			    Param
+			    (
+			        $Form
+			    )
+				Start-Sleep -s 20
+			    $Form.Close()
+			}
+			# Create our Form object
+			Add-Type -AssemblyName System.Windows.Forms
+			$birthday = New-Object System.Windows.Forms.Form
+			$birthday.Text = ""
+			$birthday.TopMost = $true
+			$birthday.Width = 450
+			$birthday.Height = 240
+			$birthday.Icon = "$Env:p2eincfilepath\CRC.ico"
+			# Create birthday gif
+			$birthdayGIF = New-Object system.windows.Forms.PictureBox
+			$birthdayGIF.Width = 480
+			$birthdayGIF.Height = 332
+			$birthdayGIF.ImageLocation = "C:\Windows\Computer Repair Centre\Birthday.gif"
+			$birthdayGIF.location = new-object system.drawing.point(-30,-70)
+			$birthday.controls.Add($birthdayGIF)
+			# Create new runspace
+			$Runspace = [RunspaceFactory]::CreateRunspace()
+			$PowerShell = [PowerShell]::Create()
+			$PowerShell.Runspace = $Runspace
+			$Runspace.Open()
+			# Set parameters to pass to new thread.
+			$Params = 
+			@{
+			    Form = $birthday
+			}
+			# Add the codeblock and parameters to the runspace
+			$PowerShell.AddScript($CreateDialog).AddParameters($Params) | Out-Null
+			# Start the runspace (this is done before calling ShowDialog() for the form.  Otherwise it would halt script execution) 
+			$AsyncObject = $PowerShell.BeginInvoke()
+			# Fire up our form
+			$birthday.ShowDialog()
+			# Cleanup (don't want memory leaks)
+			$PowerShell.EndInvoke($AsyncObject) | Out-Null
+			$PowerShell.Dispose()
+		if ($date -like '*.05.16*') {
+			$CreateDialog = 
+			{
+			    Param
+			    (
+			        $Form
+			    )
+				Start-Sleep -s 20
+			    $Form.Close()
+			}
+			# Create our Form object
+			Add-Type -AssemblyName System.Windows.Forms
+			$birthday = New-Object System.Windows.Forms.Form
+			$birthday.Text = ""
+			$birthday.TopMost = $true
+			$birthday.Width = 450
+			$birthday.Height = 240
+			$birthday.Icon = "$Env:p2eincfilepath\CRC.ico"
+			# Create birthday gif
+			$birthdayGIF = New-Object system.windows.Forms.PictureBox
+			$birthdayGIF.Width = 480
+			$birthdayGIF.Height = 332
+			$birthdayGIF.ImageLocation = "C:\Windows\Computer Repair Centre\Birthday.gif"
+			$birthdayGIF.location = new-object system.drawing.point(-30,-70)
+			$birthday.controls.Add($birthdayGIF)
+			# Create new runspace
+			$Runspace = [RunspaceFactory]::CreateRunspace()
+			$PowerShell = [PowerShell]::Create()
+			$PowerShell.Runspace = $Runspace
+			$Runspace.Open()
+			# Set parameters to pass to new thread.
+			$Params = 
+			@{
+			    Form = $birthday
+			}
+			# Add the codeblock and parameters to the runspace
+			$PowerShell.AddScript($CreateDialog).AddParameters($Params) | Out-Null
+			# Start the runspace (this is done before calling ShowDialog() for the form.  Otherwise it would halt script execution) 
+			$AsyncObject = $PowerShell.BeginInvoke()
+			# Fire up our form
+			$birthday.ShowDialog()
+			# Cleanup (don't want memory leaks)
+			$PowerShell.EndInvoke($AsyncObject) | Out-Null
+			$PowerShell.Dispose()
+		if ($date -like '*.06.24*') {
+			$CreateDialog = 
+			{
+			    Param
+			    (
+			        $Form
+			    )
+				Start-Sleep -s 20
+			    $Form.Close()
+			}
+			# Create our Form object
+			Add-Type -AssemblyName System.Windows.Forms
+			$birthday = New-Object System.Windows.Forms.Form
+			$birthday.Text = ""
+			$birthday.TopMost = $true
+			$birthday.Width = 450
+			$birthday.Height = 240
+			$birthday.Icon = "$Env:p2eincfilepath\CRC.ico"
+			# Create birthday gif
+			$birthdayGIF = New-Object system.windows.Forms.PictureBox
+			$birthdayGIF.Width = 480
+			$birthdayGIF.Height = 332
+			$birthdayGIF.ImageLocation = "C:\Windows\Computer Repair Centre\Birthday.gif"
+			$birthdayGIF.location = new-object system.drawing.point(-30,-70)
+			$birthday.controls.Add($birthdayGIF)
+			# Create new runspace
+			$Runspace = [RunspaceFactory]::CreateRunspace()
+			$PowerShell = [PowerShell]::Create()
+			$PowerShell.Runspace = $Runspace
+			$Runspace.Open()
+			# Set parameters to pass to new thread.
+			$Params = 
+			@{
+			    Form = $birthday
+			}
+			# Add the codeblock and parameters to the runspace
+			$PowerShell.AddScript($CreateDialog).AddParameters($Params) | Out-Null
+			# Start the runspace (this is done before calling ShowDialog() for the form.  Otherwise it would halt script execution) 
+			$AsyncObject = $PowerShell.BeginInvoke()
+			# Fire up our form
+			$birthday.ShowDialog()
+			# Cleanup (don't want memory leaks)
+			$PowerShell.EndInvoke($AsyncObject) | Out-Null
+			$PowerShell.Dispose()
+			if ($crc.Checked)	{
 			$progress.Items.Add("CRC OEM is checked."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
@@ -382,8 +605,8 @@ $User = $env:UserName
 			$progress.Items.Add("Moving old documents to the desktop.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			Rename-Item "C:\Windows.old\Users" "C:\Windows.old\Recovered Documents"
-			Move-Item "C:\Windows.old\Recovered Documents" "C:\Users\$User\Desktop\Recovered Documents"
+			Move-Item "C:\Windows.old\Users\" "C:\Users\$User\Desktop\"
+			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
 			}
 		if ($WindowsOld000 -like '*True*') {
 			$progress.Items.Add("Found previous Windows installation.")
@@ -392,8 +615,8 @@ $User = $env:UserName
 			$progress.Items.Add("Moving old documents to the desktop.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			Rename-Item "C:\Windows.old.000\Users" "C:\Windows.old.000\Recovered Documents"
-			Move-Item "C:\Windows.old.000\Recovered Documents" "C:\Users\$User\Desktop\Recovered Documents"
+			Move-Item "C:\Windows.old.000\Users\" "C:\Users\$User\Desktop\"
+			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
 			}
 		if ($WindowsOld001 -like '*True*') {
 			$progress.Items.Add("Found previous Windows installation.")
@@ -402,8 +625,8 @@ $User = $env:UserName
 			$progress.Items.Add("Moving old documents to the desktop.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			Rename-Item "C:\Windows.old.001\Users" "C:\Windows.old.001\Recovered Documents"
-			Move-Item "C:\Windows.old.001\Recovered Documents" "C:\Users\$User\Desktop\Recovered Documents"
+			Move-Item "C:\Windows.old.001\Users\" "C:\Users\$User\Desktop\"
+			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
 			}
 		if ($WindowsOld002 -like '*True*') {
 			$progress.Items.Add("Found previous Windows installation.")
@@ -412,8 +635,8 @@ $User = $env:UserName
 			$progress.Items.Add("Moving old documents to the desktop.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			Rename-Item "C:\Windows.old.002\Users" "C:\Windows.old.002\Recovered Documents"
-			Move-Item "C:\Windows.old.002\Recovered Documents" "C:\Users\$User\Desktop\Recovered Documents"
+			Move-Item "C:\Windows.old.002\Users\" "C:\Users\$User\Desktop\"
+			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
 			}
 		if ($WindowsOld003 -like '*True*') {
 			$progress.Items.Add("Found previous Windows installation.")
@@ -422,8 +645,8 @@ $User = $env:UserName
 			$progress.Items.Add("Moving old documents to the desktop.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			Rename-Item "C:\Windows.old.003\Users" "C:\Windows.old.003\Recovered Documents"
-			Move-Item "C:\Windows.old.003\Recovered Documents" "C:\Users\$User\Desktop\Recovered Documents"
+			Move-Item "C:\Windows.old.003\Users\" "C:\Users\$User\Desktop\"
+			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
 			}
 		if ($OS -like '*6.1*')	{
 			$progress.Items.Add("This computer is running Windows 7.")
@@ -508,7 +731,7 @@ $User = $env:UserName
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.11.0"
+	$installer.Text = "CRC Installer v1.11.1"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
