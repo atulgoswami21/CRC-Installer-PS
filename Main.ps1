@@ -141,6 +141,7 @@ $User = $env:UserName
 			# Cleanup (don't want memory leaks)
 			$PowerShell.EndInvoke($AsyncObject) | Out-Null
 			$PowerShell.Dispose()
+			}
 		if ($date -like '*.04.06*') {
 			$CreateDialog = 
 			{
@@ -185,6 +186,7 @@ $User = $env:UserName
 			# Cleanup (don't want memory leaks)
 			$PowerShell.EndInvoke($AsyncObject) | Out-Null
 			$PowerShell.Dispose()
+			}
 		if ($date -like '*.06.09*') {
 			$CreateDialog = 
 			{
@@ -229,6 +231,7 @@ $User = $env:UserName
 			# Cleanup (don't want memory leaks)
 			$PowerShell.EndInvoke($AsyncObject) | Out-Null
 			$PowerShell.Dispose()
+			}
 		if ($date -like '*.05.16*') {
 			$CreateDialog = 
 			{
@@ -273,6 +276,7 @@ $User = $env:UserName
 			# Cleanup (don't want memory leaks)
 			$PowerShell.EndInvoke($AsyncObject) | Out-Null
 			$PowerShell.Dispose()
+			}
 		if ($date -like '*.06.24*') {
 			$CreateDialog = 
 			{
@@ -317,6 +321,7 @@ $User = $env:UserName
 			# Cleanup (don't want memory leaks)
 			$PowerShell.EndInvoke($AsyncObject) | Out-Null
 			$PowerShell.Dispose()
+			}
 			if ($crc.Checked)	{
 			$progress.Items.Add("CRC OEM is checked."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
