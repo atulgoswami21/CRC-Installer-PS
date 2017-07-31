@@ -611,6 +611,7 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			Move-Item "C:\Windows.old\Users\" "C:\Users\$User\Desktop\"
+			Start-Sleep -s 10
 			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
 			}
 		if ($WindowsOld000 -like '*True*') {
@@ -621,6 +622,7 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			Move-Item "C:\Windows.old.000\Users\" "C:\Users\$User\Desktop\"
+			Start-Sleep -s 10
 			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
 			}
 		if ($WindowsOld001 -like '*True*') {
@@ -631,6 +633,7 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			Move-Item "C:\Windows.old.001\Users\" "C:\Users\$User\Desktop\"
+			Start-Sleep -s 10
 			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
 			}
 		if ($WindowsOld002 -like '*True*') {
@@ -641,6 +644,7 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			Move-Item "C:\Windows.old.002\Users\" "C:\Users\$User\Desktop\"
+			Start-Sleep -s 10
 			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
 			}
 		if ($WindowsOld003 -like '*True*') {
@@ -651,6 +655,7 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			Move-Item "C:\Windows.old.003\Users\" "C:\Users\$User\Desktop\"
+			Start-Sleep -s 10
 			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
 			}
 		if ($OS -like '*6.1*')	{
@@ -736,7 +741,7 @@ $User = $env:UserName
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.11.1"
+	$installer.Text = "CRC Installer v1.11.2"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
