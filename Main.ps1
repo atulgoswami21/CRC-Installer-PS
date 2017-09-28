@@ -603,61 +603,61 @@ $User = $env:UserName
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			}
-		if ($WindowsOld -like '*True*') {
-			$progress.Items.Add("Found preious Windows installation.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			$progress.Items.Add("Moving old documents to the desktop.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			Move-Item "C:\Windows.old\Users\" "C:\Users\$User\Desktop\"
-			Start-Sleep -s 10
-			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
-			}
-		if ($WindowsOld000 -like '*True*') {
-			$progress.Items.Add("Found previous Windows installation.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			$progress.Items.Add("Moving old documents to the desktop.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			Move-Item "C:\Windows.old.000\Users\" "C:\Users\$User\Desktop\"
-			Start-Sleep -s 10
-			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
-			}
-		if ($WindowsOld001 -like '*True*') {
-			$progress.Items.Add("Found previous Windows installation.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			$progress.Items.Add("Moving old documents to the desktop.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			Move-Item "C:\Windows.old.001\Users\" "C:\Users\$User\Desktop\"
-			Start-Sleep -s 10
-			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
-			}
-		if ($WindowsOld002 -like '*True*') {
-			$progress.Items.Add("Found previous Windows installation.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			$progress.Items.Add("Moving old documents to the desktop.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			Move-Item "C:\Windows.old.002\Users\" "C:\Users\$User\Desktop\"
-			Start-Sleep -s 10
-			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
-			}
-		if ($WindowsOld003 -like '*True*') {
-			$progress.Items.Add("Found previous Windows installation.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			$progress.Items.Add("Moving old documents to the desktop.")
-			$progress.SelectedIndex = $progress.Items.Count - 1;
-			$progress.SelectedIndex = -1;
-			Move-Item "C:\Windows.old.003\Users\" "C:\Users\$User\Desktop\"
-			Start-Sleep -s 10
-			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
-			}
+#		if ($WindowsOld -like '*True*') {
+#			$progress.Items.Add("Found preious Windows installation.")
+#			$progress.SelectedIndex = $progress.Items.Count - 1;
+#			$progress.SelectedIndex = -1;
+#			$progress.Items.Add("Moving old documents to the desktop.")
+#			$progress.SelectedIndex = $progress.Items.Count - 1;
+#			$progress.SelectedIndex = -1;
+#			Move-Item "C:\Windows.old\Users\" "C:\Users\$User\Desktop\"
+#			Start-Sleep -s 10
+#			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
+#			}
+#		if ($WindowsOld000 -like '*True*') {
+#			$progress.Items.Add("Found previous Windows installation.")
+#			$progress.SelectedIndex = $progress.Items.Count - 1;
+#			$progress.SelectedIndex = -1;
+#			$progress.Items.Add("Moving old documents to the desktop.")
+#			$progress.SelectedIndex = $progress.Items.Count - 1;
+#			$progress.SelectedIndex = -1;
+#			Move-Item "C:\Windows.old.000\Users\" "C:\Users\$User\Desktop\"
+#			Start-Sleep -s 10
+#			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
+#			}
+#		if ($WindowsOld001 -like '*True*') {
+#			$progress.Items.Add("Found previous Windows installation.")
+#			$progress.SelectedIndex = $progress.Items.Count - 1;
+#			$progress.SelectedIndex = -1;
+#			$progress.Items.Add("Moving old documents to the desktop.")
+#			$progress.SelectedIndex = $progress.Items.Count - 1;
+#			$progress.SelectedIndex = -1;
+#			Move-Item "C:\Windows.old.001\Users\" "C:\Users\$User\Desktop\"
+#			Start-Sleep -s 10
+#			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
+#			}
+#		if ($WindowsOld002 -like '*True*') {
+#			$progress.Items.Add("Found previous Windows installation.")
+#			$progress.SelectedIndex = $progress.Items.Count - 1;
+#			$progress.SelectedIndex = -1;
+#			$progress.Items.Add("Moving old documents to the desktop.")
+#			$progress.SelectedIndex = $progress.Items.Count - 1;
+#			$progress.SelectedIndex = -1;
+#			Move-Item "C:\Windows.old.002\Users\" "C:\Users\$User\Desktop\"
+#			Start-Sleep -s 10
+#			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
+#			}
+#		if ($WindowsOld003 -like '*True*') {
+#			$progress.Items.Add("Found previous Windows installation.")
+#			$progress.SelectedIndex = $progress.Items.Count - 1;
+#			$progress.SelectedIndex = -1;
+#			$progress.Items.Add("Moving old documents to the desktop.")
+#			$progress.SelectedIndex = $progress.Items.Count - 1;
+#			$progress.SelectedIndex = -1;
+#			Move-Item "C:\Windows.old.003\Users\" "C:\Users\$User\Desktop\"
+#			Start-Sleep -s 10
+#			Rename-Item "C:\Users\$User\Desktop\Users" "C:\Users\$User\Desktop\Recovered Documents"
+#			}
 		if ($OS -like '*6.1*')	{
 			$progress.Items.Add("This computer is running Windows 7.")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
