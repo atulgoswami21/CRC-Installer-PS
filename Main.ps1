@@ -741,7 +741,7 @@ $User = $env:UserName
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.11.2"
+	$installer.Text = "CRC Installer v1.11.3"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
