@@ -897,7 +897,7 @@ $User = $env:UserName
 	$libreOffice.Location = $System_Drawing_Point
 	$libreOffice.DataBindings.DefaultDataSourceUpdateMode = 0
 	$libreOffice.Name = "libreOffice"
-	$libreOffice.Checked = 1
+	$libreOffice.Checked = 0
 	$libreOffice.Image = [System.Drawing.Image]::FromFile("C:\Windows\Computer Repair Centre\LibreOffice.ico")
 	$installer.Controls.Add($libreOffice)
 	
