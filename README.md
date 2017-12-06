@@ -1,4 +1,4 @@
-# CRC Installer PowerShell 1.11.3
+# CRC Installer PowerShell 1.11.4
 
 When run you will get a form that allows to select what programs you wish to install.
 
@@ -9,6 +9,10 @@ If run on Windows 8 and 8.1 it also changes the default Explorer page to "This P
 If run on Windows 10 it also disables Windows 10 hibernation mode, Wi-Fi sense, and changes the default Explorer page to "This PC".
 
 Will check for previous installation of Windows and then copy over the old Users folder to the Desktop.
+
+# Update 1.11.4
+
+No longer installs LibreOffice by defualt and added the new Mozilla Firefox Quantum.
 
 # Update 1.11.3
 
