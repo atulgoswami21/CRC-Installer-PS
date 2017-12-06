@@ -519,21 +519,21 @@ $User = $env:UserName
 				}
 			}
 	    if ($mozillaFirefox.Checked)	{
-			$progress.Items.Add("Mozilla Firefox is checked."  )
+			$progress.Items.Add("Mozilla Firefox Quantum is checked."  )
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
-			$progress.Items.Add("Starting installation of Mozilla Firefox ...")
+			$progress.Items.Add("Starting installation of Mozilla Firefox Quantum ...")
 			$progress.SelectedIndex = $progress.Items.Count - 1;
 			$progress.SelectedIndex = -1;
 			choco install firefox -y --ignore-checksum | Out-File "C:/Windows/Computer Repair Centre/$log.log" -Append
 			$Programs = choco list --localonly
 			if ($Programs -like '*Firefox*') {
-				$progress.Items.Add("Completed installation of Mozilla Firefox.")
+				$progress.Items.Add("Completed installation of Mozilla Firefox Quantum.")
 				$progress.SelectedIndex = $progress.Items.Count - 1;
 				$progress.SelectedIndex = -1;
 				}
 			else {
-				$progress.Items.Add("The installation of Mozilla Firefox has failed.")
+				$progress.Items.Add("The installation of Mozilla Firefox Quantum has failed.")
 				$progress.SelectedIndex = $progress.Items.Count - 1;
 				$progress.SelectedIndex = -1;
 				}
@@ -741,7 +741,7 @@ $User = $env:UserName
 	}
 	
 #Main form
-	$installer.Text = "CRC Installer v1.11.3"
+	$installer.Text = "CRC Installer v1.11.4"
 	$installer.Name = "form1"
 	$installer.DataBindings.DefaultDataSourceUpdateMode = 0
 	$System_Drawing_Size = New-Object System.Drawing.Size
